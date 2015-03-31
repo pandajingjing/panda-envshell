@@ -1,0 +1,40 @@
+server {
+    listen 40085;
+    server_name *.test.jxu.life *.test.pandajingjing.net;
+    root /data/app/index;
+
+    set $phpfile web_test.php;
+
+    if ($host ~ ^api.*\.test\.jxu\.life$){
+        set $phpfile api_test.php;
+    }
+
+#    if ($host ~ ^m\..*\.test\.jxu\.life$){
+#        set $phpfile mobile_test.php;
+#    }
+
+    if ($host ~ ^api.*\.test\.pandajingjing\.net$){
+        set $phpfile api_test.php;
+    }
+
+#    if ($host ~ ^m\..*\.test\.pandajingjing\.net$){
+#        set $phpfile mobile_test.php;
+#    }
+
+    location / {
+        try_files $uri $uri/ /$phpfile?$args;
+    }
+
+    index $phpfile;
+
+    location ~ \.php$ {
+        fastcgi_pass   php-fpm;
+        fastcgi_index  $phpfile;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_keep_conn on;
+    }
+
+    access_log /data/logs/nginx/php.test.server.access.log more;
+    error_log /data/logs/nginx/php.test.server.error.log;
+}

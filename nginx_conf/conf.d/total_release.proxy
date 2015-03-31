@@ -1,0 +1,22 @@
+server {
+    listen 40082;
+    server_name *.jxu.life *.pandajingjing.net;
+    root /data/app/index;
+    index web_release.php;
+
+    set $backend php-release;
+    if ($host ~ ^static\.jxu\.life$){
+        set $backend static-release;
+    }
+
+    if ($host ~ ^static\.pandajingjing\.net$){
+        set $backend static-release;
+    }
+
+    location / {
+        proxy_pass http://$backend;
+    }
+
+    access_log /data/logs/nginx/proxy.release.access.log more;
+    error_log /data/logs/nginx/proxy.release.error.log;
+}

@@ -33,3 +33,9 @@ cd ../
 
 cd ../
 #install end
+
+#configure and test
+cp nginx_conf/nginx.conf "$bin_dir/$nginx_dir"/conf
+cp nginx_conf/conf.d "$bin_dir/$nginx_dir"/conf/ -R
+
+"$bin_dir/$nginx_dir"/sbin/nginx -t

@@ -1,0 +1,22 @@
+server {
+    listen 40080;
+    server_name *.dev.jxu.life *.dev.pandajingjing.net;
+    root /data/app/index;
+    index web_dev.php;
+
+    set $backend php-dev;
+    if ($host ~ ^static\..*\.dev\.jxu\.life$){
+        set $backend static-dev;
+    }
+
+    if ($host ~ ^static\..*\.dev\.pandajingjing\.net$){
+        set $backend static-dev;
+    }
+
+    location / {
+        proxy_pass http://$backend;
+    }
+
+    access_log /data/logs/nginx/proxy.dev.access.log more;
+    error_log /data/logs/nginx/proxy.dev.error.log;
+}
