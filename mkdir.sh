@@ -32,6 +32,7 @@ else
   mkdir $log_dir
   chown app:app $log_dir -R
   chmod 0755 $log_dir -R
+  mkdir $log_dir/nginx
 fi
 #log_dir made
 
