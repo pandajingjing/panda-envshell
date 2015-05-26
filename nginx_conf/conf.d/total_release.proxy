@@ -1,15 +1,11 @@
 server {
     listen 40082;
-    server_name *.jxu.life *.pandajingjing.net;
+    server_name *.jxu.life;
     root /data/app/index;
     index web_release.php;
 
     set $backend php-release;
     if ($host ~ ^static\.jxu\.life$){
-        set $backend static-release;
-    }
-
-    if ($host ~ ^static\.pandajingjing\.net$){
         set $backend static-release;
     }
 

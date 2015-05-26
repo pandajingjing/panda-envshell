@@ -1,5 +1,6 @@
 upstream php-fpm{
-    server 127.0.0.1:9000;
+    #server 127.0.0.1:9000;
+    server unix:/dev/shm/php-fpm.sock;
 }
 
 upstream server-dev{

@@ -1,6 +1,6 @@
 server {
     listen 40087;
-    server_name local.jxu.life local.pandajingjing.net;
+    server_name local.jxu.life;
     root /data/app/local;
     index index.php index.html;
 
@@ -17,26 +17,18 @@ server {
 
 server {
     listen 40087;
-    server_name *.jxu.life *.pandajingjing.net;
+    server_name *.jxu.life;
     root /data/app/index;
 
     set $phpfile web_release.php;
 
-    if ($host ~ ^api\..*\.jxu\.life$){
-        set $phpfile api_release.php;
+    if ($host ~ .*\.s\.jxu\.life$){
+        set $phpfile service_release.php;
     }
 
-#    if ($host ~ ^m\..*\.jxu\.life$){
-#        set $phpfile mobile_release.php;
-#    }
-
-    if ($host ~ ^api\..*\.pandajingjing\.net$){
-        set $phpfile api_release.php;
+    if ($host ~ .*\.m\.jxu\.life$){
+        set $phpfile mobile_release.php;
     }
-
-#    if ($host ~ ^m\..*\.pandajingjing\.net$){
-#        set $phpfile mobile_release.php;
-#    }
 
     index $phpfile;
 

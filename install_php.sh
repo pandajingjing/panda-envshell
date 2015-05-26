@@ -37,6 +37,6 @@ cd ../
 #configure and test
 cp $php_dir/php.ini-development "$bin_dir/$php_dir"/lib/php.ini
 
-cp "$bin_dir/$php_dir"/etc/php-fpm.conf.default "$bin_dir/$php_dir"/etc/php-fpm.conf
+cp php-fpm_conf/php-fpm.conf "$bin_dir/$php_dir"/etc/
 
 "$bin_dir/$php_dir"/sbin/php-fpm -t

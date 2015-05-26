@@ -7,14 +7,14 @@ server {
 
 server {
     listen 80;
-    server_name pandajingjing.net;
-    rewrite ^/(.*) http://www.pandajingjing.net/$1 redirect;
+    server_name .pandajingjing.net;
+    rewrite ^/(.*) http://www.jxu.life/$1 redirect;
     access_log  off;
 }
 
 server {
     listen 80;
-    server_name *.jxu.life *.pandajingjing.net;
+    server_name *.jxu.life;
     root /data/app/index;
     index index_release.php;
 
@@ -23,15 +23,7 @@ server {
         set $backend server-dev;
     }
 
-    if ($host ~ .*\.dev\.pandajingjing\.net$){
-        set $backend server-dev;
-    }
-
     if ($host ~ .*\.test\.jxu\.life$){
-        set $backend server-test;
-    }
-
-    if ($host ~ .*\.test\.pandajingjing\.net$){
         set $backend server-test;
     }
 

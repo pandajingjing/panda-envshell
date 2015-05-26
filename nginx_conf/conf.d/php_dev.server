@@ -1,25 +1,17 @@
 server {
     listen 40083;
-    server_name *.dev.jxu.life *.dev.pandajingjing.net;
+    server_name *.dev.jxu.life;
     root /data/app/index;
 
     set $phpfile web_dev.php;
 
-    if ($host ~ ^api.*\.dev\.jxu\.life$){
-        set $phpfile api_dev.php;
+    if ($host ~ .*\.s\.dev\.jxu\.life$){
+        set $phpfile service_dev.php;
     }
 
-#    if ($host ~ ^m\..*\.dev\.jxu\.life$){
-#        set $phpfile mobile_dev.php;
-#    }
-
-    if ($host ~ ^api.*\.dev\.pandajingjing\.net$){
-        set $phpfile api_dev.php;
+    if ($host ~ .*\.m\.dev\.jxu\.life$){
+        set $phpfile mobile_dev.php;
     }
-
-#    if ($host ~ ^m\..*\.dev\.pandajingjing\.net$){
-#        set $phpfile mobile_dev.php;
-#    }
 
     index $phpfile;
 

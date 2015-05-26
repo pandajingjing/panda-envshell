@@ -1,31 +1,23 @@
 server {
     listen 40085;
-    server_name *.test.jxu.life *.test.pandajingjing.net;
+    server_name *.test.jxu.life;
     root /data/app/index;
 
     set $phpfile web_test.php;
 
-    if ($host ~ ^api.*\.test\.jxu\.life$){
-        set $phpfile api_test.php;
+    if ($host ~ .*\.s\.test\.jxu\.life$){
+        set $phpfile service_test.php;
     }
 
-#    if ($host ~ ^m\..*\.test\.jxu\.life$){
-#        set $phpfile mobile_test.php;
-#    }
-
-    if ($host ~ ^api.*\.test\.pandajingjing\.net$){
-        set $phpfile api_test.php;
+    if ($host ~ .*\.m\.test\.jxu\.life$){
+        set $phpfile mobile_test.php;
     }
 
-#    if ($host ~ ^m\..*\.test\.pandajingjing\.net$){
-#        set $phpfile mobile_test.php;
-#    }
+    index $phpfile;
 
     location / {
         try_files $uri $uri/ /$phpfile?$args;
     }
-
-    index $phpfile;
 
     location ~ \.php$ {
         fastcgi_pass   php-fpm;
