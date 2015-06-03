@@ -33,6 +33,7 @@ else
   chown app:app $log_dir -R
   chmod 0755 $log_dir -R
   mkdir $log_dir/nginx
+  mkdir $log_dir/php-fpm
 fi
 #log_dir made
 

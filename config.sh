@@ -3,7 +3,7 @@
 tar_folder='tar'
 
 nginx_version='1.6.2'
-php_version='5.6.6'
+php_version='5.6.0'
 mysql_version='5.6.23'
 memcached_version='1.4.0'
 
