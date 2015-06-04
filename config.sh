@@ -6,6 +6,7 @@ nginx_version='1.6.2'
 php_version='5.6.0'
 mysql_version='5.6.23'
 memcached_version='1.4.0'
+bind_version='9.10.2'
 
 data_dir='/data'
 bin_dir="$data_dir/bin"

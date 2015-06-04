@@ -35,7 +35,7 @@ cd ../
 #install end
 
 #configure and test
-cp $php_dir/php.ini-development "$bin_dir/$php_dir"/lib/php.ini
+cp $tar_folder/$php_dir/php.ini-development "$bin_dir/$php_dir"/lib/php.ini
 
 cp php-fpm_conf/php-fpm.conf "$bin_dir/$php_dir"/etc/
 

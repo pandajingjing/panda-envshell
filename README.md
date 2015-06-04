@@ -20,6 +20,7 @@ user_group.sh|创建环境用户
 nginx_conf|nginx的配置目录
 php-fpm_conf|php-fpm的配置目录
 service_shell|加入chkconfig列表所需的脚本文件
+bind_conf|bind的配置目录
 tar|下载的tar包存放的地方
 
 当然了,相关的编译,安装及配置参数,都是根据自己的需求来做的,如果你有自己的需求,改改改
@@ -58,6 +59,9 @@ class me extends 码畜
 ```
 
 ##change log
+- 20150604 V2.9
+ - 1.加入BIND的安装支持
+ - 2.打算重构了
 - 20150603 V2.1
  - 1.将PHP版本从5.6.6调整为5.6.0
  - 2.创建目录时会创建php的日志目录
