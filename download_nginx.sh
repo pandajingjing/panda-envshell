@@ -1,14 +1,5 @@
 #!/bin/sh
 
-source ./config.sh
-nginx_tar_url="http://nginx.org/download/nginx-$nginx_version.tar.gz"
+source ./common.sh
 
-if [ ! -d $tar_folder ]; then
-  mkdir $tar_folder
-fi
-
-cd $tar_folder
-
-wget -c $nginx_tar_url
-
-cd ../
+download_bincode $URL_BINCODE_NGINX

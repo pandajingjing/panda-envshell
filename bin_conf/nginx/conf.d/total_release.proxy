@@ -1,0 +1,18 @@
+server {
+    listen 40082;
+    server_name *.jxu.life;
+    root {{INSTALL_DIR_APP}}/index;
+    index web_release.php;
+
+    set $backend php-release;
+    if ($host ~ ^static\.jxu\.life$){
+        set $backend static-release;
+    }
+
+    location / {
+        proxy_pass http://$backend;
+    }
+
+    access_log {{LOG_DIR_NGINX}}/proxy.release.access.log more;
+    error_log {{LOG_DIR_NGINX}}/proxy.release.error.log;
+}

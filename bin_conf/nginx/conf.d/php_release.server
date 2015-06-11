@@ -1,0 +1,49 @@
+server {
+    listen 40087;
+    server_name local.jxu.life;
+    root {{INSTALL_DIR_APP}}/local;
+    index index.php index.html;
+
+    location ~ \.php$ {
+        fastcgi_pass   php-fpm;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_keep_conn on;
+    }
+
+    access_log off;
+}
+
+server {
+    listen 40087;
+    server_name *.jxu.life;
+    root {{INSTALL_DIR_APP}}/index;
+
+    set $phpfile web_release.php;
+
+    if ($host ~ .*\.s\.jxu\.life$){
+        set $phpfile service_release.php;
+    }
+
+    if ($host ~ .*\.m\.jxu\.life$){
+        set $phpfile mobile_release.php;
+    }
+
+    index $phpfile;
+
+    location / {
+        try_files $uri $uri/ /$phpfile?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass   php-fpm;
+        fastcgi_index  $phpfile;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_keep_conn on;
+    }
+
+    access_log {{LOG_DIR_NGINX}}/php.release.server.access.log more;
+    error_log {{LOG_DIR_NGINX}}/php.release.server.error.log;
+}

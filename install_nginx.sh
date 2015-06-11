@@ -1,41 +1,32 @@
 #!/bin/sh
 
-source ./config.sh
-nginx_tar_file_name="nginx-$nginx_version.tar.gz"
-nginx_dir="nginx-$nginx_version"
+source ./common.sh
 
-if [ ! -d $bin_dir ]; then
-  echo 'Create dir first.'
-  exit
-fi
+info 'install nginx start.'
+	unzip_bincode $BIN_NGINX
+	info 'configure nginx start.'
+		cd $EXEC_DIR_BINCODE/$BIN_NGINX
+		$COMPILE_NGINX
+	info 'configure nginx success.'
+	info 'compile and install nginx start.'
+		make && make install
+	info 'compile and install nginx success.'
+	cd $EXEC_DIR_BASE
+info 'install nginx success.'
 
-#install start
-cd $tar_folder
-
-#install nginx
-if [ -d $nginx_dir ]; then
-  rm -rf $nginx_dir
-fi
-
-if [ -d $bin_dir/$nginx_dir ]; then
-  rm -rf $bin_dir/$nginx_dir
-fi
-
-tar -zxf $nginx_tar_file_name
-cd $nginx_dir
-
-./configure "--prefix=$bin_dir/$nginx_dir" --user=app --group=app --with-http_ssl_module --with-http_gzip_static_module  --with-http_stub_status_module --with-pcre
-
-make && make install
-
-cd ../
-#nginx installed
-
-cd ../
-#install end
-
-#configure and test
-cp nginx_conf/nginx.conf "$bin_dir/$nginx_dir"/conf
-cp nginx_conf/conf.d "$bin_dir/$nginx_dir"/conf/ -R
-
-"$bin_dir/$nginx_dir"/sbin/nginx -t
+info 'configure nginx start.'
+	mkdir $INSTALL_DIR_NGINX/conf/conf.d
+        configure_bin $EXEC_DIR_BINCONF/nginx/nginx.conf $INSTALL_DIR_NGINX/conf/nginx.conf
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.upstream $INSTALL_DIR_NGINX/conf/conf.d/total.upstream
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.proxy $INSTALL_DIR_NGINX/conf/conf.d/total.proxy
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total_dev.proxy $INSTALL_DIR_NGINX/conf/conf.d/total_dev.proxy
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total_test.proxy $INSTALL_DIR_NGINX/conf/conf.d/total_test.proxy
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total_release.proxy $INSTALL_DIR_NGINX/conf/conf.d/total_release.proxy
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/php_dev.server $INSTALL_DIR_NGINX/conf/conf.d/php_dev.server
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/php_test.server $INSTALL_DIR_NGINX/conf/conf.d/php_test.server
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/php_release.server $INSTALL_DIR_NGINX/conf/conf.d/php_release.server
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/static_dev.server $INSTALL_DIR_NGINX/conf/conf.d/static_dev.server
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/static_test.server $INSTALL_DIR_NGINX/conf/conf.d/static_test.server
+	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/static_release.server $INSTALL_DIR_NGINX/conf/conf.d/static_release.server
+        $INSTALL_DIR_NGINX/sbin/nginx -t
+info 'configure nginx success.'

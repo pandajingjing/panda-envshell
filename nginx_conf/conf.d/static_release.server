@@ -1,8 +1,0 @@
-server {
-    listen 40088;
-    server_name static.jxu.life;
-    root /data/app/static_release;
-    index index.html;
-    access_log /data/logs/nginx/static.release.server.access.log more;
-    error_log /data/logs/nginx/static.release.server.error.log;
-}

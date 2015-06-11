@@ -1,41 +1,34 @@
 #!/bin/sh
 
-source ./config.sh
-bind_tar_file_name="bind-$bind_version.tar.gz"
-bind_dir="bind-$bind_version"
+source ./common.sh
 
-if [ ! -d $bin_dir ]; then
-  echo 'Create dir first.'
-  exit
-fi
+info 'install bind start.'
+        unzip_bincode $BIND
+        info 'configure bind start.'
+                cd $EXEC_DIR_BINCODE/$BIND
+                $COMPILE_BIND
+        info 'configure bind success.'
+        info 'compile and install bind start.'
+                make && make install
+        info 'compile and install bind success.'
+        cd $EXEC_DIR_BASE
+info 'install bind success.'
 
-#install start
-cd $tar_folder
-
-#install bind
-if [ -d $bind_dir ]; then
-  rm -rf $bind_dir
-fi
-
-if [ -d $bin_dir/$bind_dir ]; then
-  rm -rf $bin_dir/$bind_dir
-fi
-
-tar -zxf $bind_tar_file_name
-cd $bind_dir
-
-./configure "--prefix=$bin_dir/$bind_dir" --enable-largefile --enable-threads
-
-make && make install
-
-cd ../
-#bind installed
-
-cd ../
-#install end
-
-#configure and test
-cp bind_conf/bind.conf "$bin_dir/$bind_dir"/conf
-cp bind_conf/conf.d "$bin_dir/$bind_dir"/conf/ -R
-
-"$bin_dir/$bind_dir"/sbin/bind -t
+info 'configure bind start.'
+	mkdir $INSTALL_DIR_BIND/etc/default
+	mkdir $INSTALL_DIR_BIND/etc/jxu
+	$INSTALL_DIR_BIND/sbin/rndc-confgen > $INSTALL_DIR_BIND/etc/rndc.conf
+	tail -10 $INSTALL_DIR_BIND/etc/rndc.conf | head -9 | sed 's/#//g' > $INSTALL_DIR_BIND/etc/named.conf
+	echo "include \"$INSTALL_DIR_BIND/etc/named.ext.conf\";" >> $INSTALL_DIR_BIND/etc/named.conf
+	configure_bin $EXEC_DIR_BINCONF/bind/named.ext.conf $INSTALL_DIR_BIND/etc/named.ext.conf
+	configure_bin $EXEC_DIR_BINCONF/bind/jxu/zone.conf $INSTALL_DIR_BIND/etc/jxu/zone.conf
+	configure_bin $EXEC_DIR_BINCONF/bind/jxu/named.conf $INSTALL_DIR_BIND/etc/jxu/named.conf
+	configure_bin $EXEC_DIR_BINCONF/bind/default/named.default.zone $INSTALL_DIR_BIND/etc/default/named.default.zone
+	configure_bin $EXEC_DIR_BINCONF/bind/default/named.empty $INSTALL_DIR_BIND/etc/default/named.empty
+	configure_bin $EXEC_DIR_BINCONF/bind/default/named.localhost $INSTALL_DIR_BIND/etc/default/named.localhost
+	configure_bin $EXEC_DIR_BINCONF/bind/default/named.loopback $INSTALL_DIR_BIND/etc/default/named.loopback
+	configure_bin $EXEC_DIR_BINCONF/bind/default/named.root $INSTALL_DIR_BIND/etc/default/named.root
+	configure_bin $EXEC_DIR_SHELL/tools/named_reload.sh $INSTALL_DIR_BIND/sbin/named_reload.sh
+	chmod +x $INSTALL_DIR_BIND/sbin/named_reload.sh
+	$INSTALL_DIR_BIND/sbin/named_reload.sh
+info 'configure bind success.'

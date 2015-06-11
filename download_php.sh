@@ -1,14 +1,5 @@
 #!/bin/sh
 
-source ./config.sh
-php_tar_url="http://cn2.php.net/distributions/php-$php_version.tar.gz"
+source ./common.sh
 
-if [ ! -d $tar_folder ]; then
-  mkdir $tar_folder
-fi
-
-cd $tar_folder
-
-wget -c $php_tar_url
-
-cd ../
+download_bincode $URL_BINCODE_PHP

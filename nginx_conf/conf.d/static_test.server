@@ -1,8 +1,0 @@
-server {
-    listen 40086;
-    server_name ~^static\.(?<dir_name>.*)\.test\.jxu\.life$;
-    root /data/app/static_test/$dir_name;
-    index index.html;
-    access_log /data/logs/nginx/static.test.server.access.log more;
-    error_log /data/logs/nginx/static.test.server.error.log;
-}
