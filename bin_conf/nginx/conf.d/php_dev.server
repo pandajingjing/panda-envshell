@@ -1,15 +1,15 @@
 server {
     listen 40083;
-    server_name *.dev.jxu.life;
+    server_name *.dev.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
     set $phpfile web_dev.php;
 
-    if ($host ~ .*\.s\.dev\.jxu\.life$){
+    if ($host ~ .*\.s\.dev\.{{DOMAIN_REG}}$){
         set $phpfile service_dev.php;
     }
 
-    if ($host ~ .*\.m\.dev\.jxu\.life$){
+    if ($host ~ .*\.m\.dev\.{{DOMAIN_REG}}$){
         set $phpfile mobile_dev.php;
     }
 

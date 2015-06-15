@@ -16,14 +16,14 @@ fi
 unset TMPDIR
 
 RETVAL=0
-BINFILE={{INSTALL_DIR_BIND}}/sbin/bind
+BINFILE={{INSTALL_DIR_BIND}}/sbin/named
 PIDFILE={{PID_PATH_BIND}}
-CFGFILE={{INSTALL_DIR_BIND}}/conf/bind.conf
+CFGFILE={{INSTALL_DIR_BIND}}/etc/named.conf
 KIND=bind
 
 start() {
     echo -n $"Starting $KIND services: "
-    $BINFILE
+    $BINFILE -u {{ENV_USER}} &
     RETVAL=$?
     success
     echo
@@ -34,7 +34,7 @@ start() {
 
 stop() {
     echo -n $"Shutting down $KIND services: "
-    kill -QUIT `cat $PIDFILE`
+    {{INSTALL_DIR_BIND}}/sbin/rndc stop
     RETVAL=$?
     success
     echo
@@ -49,7 +49,7 @@ restart() {
 
 reload() {
     echo -n $"Reloading $CFGFILE: "
-    kill -HUP `cat $PIDFILE`
+    {{INSTALL_DIR_BIND}}/sbin/rndc reload
     RETVAL=$?
     success
     echo
@@ -57,7 +57,8 @@ reload() {
 }
 
 configtest() {
-    $BINFILE -t
+    {{INSTALL_DIR_BIND}}/sbin/named-checkconf {{INSTALL_DIR_BIND}}/etc/named.conf
+    {{INSTALL_DIR_BIND}}/sbin/named-checkzone {{DOMAIN}} {{INSTALL_DIR_BIND}}/etc/jxu/zone.conf
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
         echo Syntax OK

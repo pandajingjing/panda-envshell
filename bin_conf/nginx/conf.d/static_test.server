@@ -1,6 +1,6 @@
 server {
     listen 40086;
-    server_name ~^static\.(?<dir_name>.*)\.test\.jxu\.life$;
+    server_name ~^static\.(?<dir_name>.*)\.test\.{{DOMAIN_REG}}$;
     root {{INSTALL_DIR_APP}}/static_test/$dir_name;
     index index.html;
     access_log {{LOG_DIR_NGINX}}/static.test.server.access.log more;

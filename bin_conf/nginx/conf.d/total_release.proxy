@@ -1,11 +1,11 @@
 server {
     listen 40082;
-    server_name *.jxu.life;
+    server_name *.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
     index web_release.php;
 
     set $backend php-release;
-    if ($host ~ ^static\.jxu\.life$){
+    if ($host ~ ^static\.{{DOMAIN_REG}}$){
         set $backend static-release;
     }
 

@@ -2,10 +2,9 @@
 
 source ./common.sh
 
-info 'make directroy start.'
-	for n in $DIR_VAR
-	do
-		eval i=\$$n
-		make_dir $i
-	done
-info 'make directory success.'
+info 'make common directroy start.'
+	make_dir $INSTALL_DIR_DATA
+	make_dir $INSTALL_DIR_BIN
+	make_dir $INSTALL_DIR_LOG
+	make_dir $INSTALL_DIR_APP
+info 'make common directory success.'

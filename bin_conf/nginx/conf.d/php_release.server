@@ -1,6 +1,6 @@
 server {
     listen 40087;
-    server_name local.jxu.life;
+    server_name local.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/local;
     index index.php index.html;
 
@@ -17,16 +17,16 @@ server {
 
 server {
     listen 40087;
-    server_name *.jxu.life;
+    server_name *.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
     set $phpfile web_release.php;
 
-    if ($host ~ .*\.s\.jxu\.life$){
+    if ($host ~ .*\.s\.{{DOMAIN_REG}}$){
         set $phpfile service_release.php;
     }
 
-    if ($host ~ .*\.m\.jxu\.life$){
+    if ($host ~ .*\.m\.{{DOMAIN_REG}}$){
         set $phpfile mobile_release.php;
     }
 

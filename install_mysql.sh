@@ -4,6 +4,7 @@ source ./common.sh
 
 info 'install mysql start.'
         unzip_bincode $BIN_MYSQL
+	install_check $BIN_MYSQL
 	LN_DIR_MYSQL='/usr/local/mysql'
 	rm /etc/my.cnf -rf
 	rm $LN_DIR_MYSQL -rf
@@ -22,3 +23,5 @@ info 'configure mysql start.'
 	bin/mysql -h127.0.0.1 -uroot -e "grant all privileges on *.* to root@'%' identified by '$pwd'"
 	bin/mysql -h127.0.0.1 -uroot -e "grant all privileges on *.* to root@'localhost' identified by '$pwd'"
 info 'configure mysql success.'
+
+$EXEC_DIR_BASE/service_mysql.sh

@@ -1,29 +1,29 @@
 server {
     listen 80;
-    server_name jxu.life;
-    rewrite ^/(.*) http://www.jxu.life/$1 redirect;
+    server_name {{DOMAIN}};
+    rewrite ^/(.*) http://www.{{DOMAIN}}/$1 redirect;
     access_log  off;
 }
 
 server {
     listen 80;
     server_name .pandajingjing.net;
-    rewrite ^/(.*) http://www.jxu.life/$1 redirect;
+    rewrite ^/(.*) http://www.{{DOMAIN}}/$1 redirect;
     access_log  off;
 }
 
 server {
     listen 80;
-    server_name *.jxu.life;
+    server_name *.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
     index index_release.php;
 
     set $backend server-release;
-    if ($host ~ .*\.dev\.jxu\.life$){
+    if ($host ~ .*\.dev\.{{DOMAIN_REG}}$){
         set $backend server-dev;
     }
 
-    if ($host ~ .*\.test\.jxu\.life$){
+    if ($host ~ .*\.test\.{{DOMAIN_REG}}$){
         set $backend server-test;
     }
 

@@ -1,11 +1,11 @@
 server {
     listen 40081;
-    server_name *.test.jxu.life;
+    server_name *.test.{{DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
     index web_test.php;
 
     set $backend php-test;
-    if ($host ~ ^static\..*\.test\.jxu\.life$){
+    if ($host ~ ^static\..*\.test\.{{DOMAIN_REG}}$){
         set $backend static-test;
     }
 

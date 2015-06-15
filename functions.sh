@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function chk_root(){
-	if [ "$UID" -ne 0 ] ; then
+	if [ $UID -ne 0 ] ; then
 		warn 'You should run as root!!!'
 		exit
 	fi
@@ -29,40 +29,47 @@ function warn(){
 
 function make_dir(){
 	info "make dir:$1 start."
-	if [ -d $1 ]; then
-		warn "dir:$1 already exists."
-		exit
-	else
-		mkdir $1
+		if [ -d $1 ]; then
+			warn "dir:$1 already exists."
+		else
+			mkdir $1
+		fi
 		chown $ENV_USER:$ENV_GROUP $1 -R
 		chmod 0755 $1 -R
-		info "make dir:$1 success."
-	fi
+	info "make dir:$1 success."
 }
 
 function download_bincode(){
 	info "download $1 start."
 		if [ ! -d $EXEC_DIR_BINCODE ]; then
+			info 'create '$EXEC_DIR_BINCODE' .'
 			mkdir $EXEC_DIR_BINCODE
+		else
+			warn $EXEC_DIR_BINCODE' is exists.'
 		fi
 		wget -P $EXEC_DIR_BINCODE -c $1 
 	info "download $1 success."
 }
 
 function unzip_bincode(){
-	if [ ! -d $INSTALL_DIR_BIN ]; then
-		warn 'create '$INSTALL_DIR_BIN' first. you should run make_dir.sh'
-		exit
-	fi
 	if [ -d $EXEC_DIR_BINCODE/$1 ]; then
+		warn 'clear '$EXEC_DIR_BINCODE/$1
 		rm -rf $EXEC_DIR_BINCODE/$1
-	fi
-	if [ -d $INSTALL_DIR_BIN/$1 ]; then
-        	rm -rf $INSTALL_DIR_BIN/$1
 	fi
 	info 'unzip bincode: '$1.tar.gz' start.'
 		tar -zxf $EXEC_DIR_BINCODE/$1.tar.gz -C $EXEC_DIR_BINCODE
 	info 'unzip bincode: '$1.tar.gz' success.'
+}
+
+function install_check(){
+	if [ ! -d $INSTALL_DIR_BIN ]; then
+                warn 'create '$INSTALL_DIR_BIN' first. you should run mkdir_.sh first.'
+                exit
+        fi
+	if [ -d $INSTALL_DIR_BIN/$1 ]; then
+		warn 'clear '$INSTALL_DIR_BIN/$1
+                rm -rf $INSTALL_DIR_BIN/$1
+        fi
 }
 
 function configure_bin(){
