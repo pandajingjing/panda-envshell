@@ -3,8 +3,8 @@
 source ./common.sh
 
 info 'configure bind start.'
-	mkdir $INSTALL_DIR_BIND/etc/default
-	mkdir $INSTALL_DIR_BIND/etc/jxu
+	make_dir $INSTALL_DIR_BIND/etc/default 1
+	make_dir $INSTALL_DIR_BIND/etc/jxu 1
 	$INSTALL_DIR_BIND/sbin/rndc-confgen > $INSTALL_DIR_BIND/etc/rndc.conf
 	tail -10 $INSTALL_DIR_BIND/etc/rndc.conf | head -9 | sed 's/#//g' > $INSTALL_DIR_BIND/etc/named.conf
 	echo "include \"$INSTALL_DIR_BIND/etc/named.ext.conf\";" >> $INSTALL_DIR_BIND/etc/named.conf

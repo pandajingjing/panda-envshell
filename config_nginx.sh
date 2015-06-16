@@ -3,7 +3,7 @@
 source ./common.sh
 
 info 'configure nginx start.'
-	mkdir $INSTALL_DIR_NGINX/conf/conf.d
+	make_dir $INSTALL_DIR_NGINX/conf/conf.d 1
         configure_bin $EXEC_DIR_BINCONF/nginx/nginx.conf $INSTALL_DIR_NGINX/conf/nginx.conf
 	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.upstream $INSTALL_DIR_NGINX/conf/conf.d/total.upstream
 	configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.proxy $INSTALL_DIR_NGINX/conf/conf.d/total.proxy

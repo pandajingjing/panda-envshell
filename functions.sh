@@ -31,6 +31,11 @@ function make_dir(){
 	info "make dir:$1 start."
 		if [ -d $1 ]; then
 			warn "dir:$1 already exists."
+			if [[ '' != $2 ]]; then
+				warn 'clear '$1
+				rm -rf $1
+				mkdir $1
+			fi
 		else
 			mkdir $1
 		fi
