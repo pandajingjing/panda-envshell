@@ -6,7 +6,7 @@ if [ $USER_IP = '' ]; then
     USER_IP=`hostname`
 fi
 
-HISDIR=~/history
+HISDIR=~/.history
 if [ ! -d $HISDIR ]; then
     mkdir $HISDIR
 fi
