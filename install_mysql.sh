@@ -15,7 +15,7 @@ info 'install mysql success.'
 info 'start mysql.'
 	cd $LN_DIR_MYSQL
 	scripts/mysql_install_db --user=$ENV_USER
-	bin/mysqld_safe --user=$ENV_USER --log-error=$LOG_DIR_MYSQL/mysql.err --pid-file=$PID_PATH_MYSQL &
+	bin/mysqld_safe --user=$ENV_USER --log-error=$LOG_DIR_MYSQL/mysql.err --pid-file=$PID_PATH_MYSQL --port=$MYSQLD_PORT &
 	cd $EXEC_DIR_BASE
 info 'mysql started.'
 info 'configure mysql start.'

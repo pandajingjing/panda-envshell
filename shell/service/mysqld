@@ -24,7 +24,7 @@ KIND=mysqld
 
 start() {
     echo -n $"Starting $KIND services: "
-    $BINFILE --user={{ENV_USER}} --log-error={{LOG_DIR_MYSQL}}/mysql.err --pid-file={{PID_PATH_MYSQL}} &
+    $BINFILE --user={{ENV_USER}} --log-error={{LOG_DIR_MYSQL}}/mysql.err --pid-file={{PID_PATH_MYSQL}} --port={{MYSQLD_PORT}} &
     RETVAL=$?
     success
     echo

@@ -41,6 +41,9 @@ PID_PATH_PHP=$LOG_DIR_PHP'/php-fpm.pid'
 PID_PATH_MYSQL=$LOG_DIR_MYSQL'/mysql.pid'
 PID_PATH_BIND=$LOG_DIR_BIND'/bind.pid'
 
+SSHD_PORT=*
+MYSQLD_PORT=*
+
 COMPILE_NGINX='./configure --prefix='$INSTALL_DIR_BIN/$BIN_NGINX' --user='$ENV_USER' --group='$ENV_GROUP' --with-http_ssl_module --with-http_gzip_static_module  --with-http_stub_status_module --with-pcre'
 COMPILE_PHP='./configure --prefix='$INSTALL_DIR_BIN/$BIN_PHP' --with-fpm-user='$ENV_USER' --with-fpm-group='$ENV_GROUP' --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --enable-zip --with-mcrypt'
 COMPILE_MYSQL=''
@@ -59,7 +62,8 @@ URL_BINCODE_NGINX URL_BINCODE_PHP URL_BINCODE_MYSQL URL_BINCODE_BIND \
 INSTALL_DIR_DATA INSTALL_DIR_BIN INSTALL_DIR_LOG INSTALL_DIR_APP \
 INSTALL_DIR_NGINX INSTALL_DIR_PHP INSTALL_DIR_MYSQL INSTALL_DIR_BIND \
 LOG_DIR_NGINX LOG_DIR_PHP LOG_DIR_MYSQL LOG_DIR_BIND \
-PID_PATH_NGINX PID_PATH_PHP PID_PATH_MYSQL PID_PATH_BIND"
+PID_PATH_NGINX PID_PATH_PHP PID_PATH_MYSQL PID_PATH_BIND \
+SSHD_PORT MYSQLD_PORT"
 
 CFG_VAR="$BIN_VAR \
 COMPILE_NGINX COMPILE_PHP COMPILE_MYSQL COMPILE_BIND \
