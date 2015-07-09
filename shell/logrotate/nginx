@@ -1,0 +1,11 @@
+{{LOG_DIR_NGINX}}/*.log {
+    compress
+    delaycompress
+    notifempty
+    daily
+    missingok
+    sharedscripts
+    postrotate
+        kill -USR1 `cat {{PID_PATH_NGINX}}`
+    endscript
+}

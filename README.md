@@ -1,6 +1,6 @@
 # panda-envshell
 
-当前最新版本 V3.7.1
+当前最新版本 V3.8
 
 这是一个快速安装web运行环境的程序集合
 
@@ -17,6 +17,7 @@ download_*.sh|会英文的都懂,下载对应的tar包
 functions.sh|相关的通用函数
 install_*.sh|安装相关软件,其中mysql是bin文件安装,其余都是源码编译安装
 install_lib.sh|安装基本库
+logrotate_*.sh|配置日志切割工具
 make_dir.sh|创建全局目录结构
 mkdir_*.sh|创建应用需要的目录结构
 service_*.sh|将应用添加到chkconfig列表中,支持service命令
@@ -44,6 +45,7 @@ tar|下载的tar包存放在这里
 - 7.运行install_*.sh安装你所需要的应用,安装程序会自动调用8,9的程序.8,9也可单独运行
 - 8.运行config_*.sh配置你所需要的应用
 - 9.运行service_*.sh把应用添加到chkconfig列表中
+- 10.运行logrotate_*.sh配置对应应用的日志切割工具
 
 到此你的环境应该安装差不多了,php基本是不需要配置的,nginx和bind有一个基本的配置,nginx可以支持多分支开发,测试及正式环境的部署,bind将对应的域名解析为本地.安装mysql时,会需要输入root的密码,这个不要忘记了.
 
@@ -68,6 +70,9 @@ class me extends 码畜
 ```
 
 ##change log
+- 20150709 V3.8
+ - 1.修正了nginx中关于压缩js的一个配置问题
+ - 2.加入了logrotate的nginx配置
 - 20150702 V3.7.1
  - 1.增加了sshd的配置,快速修改成通过key登陆,并且阻止root和环境用户登陆
  - 2.增加了mysql的端口配置
