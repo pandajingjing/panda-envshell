@@ -1,6 +1,6 @@
 # panda-envshell
 
-当前最新版本 V3.8
+当前最新版本 V3.8.1
 
 这是一个快速安装web运行环境的程序集合
 
@@ -70,6 +70,8 @@ class me extends 码畜
 ```
 
 ##change log
+- 20150808 V3.8.1
+ - 1.调整里nginx中gzip的mimetype
 - 20150709 V3.8
  - 1.修正了nginx中关于压缩js的一个配置问题
  - 2.加入了logrotate的nginx配置
