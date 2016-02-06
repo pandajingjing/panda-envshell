@@ -1,0 +1,40 @@
+upstream php-fpm{
+    #server 127.0.0.1:9000;
+    server unix:/dev/shm/php-fpm.sock;
+}
+
+upstream server-dev{
+    server 127.0.0.1:40080;
+}
+
+upstream server-test{
+    server 127.0.0.1:40081;
+}
+
+upstream server-release{
+    server 127.0.0.1:40082;
+}
+
+upstream php-dev{
+    server 127.0.0.1:40083;
+}
+
+upstream static-dev{
+    server 127.0.0.1:40084;
+}
+
+upstream php-test{
+    server 127.0.0.1:40085;
+}
+
+upstream static-test{
+    server 127.0.0.1:40086;
+}
+
+upstream php-release{
+    server 127.0.0.1:40087;
+}
+
+upstream static-release{
+    server 127.0.0.1:40088;
+}

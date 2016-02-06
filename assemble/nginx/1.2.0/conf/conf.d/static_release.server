@@ -1,0 +1,8 @@
+server {
+    listen 40088;
+    server_name static.{{DOMAIN}};
+    root {{INSTALL_DIR_APP}}/static_release;
+    index index.html;
+    access_log {{LOG_DIR_NGINX}}/static.release.server.access.log more;
+    error_log {{LOG_DIR_NGINX}}/static.release.server.error.log;
+}

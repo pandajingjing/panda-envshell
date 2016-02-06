@@ -1,0 +1,18 @@
+#env user and group
+ENV_USER='app'
+ENV_GROUP='app'
+
+#frame configuration
+COMMON_LIB='wget mlocate gcc make man'
+DEBUG=1
+
+#dir we put all stuff
+INSTALL_DIR_DATA='/data'
+INSTALL_DIR_BIN=$INSTALL_DIR_DATA'/bin'
+INSTALL_DIR_LOG=$INSTALL_DIR_DATA'/log'
+INSTALL_DIR_APP=$INSTALL_DIR_DATA'/app'
+
+#dir we balabala all we need, do not modify these unless you exactly know what it means
+EXEC_DIR_TAR=$EXEC_DIR_ROOT'/tar'
+EXEC_DIR_TEMP=$EXEC_DIR_ROOT'/temp'
+EXEC_DIR_ASSEMBLE=$EXEC_DIR_ROOT'/assemble'
