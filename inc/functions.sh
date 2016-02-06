@@ -121,11 +121,11 @@ function configure_bin(){
         info 'configure '$2' start.'
         rm $2 -rf
         cp $1 $2 -rf
-        for n in $BIN_VAR
+        for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_VARS
         do
-                eval o=\$$n
-                script='s#{{'$n'}}#'$o'#g'
-                sed -i $script $2
+                eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
+                EXEC_CONFIGURE_SCRIPT='s#{{'$EXEC_CONFIGURE_NAME'}}#'$EXEC_CONFIGURE_VAL'#g'
+                sed -i $EXEC_CONFIGURE_SCRIPT $2
         done
         info 'configure '$2' success.'
 }

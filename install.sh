@@ -22,13 +22,13 @@ create_dir $INSTALL_DIR_APP
 #create app dir
 for EXEC_DIR_TEMP in $BIN_CREATE_DIR
 do
-	create_dir $EXEC_DIR_TEMP y
+	create_dir $EXEC_DIR_TEMP 'y'
 done
 
 #empty app dir
-INSTALL_DIR_BIN_APP=$INSTALL_DIR_BIN/$BIN_FULL_NAME
+INSTALL_DIR_BIN_APP=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
 info 'app installed dir is: '$INSTALL_DIR_BIN_APP'.'
-create_dir $INSTALL_DIR_BIN_APP y
+create_dir $INSTALL_DIR_BIN_APP 'y'
 
 #yum install its basic lib
 if [ ! -z "$BIN_COMMON_LIB" ]; then

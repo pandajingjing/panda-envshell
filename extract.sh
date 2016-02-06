@@ -16,7 +16,7 @@ source_assemble_file 'config'
 create_dir $EXEC_DIR_TEMP
 
 EXEC_DIR_BIN_CODE=$EXEC_DIR_TEMP$BIN_CODE_DIR
-EXEC_FILE_BIN_CODE_TAR=$EXEC_DIR_TAR/$BIN_CODE_TAR
+EXEC_FILE_BIN_CODE_TAR=$EXEC_DIR_TAR'/'$BIN_CODE_TAR
 debug 'extracted source code dir is: '$EXEC_DIR_BIN_CODE
 if [ -d $EXEC_DIR_BIN_CODE ];then
     debug 'source code dir is exists. clear it.'

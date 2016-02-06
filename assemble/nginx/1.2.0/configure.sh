@@ -3,7 +3,8 @@
 #do some configure script
 
 info 'configure nginx start.'
-#        make_dir $INSTALL_DIR_NGINX/conf/conf.d 1
+    create_dir $INSTALL_DIR_BIN_APP'/conf/conf.d' 'y'
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/nginx.conf' $INSTALL_DIR_BIN_APP'/conf/nginx.conf'
 #        configure_bin $EXEC_DIR_BINCONF/nginx/nginx.conf $INSTALL_DIR_NGINX/conf/nginx.conf
 #        configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.upstream $INSTALL_DIR_NGINX/conf/conf.d/total.upstream
 #        configure_bin $EXEC_DIR_BINCONF/nginx/conf.d/total.proxy $INSTALL_DIR_NGINX/conf/conf.d/total.proxy
