@@ -1,6 +1,6 @@
 server {
     listen 40087;
-    server_name local.{{DOMAIN}};
+    server_name local.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/local;
     index index.php index.html;
 
@@ -17,16 +17,16 @@ server {
 
 server {
     listen 40087;
-    server_name *.{{DOMAIN}};
+    server_name *.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
     set $phpfile web_release.php;
 
-    if ($host ~ .*\.s\.{{DOMAIN_REG}}$){
+    if ($host ~ .*\.s\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile service_release.php;
     }
 
-    if ($host ~ .*\.m\.{{DOMAIN_REG}}$){
+    if ($host ~ .*\.m\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile mobile_release.php;
     }
 
@@ -44,6 +44,6 @@ server {
         fastcgi_keep_conn on;
     }
 
-    access_log {{LOG_DIR_NGINX}}/php.release.server.access.log more;
-    error_log {{LOG_DIR_NGINX}}/php.release.server.error.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.release.server.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/php.release.server.error.log;
 }

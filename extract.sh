@@ -15,6 +15,12 @@ source_assemble_file 'config'
 
 create_dir $EXEC_DIR_TEMP
 
+if [ -z $BIN_CODE_TAR ];then
+    error 'BIN_CODE_TAR is empty, we need it to find app source code tar.'
+fi
+if [ -z $BIN_CODE_DIR ];then
+    error 'BIN_CODE_DIR is empty, we need it to put app source code.'
+fi
 EXEC_DIR_BIN_CODE=$EXEC_DIR_TEMP$BIN_CODE_DIR
 EXEC_FILE_BIN_CODE_TAR=$EXEC_DIR_TAR'/'$BIN_CODE_TAR
 debug 'extracted source code dir is: '$EXEC_DIR_BIN_CODE

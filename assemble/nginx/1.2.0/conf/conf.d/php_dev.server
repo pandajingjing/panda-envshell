@@ -1,15 +1,15 @@
 server {
     listen 40083;
-    server_name *.dev.{{DOMAIN}};
+    server_name *.dev.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
     set $phpfile web_dev.php;
 
-    if ($host ~ .*\.s\.dev\.{{DOMAIN_REG}}$){
+    if ($host ~ .+\.s\.dev\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile service_dev.php;
     }
 
-    if ($host ~ .*\.m\.dev\.{{DOMAIN_REG}}$){
+    if ($host ~ .+\.m\.dev\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile mobile_dev.php;
     }
 
@@ -27,6 +27,6 @@ server {
         fastcgi_keep_conn on;
     }
 
-    access_log {{LOG_DIR_NGINX}}/php.dev.server.access.log more;
-    error_log {{LOG_DIR_NGINX}}/php.dev.server.error.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.dev.server.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/php.dev.server.error.log;
 }

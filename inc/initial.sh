@@ -3,13 +3,11 @@ source $EXEC_DIR_ROOT'/inc/functions.sh'
 
 debug 'UID is:'$UID
 if [ $UID -ne 0 ] ; then
-	error 'You should run as root!!!'
+    error 'You should run as root!!!'
 fi
 
-#app name and version
-BIN_NAME=''
-BIN_VERSION=''
-BIN_FULL_NAME=''
-
-#assemble dir of current version of current app
-EXEC_DIR_ASSEMBLE_BIN_VERSION=''
+#create bin configure variables
+BIN_CONFIGURE_FRAME_VARS='BIN_NAME BIN_VERSION ENV_USER ENV_GROUP DEBUG COMMON_LIB 
+INSTALL_DIR_DATA INSTALL_DIR_BIN INSTALL_DIR_LOG INSTALL_DIR_APP INSTALL_DIR_BIN_BIN 
+EXEC_CURRENT_DIR EXEC_DIR_ROOT EXEC_DIR_TAR EXEC_DIR_TEMP EXEC_DIR_ASSEMBLE EXEC_DIR_ASSEMBLE_BIN_VERSION 
+BIN_DOWNLOAD_URL BIN_CODE_TAR BIN_CODE_DIR BIN_FULL_NAME BIN_COMMON_LIB'

@@ -19,16 +19,13 @@ create_dir $INSTALL_DIR_BIN
 create_dir $INSTALL_DIR_LOG
 create_dir $INSTALL_DIR_APP
 
-#create app dir
-for EXEC_DIR_TEMP in $BIN_CREATE_DIR
-do
-	create_dir $EXEC_DIR_TEMP 'y'
-done
-
 #empty app dir
-INSTALL_DIR_BIN_APP=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-info 'app installed dir is: '$INSTALL_DIR_BIN_APP'.'
-create_dir $INSTALL_DIR_BIN_APP 'y'
+if [ -z $BIN_FULL_NAME ];then
+    error 'BIN_FULL_NAME is empty, we need it to put app bin file.'
+fi
+INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
+info 'app installed dir is: '$INSTALL_DIR_BIN_BIN'.'
+create_dir $INSTALL_DIR_BIN_BIN 'y'
 
 #yum install its basic lib
 if [ ! -z "$BIN_COMMON_LIB" ]; then
@@ -39,7 +36,9 @@ fi
 
 #start app install script
 EXEC_DIR_NOW=`pwd`
+info 'run custom scripts start.'
 source_assemble_file 'install.sh'
+info 'run custom scripts successfully.'
 cd $EXEC_DIR_NOW
 
 info 'install '$BIN_NAME'('$BIN_VERSION') successfully.'

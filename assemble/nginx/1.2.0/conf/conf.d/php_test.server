@@ -1,15 +1,15 @@
 server {
     listen 40085;
-    server_name *.test.{{DOMAIN}};
+    server_name *.test.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
     set $phpfile web_test.php;
 
-    if ($host ~ .*\.s\.test\.{{DOMAIN_REG}}$){
+    if ($host ~ .+\.s\.test\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile service_test.php;
     }
 
-    if ($host ~ .*\.m\.test\.{{DOMAIN_REG}}$){
+    if ($host ~ .+\.m\.test\.{{BIN_BASE_DOMAIN}}$){
         set $phpfile mobile_test.php;
     }
 
@@ -27,6 +27,6 @@ server {
         fastcgi_keep_conn on;
     }
 
-    access_log {{LOG_DIR_NGINX}}/php.test.server.access.log more;
-    error_log {{LOG_DIR_NGINX}}/php.test.server.error.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.error.log;
 }

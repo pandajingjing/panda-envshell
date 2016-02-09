@@ -1,0 +1,11 @@
+{{INSTALL_DIR_LOG_BIN}}/*.log {
+    compress
+    delaycompress
+    notifempty
+    daily
+    missingok
+    sharedscripts
+    postrotate
+        kill -USR1 `cat {{INSTALL_FILE_BIN_PID}}`
+    endscript
+}

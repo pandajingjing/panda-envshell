@@ -14,8 +14,7 @@ info 'configure '$BIN_NAME'('$BIN_VERSION') start.'
 source_assemble_file 'config'
 
 #find app dir
-INSTALL_DIR_BIN_APP=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-info 'app installed dir is: '$INSTALL_DIR_BIN_APP'.'
+INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
 
 #start app configure script
 EXEC_DIR_NOW=`pwd`
