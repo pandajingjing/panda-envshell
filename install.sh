@@ -20,10 +20,9 @@ create_dir $INSTALL_DIR_LOG
 create_dir $INSTALL_DIR_APP
 
 #empty app dir
-if [ -z $BIN_FULL_NAME ];then
-    error 'BIN_FULL_NAME is empty, we need it to put app bin file.'
+if [ -z $INSTALL_DIR_BIN_BIN ];then
+    error 'INSTALL_DIR_BIN_BIN is empty, we need it to put app bin file.'
 fi
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
 info 'app installed dir is: '$INSTALL_DIR_BIN_BIN'.'
 create_dir $INSTALL_DIR_BIN_BIN 'y'
 
