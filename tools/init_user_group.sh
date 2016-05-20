@@ -27,4 +27,7 @@ else
 	warn "user $ENV_USER exist, keep it alive, and never mind it's pwd, we dont need it."
 fi
 
+info "for safty reason, we do not allowed $ENV_USER to login."
+usermod -L $ENV_USER
+
 info 'env user and group are ready.'

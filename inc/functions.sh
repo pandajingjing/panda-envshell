@@ -117,10 +117,43 @@ function source_assemble_file(){
 }
 
 #configure app from its template with frame var
+#configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
 function configure_bin(){
     info 'configure '$2' start.'
-    rm $2 -rf
-    cp $1 $2 -rf
+    BACK_FILE=$2'.'`date +%s`
+    #info $2
+    cp -f $2 $BACK_FILE
+    #cp -f /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy.1457439781
+    #info /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy
+    #info "cp -f $2 $BACK_FILE"
+    if [ ! -z $3 ] && [ ! -z $4 ]; then
+        START_LINE=`grep -n "$3" $1 | awk -F '[:]' '{print $1}'`
+        END_LINE=`grep -n "$4" $1 | awk -F '[:]' '{print $1}'`
+        TOTAL_LINE=`wc -l $1 | awk '{print $1}'`
+        if [ -z $START_LINE ]; then
+            START_LINE=0
+        fi
+
+        if [ -z $END_LINE ]; then
+            END_LINE=0
+        fi
+
+        if [ -z $TOTAL_LINE ]; then
+            TOTAL_LINE=0
+        fi
+
+        info $END_LINE
+        info $TOTAL_LINE
+
+        rm $SOURCE_FILE
+
+        head -n $[$START_LINE-1] $BACK_FILE > $1
+        echo $3 >> $1
+        cat $2 >> $1
+        echo $3 >> $1
+        tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $1
+    fi
+    cp -f $1 $2
     for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_FRAME_VARS
     do
         eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"

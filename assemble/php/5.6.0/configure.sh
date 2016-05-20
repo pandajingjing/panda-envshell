@@ -13,3 +13,6 @@ chkconfig --add php-fpm
 chkconfig --level 3 php-fpm on
 info "`chkconfig --list | grep php-fpm`"
 info 'add php-fpm service successfully.'
+info 'add php-fpm logrotate start.'
+        configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/php-fpm' '/etc/logrotate.d/php-fpm'
+info 'add php-fpm logrotate successfully.'

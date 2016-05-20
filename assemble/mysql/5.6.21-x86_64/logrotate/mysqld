@@ -1,0 +1,8 @@
+{{INSTALL_DIR_LOG_BIN}}/*.log {
+    compress
+    delaycompress
+    notifempty
+    daily
+    missingok
+    copytruncate
+}
