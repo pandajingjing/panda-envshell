@@ -122,7 +122,9 @@ function configure_bin(){
     info 'configure '$2' start.'
     BACK_FILE=$2'.'`date +%s`
     #info $2
-    cp -f $2 $BACK_FILE
+    if [ -z $2 ];then
+        cp -f $2 $BACK_FILE
+    fi
     #cp -f /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy.1457439781
     #info /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy
     #info "cp -f $2 $BACK_FILE"
