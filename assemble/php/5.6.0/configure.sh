@@ -4,7 +4,7 @@
 
 info 'configure php start.'
 create_dir $INSTALL_DIR_LOG_BIN 'y'
-cp $EXEC_DIR_TEMP$BIN_CODE_DIR/php.ini-development $INSTALL_DIR_BIN_BIN/lib/php.ini
+configure_bin $EXEC_DIR_TEMP$BIN_CODE_DIR/php.ini-development $INSTALL_DIR_BIN_BIN/lib/php.ini
 configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/php-fpm.conf $INSTALL_DIR_BIN_BIN/etc/php-fpm.conf
 info 'configure php successfully.'
 info 'add php-fpm service start.'

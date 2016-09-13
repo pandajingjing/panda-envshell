@@ -2,7 +2,7 @@
 
 #show some messages
 function msg(){
-    echo `date +"%Y-%m-%d %H:%M:%S"`\($1\): $2
+    echo `date +"%Y-%m-%d %H:%M:%S"`\("$1"\): "$2"
 }
 
 #show info message
@@ -27,7 +27,7 @@ function debug(){
         msg debug "$1"
     elif [ $DEBUG -eq 2 ]; then
         msg debug "$1"
-        read -t 10 -p 'press enter to continue...`'
+        read -t 10 -p 'press enter to continue...'
     fi
 }
 
@@ -91,7 +91,7 @@ function create_dir(){
 	debug 'create dir: '$1' start.'
 	if [ -d $1 ]; then
 		debug 'dir '$1' is exists.'
-		if [ ! -z $2 ]; then
+		if [ ! -z "$2" ]; then
 			debug $1' will be cleaned.'
 			rm -rf $1
 			mkdir -p $1
@@ -116,22 +116,32 @@ function source_assemble_file(){
 	source $EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE
 }
 
+function check_int(){
+    expr $1+0&>/dev/null
+debug '121_int:'$?
+    if [ 0 -ne $? ];then
+        return 0
+    else
+        return 1
+    fi
+}
+
 #configure app from its template with frame var
 #configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
 function configure_bin(){
     info 'configure '$2' start.'
     BACK_FILE=$2'.'`date +%s`
     #info $2
-    if [ -z $2 ];then
-        cp -f $2 $BACK_FILE
+    if [ ! -f $2 ];then
+        touch $2
     fi
-    #cp -f /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy.1457439781
-    #info /data/bin/nginx-1.2.0/conf/conf.d/total_test.proxy
-    #info "cp -f $2 $BACK_FILE"
-    if [ ! -z $3 ] && [ ! -z $4 ]; then
-        START_LINE=`grep -n "$3" $1 | awk -F '[:]' '{print $1}'`
-        END_LINE=`grep -n "$4" $1 | awk -F '[:]' '{print $1}'`
+    cp -f $2 $BACK_FILE
+
+    if [ ! -z "$3" ] && [ ! -z "$4" ]; then
+        START_LINE=`grep -n "$3" $2 | awk -F '[:]' '{print $1}'`
+        END_LINE=`grep -n "$4" $2 | awk -F '[:]' '{print $1}'`
         TOTAL_LINE=`wc -l $1 | awk '{print $1}'`
+
         if [ -z $START_LINE ]; then
             START_LINE=0
         fi
@@ -144,18 +154,32 @@ function configure_bin(){
             TOTAL_LINE=0
         fi
 
-        info $END_LINE
-        info $TOTAL_LINE
+        debug 'START_LINE:'$START_LINE
+        debug 'END_LINE:'$END_LINE
+        debug 'TOTAL_LINE:'$TOTAL_LINE
 
-        rm $SOURCE_FILE
+        ERROR_MSG='can not parse '$2', file may modified manually.'
 
-        head -n $[$START_LINE-1] $BACK_FILE > $1
-        echo $3 >> $1
-        cat $2 >> $1
-        echo $3 >> $1
-        tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $1
+        if [ 0 -eq $START_LINE ];then
+            if [ 0 -lt $END_LINE ];then
+                error "$ERROR_MSG"
+            fi
+        else
+            if [ $START_LINE -gt $END_LINE ] || [ $START_LINE -eq $END_LINE ];then
+                error "$ERROR_MSG"
+            fi
+        fi
+
+        #head -n $[$START_LINE-1] $BACK_FILE > $1
+        #echo $3 >> $1
+        #cat $2 >> $1
+        #echo $3 >> $1
+        #tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $1
+    else
+        if [ -f $1 ];then
+            cp -f $1 $2
+        fi
     fi
-    cp -f $1 $2
     for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_FRAME_VARS
     do
         eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
