@@ -1,4 +1,4 @@
-Port {{SSHD_PORT}}
+Port {{BIN_PORT}}
 Protocol 2
 
 SyslogFacility AUTHPRIV
