@@ -116,16 +116,6 @@ function source_assemble_file(){
 	source $EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE
 }
 
-function check_int(){
-    expr $1+0&>/dev/null
-debug '121_int:'$?
-    if [ 0 -ne $? ];then
-        return 0
-    else
-        return 1
-    fi
-}
-
 #configure app from its template with frame var
 #configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
 function configure_bin(){
@@ -170,11 +160,17 @@ function configure_bin(){
             fi
         fi
 
-        #head -n $[$START_LINE-1] $BACK_FILE > $1
-        #echo $3 >> $1
-        #cat $2 >> $1
-        #echo $3 >> $1
-        #tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $1
+        if [ 0 -eq $START_LINE ];then
+            echo $3 >> $2
+            cat $1 >> $2
+            echo $4 >> $2
+        else
+            head -n $[$START_LINE-1] $BACK_FILE > $2
+            echo $3 >> $2
+            cat $1 >> $2
+            echo $4 >> $2
+            tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $2
+        fi
     else
         if [ -f $1 ];then
             cp -f $1 $2
