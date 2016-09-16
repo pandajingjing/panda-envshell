@@ -1,4 +1,3 @@
-export LANG="zh_cn.utf-8"
 export HISTTIMEFORMAT='%F %T '
 
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}' |sed -e 's/[()]//g'`
