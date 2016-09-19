@@ -8,4 +8,4 @@ cd $EXEC_DIR_TEMP$BIN_CODE_DIR
 info 'configure php installation successfully.'
 info 'compile and install php start.'
 make && make install
-info 'compile and install php success.'
+info 'compile and install php successfully.'

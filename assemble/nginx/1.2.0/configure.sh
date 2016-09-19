@@ -3,9 +3,8 @@
 #do some configure script
 
 info 'configure nginx start.'
-    create_dir $INSTALL_DIR_LOG_BIN 'y'
-    create_dir $INSTALL_DIR_BIN_BIN'/conf/conf.d' 'y'
-    info $INSTALL_DIR_BIN_BIN'/conf/conf.d/total_release.proxy'
+    create_dir $INSTALL_DIR_LOG_BIN
+    create_dir $INSTALL_DIR_BIN_BIN'/conf/conf.d'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/conf.d/total_release.proxy' $INSTALL_DIR_BIN_BIN'/conf/conf.d/total_release.proxy'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/conf.d/php_dev.server' $INSTALL_DIR_BIN_BIN'/conf/conf.d/php_dev.server'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/conf.d/php_test.server' $INSTALL_DIR_BIN_BIN'/conf/conf.d/php_test.server'
@@ -26,11 +25,11 @@ info 'configure nginx start.'
 
 info 'configure nginx successfully.'	
 info 'add nginx service start.'
-        configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/nginx' '/etc/init.d/nginx'
-        chkconfig --add nginx
-        chkconfig --level 3 nginx on
-        info "`chkconfig --list | grep nginx`"
-info 'add nginx service success.'
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/nginx' '/etc/init.d/nginx'
+    chkconfig --add nginx
+    chkconfig --level 3 nginx on
+    info "`chkconfig --list | grep nginx`"
+info 'add nginx service successfully.'
 info 'add nginx logrotate start.'
-        configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/nginx' '/etc/logrotate.d/nginx'
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/nginx' '/etc/logrotate.d/nginx'
 info 'add nginx logrotate successfully.'

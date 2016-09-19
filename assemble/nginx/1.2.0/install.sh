@@ -8,4 +8,4 @@ cd $EXEC_DIR_TEMP$BIN_CODE_DIR
 info 'configure nginx installation successfully.'
 info 'compile and install nginx start.'
 make && make install
-info 'compile and install nginx success.'
+info 'compile and install nginx successfully.'

@@ -7,11 +7,13 @@ EXEC_DIR_ROOT=`readlink -f $EXEC_CURRENT_DIR/../`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 
-info 'we will install ntp for time sync.'
+NTP_INSTALLED=`rpm -qa | grep ntpdate | wc -l`
 
-yum install -y -q ntp
-
-info 'ntp is installed.'
+if [ 0 -eq $NTP_INSTALLED ];then
+    info 'we will install ntpdate for time sync.'
+    yum install -y -q ntpdate
+    info 'ntpdate is installed.'
+fi
 
 info 'start time sync...'
 

@@ -173,7 +173,7 @@ function configure_bin(){
         fi
     else
         if [ -f $1 ];then
-            cp -f $1 $2
+            cp -f -p $1 $2
         fi
     fi
     for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_FRAME_VARS
