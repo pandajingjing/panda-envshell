@@ -1,5 +1,19 @@
 server {
     listen 80;
+    server_name _;
+    root {{INSTALL_DIR_APP}}/local;
+    index index.php;
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass php-fpm;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME {{INSTALL_DIR_APP}}/local$fastcgi_script_name;
+    }
+}
+
+server {
+    listen 80;
     server_name {{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
     index index_release.php;
