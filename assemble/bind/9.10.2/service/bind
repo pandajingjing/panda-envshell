@@ -1,0 +1,111 @@
+#!/bin/sh
+#
+# chkconfig: 3 20 80
+# description: Starts and stops the bind server
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+    . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+    . /etc/rc.d/init.d/functions
+else
+    exit 1
+fi
+
+# Avoid using root's TMPDIR
+unset TMPDIR
+
+RETVAL=0
+BINFILE={{INSTALL_DIR_BIN_BIN}}/sbin/named
+PIDFILE={{INSTALL_FILE_BIN_PID}}
+CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/named.conf
+KIND=bind
+
+start() {
+    echo -n $"Starting $KIND services: "
+    $BINFILE -u {{ENV_USER}} &
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ]
+        RETVAL=1
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Shutting down $KIND services: "
+    {{INSTALL_DIR_BIN_BIN}}/sbin/rndc stop
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $PIDFILE
+    return $RETVAL
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $CFGFILE: "
+    {{INSTALL_DIR_BIN_BIN}}/sbin/rndc reload
+    RETVAL=$?
+    success
+    echo
+    return $RETVAL
+}
+
+configtest() {
+    {{INSTALL_DIR_BIN_BIN}}/sbin/named-checkconf {{INSTALL_DIR_BIN_BIN}}/etc/named.conf
+    {{INSTALL_DIR_BIN_BIN}}/sbin/named-checkzone {{BIN_DOMAIN}} {{INSTALL_DIR_BIN_BIN}}/etc/mydomain/zone.conf
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo Syntax OK
+        return $RETVAL
+    fi
+    return $RETVAL
+}
+
+status() {
+    if [ ! -r $PIDFILE ]; then
+        echo "bind is stopped"
+        exit 0
+    fi
+
+    PID=`cat $PIDFILE`
+    if ps -p $PID | grep -q $PID; then
+        echo "bind (pid $PID) is running..."
+    else
+        echo "bind dead but pid file exists"
+    fi
+}
+
+# Check that we can write to it... so non-root users stop here
+[ -w $BINFILE ] || exit 4
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    reload)
+        reload
+        ;;
+    configtest)
+        configtest
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        exit 2
+esac
+
+exit $?

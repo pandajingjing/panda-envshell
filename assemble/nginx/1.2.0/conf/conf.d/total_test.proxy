@@ -1,0 +1,18 @@
+server {
+    listen 40081;
+    server_name *.test.{{BIN_BASE_DOMAIN}};
+    root {{INSTALL_DIR_APP}}/index;
+    index web_test.php;
+
+    set $backend php-test;
+    if ($host ~ ^static\..+\.test\.{{BIN_BASE_DOMAIN}}$){
+        set $backend static-test;
+    }
+
+    location / {
+        proxy_pass http://$backend;
+    }
+
+    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.test.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/proxy.test.error.log;
+}

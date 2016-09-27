@@ -1,0 +1,32 @@
+server {
+    listen 40085;
+    server_name *.test.{{BIN_BASE_DOMAIN}};
+    root {{INSTALL_DIR_APP}}/index;
+
+    set $phpfile web_test.php;
+
+    if ($host ~ .+\.s\.test\.{{BIN_BASE_DOMAIN}}$){
+        set $phpfile service_test.php;
+    }
+
+    if ($host ~ .+\.m\.test\.{{BIN_BASE_DOMAIN}}$){
+        set $phpfile mobile_test.php;
+    }
+
+    index $phpfile;
+
+    location / {
+        try_files $uri $uri/ /$phpfile?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass   php-fpm;
+        fastcgi_index  $phpfile;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_keep_conn on;
+    }
+
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.error.log;
+}

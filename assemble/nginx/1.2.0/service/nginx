@@ -1,0 +1,110 @@
+#!/bin/sh
+#
+# chkconfig: 3 20 80
+# description: Starts and stops the nginx server
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+    . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+    . /etc/rc.d/init.d/functions
+else
+    exit 1
+fi
+
+# Avoid using root's TMPDIR
+unset TMPDIR
+
+RETVAL=0
+BINFILE={{INSTALL_DIR_BIN_BIN}}/sbin/nginx
+PIDFILE={{INSTALL_FILE_BIN_PID}}
+CFGFILE={{INSTALL_DIR_BIN_BIN}}/conf/nginx.conf
+KIND=nginx
+
+start() {
+    echo -n $"Starting $KIND services: "
+    $BINFILE
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ]
+        RETVAL=1
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Shutting down $KIND services: "
+    kill -QUIT `cat $PIDFILE`
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
+    return $RETVAL
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $CFGFILE: "
+    kill -HUP `cat $PIDFILE`
+    RETVAL=$?
+    success
+    echo
+    return $RETVAL
+}
+
+configtest() {
+    $BINFILE -t
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo Syntax OK
+        return $RETVAL
+    fi
+    return $RETVAL
+}
+
+status() {
+    if [ ! -r $PIDFILE ]; then
+        echo "nginx is stopped"
+        exit 0
+    fi
+
+    PID=`cat $PIDFILE`
+    if ps -p $PID | grep -q $PID; then
+        echo "nginx (pid $PID) is running..."
+    else
+        echo "nginx dead but pid file exists"
+    fi
+}
+
+# Check that we can write to it... so non-root users stop here
+[ -w $BINFILE ] || exit 4
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    reload)
+        reload
+        ;;
+    configtest)
+        configtest
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        exit 2
+esac
+
+exit $?

@@ -1,0 +1,32 @@
+server {
+    listen 40083;
+    server_name *.dev.{{BIN_BASE_DOMAIN}};
+    root {{INSTALL_DIR_APP}}/index;
+
+    set $phpfile web_dev.php;
+
+    if ($host ~ .+\.s\.dev\.{{BIN_BASE_DOMAIN}}$){
+        set $phpfile service_dev.php;
+    }
+
+    if ($host ~ .+\.m\.dev\.{{BIN_BASE_DOMAIN}}$){
+        set $phpfile mobile_dev.php;
+    }
+
+    index $phpfile;
+
+    location / {
+        try_files $uri $uri/ /$phpfile?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass   php-fpm;
+        fastcgi_index  $phpfile;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_keep_conn on;
+    }
+
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.dev.server.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/php.dev.server.error.log;
+}
