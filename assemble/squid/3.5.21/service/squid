@@ -1,0 +1,117 @@
+#!/bin/sh
+#
+# chkconfig: 3 21 79
+# description: Starts and stops the php-fpm server
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+    . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+    . /etc/rc.d/init.d/functions
+else
+    exit 1
+fi
+
+# Avoid using root's TMPDIR
+unset TMPDIR
+
+RETVAL=0
+BINFILE={{INSTALL_DIR_BIN_BIN}}/sbin/squid
+PIDFILE={{INSTALL_FILE_BIN_PID}}
+CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/squid.conf
+KIND=squid
+
+start() {
+    echo -n $"Starting $KIND services: "
+    $BINFILE -z
+    $BINFILE
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ]
+        RETVAL=1
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Shutting down $KIND services: "
+    $BINFILE -k shutdown
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
+    return $RETVAL
+}
+
+restart() {
+    echo -n $"restart $KIND services: "
+    $BINFILE -k restart
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ]
+        RETVAL=1
+    return $RETVAL
+}
+
+reload() {
+    echo -n $"Reloading $CFGFILE: "
+    $BINFILE -k reconfigure
+    RETVAL=$?
+    success
+    echo
+    return $RETVAL
+}
+
+configtest() {
+    $BINFILE -k parse
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo Syntax OK
+        return $RETVAL
+    fi 
+    return $RETVAL
+}
+
+status() {
+    if [ ! -r $PIDFILE ]; then
+        echo "squid is stopped"
+        exit 0
+    fi
+
+    PID=`cat $PIDFILE`
+    if ps -p $PID | grep -q $PID; then
+        echo "squid (pid $PID) is running..."
+    else
+        echo "squid dead but pid file exists"
+    fi
+}
+
+# Check that we can write to it... so non-root users stop here
+[ -w $BINFILE ] || exit 4
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    reload)
+        reload
+        ;;
+    configtest)
+        configtest
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        exit 2
+esac
+
+exit $?

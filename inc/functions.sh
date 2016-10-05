@@ -95,14 +95,12 @@ function create_dir(){
 			debug $1' will be cleaned.'
 			rm -rf $1
 			mkdir -p $1
-			chown $ENV_USER:$ENV_GROUP $1 -R
-			chmod 0755 $1 -R	
 		fi
 	else
 		mkdir -p $1
-		chown $ENV_USER:$ENV_GROUP $1 -R
-		chmod 0755 $1 -R
 	fi
+    chown $ENV_USER:$ENV_GROUP $1 -R
+    chmod 0755 $1 -R
 	debug 'create dir: '$1' successfully.'
 }
 

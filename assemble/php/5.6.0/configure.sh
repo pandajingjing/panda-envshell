@@ -2,11 +2,11 @@
 
 #do some configure script
 
-info 'configure php start.'
+info 'configure php-fpm start.'
     create_dir $INSTALL_DIR_LOG_BIN
     configure_bin $EXEC_DIR_TEMP$BIN_CODE_DIR/php.ini-development $INSTALL_DIR_BIN_BIN/lib/php.ini
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/php-fpm.conf $INSTALL_DIR_BIN_BIN/etc/php-fpm.conf
-info 'configure php successfully.'
+info 'configure php-fpm successfully.'
 info 'add php-fpm service start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/service/php-fpm /etc/init.d/php-fpm
     chkconfig --add php-fpm
