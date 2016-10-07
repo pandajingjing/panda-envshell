@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name _;
+    server_name _ local.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/local;
     index index.php;
 
@@ -10,6 +10,10 @@ server {
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME {{INSTALL_DIR_APP}}/local$fastcgi_script_name;
     }
+
+    access_log {{INSTALL_DIR_LOG_BIN}}/local.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/local.error.log;
+
 }
 
 server {

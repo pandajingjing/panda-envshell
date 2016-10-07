@@ -1,22 +1,5 @@
 server {
     listen 40087;
-    server_name local.{{BIN_BASE_DOMAIN}};
-    root {{INSTALL_DIR_APP}}/local;
-    index index.php index.html;
-
-    location ~ \.php$ {
-        fastcgi_pass   php-fpm;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-        fastcgi_keep_conn on;
-    }
-
-    access_log off;
-}
-
-server {
-    listen 40087;
     server_name *.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/index;
 
