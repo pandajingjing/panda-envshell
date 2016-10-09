@@ -1,0 +1,18 @@
+server {
+    listen 40080;
+    server_name *.dev.{{BIN_BASE_DOMAIN}};
+    root {{INSTALL_DIR_APP}}/index;
+    index web_dev.php;
+
+    set $backend php-dev;
+    if ($host ~ ^static\..+\.dev\.{{BIN_BASE_DOMAIN}}$){
+        set $backend static-dev;
+    }
+
+    location / {
+        proxy_pass http://$backend;
+    }
+
+    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.dev.access.log more;
+    error_log {{INSTALL_DIR_LOG_BIN}}/proxy.dev.error.log;
+}
