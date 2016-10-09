@@ -3,7 +3,7 @@ ENV_USER='app'
 ENV_GROUP='app'
 
 #frame configuration
-COMMON_LIB='wget gcc make man'
+COMMON_LIB='wget gcc make man epel-release'
 DEBUG=1
 
 #dir we put all stuff

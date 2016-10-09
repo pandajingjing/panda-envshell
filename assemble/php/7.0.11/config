@@ -3,7 +3,7 @@ BIN_DOWNLOAD_URL='http://cn2.php.net/distributions/'$BIN_FULL_NAME'.tar.gz'
 BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
 BIN_CODE_DIR='/'$BIN_FULL_NAME
 
-BIN_COMMON_LIB='epel-release libxml2-devel libmcrypt-devel'
+BIN_COMMON_LIB='libxml2-devel libmcrypt-devel'
 
 INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
 INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/php-fpm'
