@@ -11,7 +11,7 @@ info 'install all common lib for this scripts or enhance your experience by usin
 
 debug "we will install: '$COMMON_LIB'."
 
-yum update -y
 yum install -y $COMMON_LIB
+yum update -y
 
 info 'common lib for common works is down.'
