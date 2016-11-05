@@ -1,5 +1,5 @@
 BIN_FULL_NAME='mysql-5.7.16-linux-glibc2.5-i686'
-BIN_DOWNLOAD_URL='http://cdn.mysql.com/archives/mysql-5.7/'$BIN_FULL_NAME'.tar.gz'
+BIN_DOWNLOAD_URL='http://101.96.10.43/dev.mysql.com/get/Downloads/mysql-5.7/'$BIN_FULL_NAME'.tar.gz'
 BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
 BIN_CODE_DIR='/'$BIN_FULL_NAME
 
