@@ -100,7 +100,7 @@ function create_dir(){
 		mkdir -p $1
 	fi
     chown $ENV_USER:$ENV_GROUP $1
-    chmod 0755 $1 -R
+    chmod 0775 $1 -R
 	debug 'create dir: '$1' successfully.'
 }
 
