@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# chkconfig: 3 20 80
+# description: Starts and stops the memcached server
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+    . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+    . /etc/rc.d/init.d/functions
+else
+    exit 1
+fi
+
+# Avoid using root's TMPDIR
+unset TMPDIR
+
+RETVAL=0
+BINFILE={{INSTALL_DIR_BIN_BIN}}/bin/memcached
+PIDFILE={{INSTALL_FILE_BIN_PID}}
+CFGFILE={{INSTALL_DIR_BIN_BIN}}/memcached.conf
+CFGPARAM='-d -u {{ENV_USER}} -l {{BIN_BINDIP}} -m {{BIN_MAX_MEMORY}} -v -P {{INSTALL_FILE_BIN_PID}} -f {{BIN_FACTOR}} >> {{INSTALL_FILE_LOG_BIN}} 2>&1'
+KIND=memcached
+
+start() {
+    echo -n $"Starting $KIND services: "
+    $BINFILE $CFGPARAM
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ]
+        RETVAL=1
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Shutting down $KIND services: "
+    kill `cat $PIDFILE`
+    RETVAL=$?
+    success
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
+    return $RETVAL
+}
+
+restart() {
+    stop
+    start
+}
+
+status() {
+    if [ ! -r $PIDFILE ]; then
+        echo "memcached is stopped"
+        exit 0
+    fi
+
+    PID=`cat $PIDFILE`
+    if ps -p $PID | grep -q $PID; then
+        echo "memcached (pid $PID) is running..."
+    else
+        echo "memcached dead but pid file exists"
+    fi
+}
+
+# Check that we can write to it... so non-root users stop here
+[ -w $BINFILE ] || exit 4
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|status}"
+        exit 2
+esac
+
+exit $?
