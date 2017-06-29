@@ -68,7 +68,7 @@ class me extends 码畜
 
 ##change log
 - 20170629 V4.8.7
-        - 1.修改nginx域名正则模板变量名错误
+	- 1.修改nginx域名正则模板变量名错误
 - 20170526 V4.8.6
 	- 1.memcached只监听本地请求
 	- 2.redis只监听本地请求
