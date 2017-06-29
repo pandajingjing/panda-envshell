@@ -1,6 +1,6 @@
 server {
     listen 40084;
-    server_name ~^static\.(?<dir_name>.*)\.dev\.{{BIN_BASE_DOMAIN}}$;
+    server_name ~^static\.(?<dir_name>.*)\.dev\.{{BIN_BASE_DOMAIN_REG}}$;
     root {{INSTALL_DIR_APP}}/static-dev/$dir_name;
     index index.html;
     access_log {{INSTALL_DIR_LOG_BIN}}/static.dev.server.access.log more;

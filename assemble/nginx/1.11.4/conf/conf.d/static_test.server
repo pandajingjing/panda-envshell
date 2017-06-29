@@ -1,6 +1,6 @@
 server {
     listen 40086;
-    server_name ~^static\.(?<dir_name>.*)\.test\.{{BIN_BASE_DOMAIN}}$;
+    server_name ~^static\.(?<dir_name>.*)\.test\.{{BIN_BASE_DOMAIN_REG}}$;
     root {{INSTALL_DIR_APP}}/static-test/$dir_name;
     index index.html;
     access_log {{INSTALL_DIR_LOG_BIN}}/static.test.server.access.log more;

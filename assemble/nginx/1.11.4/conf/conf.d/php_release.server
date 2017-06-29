@@ -5,11 +5,11 @@ server {
 
     set $phpfile web_release.php;
 
-    if ($host ~ .*\.s\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .*\.s\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile service_release.php;
     }
 
-    if ($host ~ .*\.m\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .*\.m\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile mobile_release.php;
     }
 

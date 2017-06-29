@@ -5,11 +5,11 @@ server {
 
     set $phpfile web_test.php;
 
-    if ($host ~ .+\.s\.test\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.s\.test\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile service_test.php;
     }
 
-    if ($host ~ .+\.m\.test\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.m\.test\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile mobile_test.php;
     }
 

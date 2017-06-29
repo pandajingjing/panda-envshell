@@ -5,7 +5,7 @@ server {
     index web_dev.php;
 
     set $backend php-dev;
-    if ($host ~ ^static\..+\.dev\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ ^static\..+\.dev\.{{BIN_BASE_DOMAIN_REG}}$){
         set $backend static-dev;
     }
 

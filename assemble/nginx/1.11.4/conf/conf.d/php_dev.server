@@ -5,11 +5,11 @@ server {
 
     set $phpfile web_dev.php;
 
-    if ($host ~ .+\.s\.dev\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.s\.dev\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile service_dev.php;
     }
 
-    if ($host ~ .+\.m\.dev\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.m\.dev\.{{BIN_BASE_DOMAIN_REG}}$){
         set $phpfile mobile_dev.php;
     }
 

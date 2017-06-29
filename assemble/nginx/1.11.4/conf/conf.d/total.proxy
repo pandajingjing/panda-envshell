@@ -5,11 +5,11 @@ server {
     index index_release.php;
 
     set $backend server-release;
-    if ($host ~ .+\.dev\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.dev\.{{BIN_BASE_DOMAIN_REG}}$){
         set $backend server-dev;
     }
 
-    if ($host ~ .+\.test\.{{BIN_BASE_DOMAIN}}$){
+    if ($host ~ .+\.test\.{{BIN_BASE_DOMAIN_REG}}$){
         set $backend server-test;
     }
 
