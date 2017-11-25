@@ -27,6 +27,6 @@ server {
         fastcgi_keep_conn on;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.access.log more;
+    access_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/php.test.server.error.log;
 }

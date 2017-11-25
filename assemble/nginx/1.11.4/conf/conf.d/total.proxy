@@ -17,7 +17,7 @@ server {
         proxy_pass http://$backend;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.access.log more;
+    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/proxy.error.log;
 }
 
@@ -34,7 +34,7 @@ server {
         fastcgi_param SCRIPT_FILENAME {{INSTALL_DIR_APP}}/local$fastcgi_script_name;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/local.access.log more;
+    access_log {{INSTALL_DIR_LOG_BIN}}/local.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/local.error.log;
 
 }

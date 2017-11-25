@@ -20,6 +20,6 @@ server {
         proxy_pass http://$backend;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.release.access.log more;
+    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.release.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/proxy.release.error.log;
 }
