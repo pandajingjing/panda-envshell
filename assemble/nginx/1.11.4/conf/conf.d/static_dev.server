@@ -3,6 +3,7 @@ server {
     server_name ~^static\.(?<dir_name>.*)\.dev\.{{BIN_BASE_DOMAIN_REG}}$;
     root {{INSTALL_DIR_APP}}/static-dev/$dir_name;
     index index.html;
+    add_header "Access-Control-Allow-Origin" "*";
     access_log {{INSTALL_DIR_LOG_BIN}}/static.dev.server.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/static.dev.server.error.log;
 }

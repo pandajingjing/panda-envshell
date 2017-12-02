@@ -3,6 +3,7 @@ server {
     server_name static.{{BIN_BASE_DOMAIN}};
     root {{INSTALL_DIR_APP}}/static-release;
     index index.html;
+    add_header "Access-Control-Allow-Origin" "*";
     access_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.access.log;
     error_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.error.log;
 }
