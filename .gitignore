@@ -8,3 +8,7 @@
 *.swp
 #code
 /config/
+#self
+/tar
+/temp
+wget-log
