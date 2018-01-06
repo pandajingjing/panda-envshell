@@ -1,4 +1,10 @@
-/tar
-/temp
+#zendstudio
+.buildpath
+.project
+/.settings
+#mac
 .DS_Store
-wget-log
+#*nux
+*.swp
+#code
+/config/
