@@ -41,6 +41,15 @@ show_help() {
     exit
 }
 
+show_help_app() {
+    echo 'Usage: '`basename $1`' -n appname [-v version]'
+    echo `basename $1 .sh`' in the newest version or switch to specific version'
+    echo '  -n appname'
+    echo '  -v specific version'
+    echo '  -h show this help'
+    exit
+}
+
 #parse what todo
 parse_bin(){
     while getopts 'n:v:h' arg; do
@@ -83,6 +92,28 @@ parse_bin(){
         fi
     else
         error 'assemble('$BIN_NAME') does not exist.'
+    fi
+}
+
+parse_bin_app(){
+    while getopts 'n:v:h' arg; do
+        case $arg in
+            v) APP_VERSION=$OPTARG
+                ;;
+            n) APP_NAME=$OPTARG
+                ;;
+            h) show_help $0
+                ;;
+            ?) show_help $0
+                ;;
+        esac
+    done
+
+    debug 'app name we got was: '$APP_NAME
+    debug 'app version we got was: '$APP_VERSION
+
+    if [ -z $APP_NAME ]; then
+        show_help $0
     fi
 }
 

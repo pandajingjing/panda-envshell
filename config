@@ -12,6 +12,12 @@ INSTALL_DIR_BIN=$INSTALL_DIR_DATA'/bin'
 INSTALL_DIR_LOG=$INSTALL_DIR_DATA'/log'
 INSTALL_DIR_APP=$INSTALL_DIR_DATA'/app'
 
+#git file
+GIT_CODE='https://github.com/pandajingjing/code.git'
+GIT_PAGE='https://github.com/pandajingjing/page.git'
+GIT_STATIC='https://github.com/pandajingjing/static.git'
+STATIC_HASH_CMD='/data/bin/php-7.0.11/bin/php /data/app/index/static_map.php'
+
 #dir we balabala all we need, do not modify these unless you exactly know what it means
 EXEC_DIR_TAR=$EXEC_DIR_ROOT'/tar'
 EXEC_DIR_TEMP=$EXEC_DIR_ROOT'/temp'
