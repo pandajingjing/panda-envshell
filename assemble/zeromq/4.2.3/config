@@ -1,0 +1,10 @@
+BIN_FULL_NAME='zeromq-4.2.3'
+BIN_DOWNLOAD_URL='https://github.com/zeromq/libzmq/releases/download/v4.2.3/'$BIN_FULL_NAME'.tar.gz'
+BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
+BIN_CODE_DIR='/'$BIN_FULL_NAME
+
+BIN_COMMON_LIB='gcc-c++'
+
+INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
+
+BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN'
