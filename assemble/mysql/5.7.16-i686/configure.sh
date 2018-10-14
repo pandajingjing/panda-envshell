@@ -10,7 +10,10 @@ info 'add mysql service start.'
 info 'add mysql service successfully.'
 info 'start mysql.'
     create_dir $INSTALL_DIR_LOG_BIN
+    touch $INSTALL_DIR_LOG_BIN/mysql.err.log
+    chown $ENV_USER:$ENV_GROUP $INSTALL_DIR_LOG_BIN/mysql.err.log
     cd $LN_DIR_MYSQL
+    rm ./my.cnf -rf
     bin/mysqld --initialize-insecure --user=$ENV_USER
     bin/mysqld_safe $BIN_START_PARAM &
 info 'mysql started.'
