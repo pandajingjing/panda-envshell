@@ -20,8 +20,9 @@ fi
 grep -P "^$ENV_USER:" /etc/passwd > /dev/null
 if [ $? -ne 0 ]
 then
-	info 'user '$ENV_USER' does not exist, create it.its pwd is '$ENV_USER' too.'
-	useradd -g $ENV_GROUP -p $ENV_USER $ENV_USER
+	ENV_PASS=`cat /proc/sys/kernel/random/uuid`
+	info 'user '$ENV_USER' does not exist, create it.its pwd is '$ENV_PASS' too.'
+	useradd -g $ENV_GROUP -p $ENV_PASS $ENV_USER
 else
 	warn "user $ENV_USER exist, keep it alive, and never mind it's pwd, we dont need it."
 fi
