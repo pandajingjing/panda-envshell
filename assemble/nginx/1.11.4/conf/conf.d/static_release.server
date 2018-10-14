@@ -4,6 +4,6 @@ server {
     root {{INSTALL_DIR_APP}}/static-release;
     index index.html;
     add_header "Access-Control-Allow-Origin" "*";
-    access_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.access.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.access.log more;
     error_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.error.log;
 }

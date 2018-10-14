@@ -4,6 +4,6 @@ server {
     root {{INSTALL_DIR_APP}}/static-test/$dir_name;
     index index.html;
     add_header "Access-Control-Allow-Origin" "*";
-    access_log {{INSTALL_DIR_LOG_BIN}}/static.test.server.access.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/static.test.server.access.log more;
     error_log {{INSTALL_DIR_LOG_BIN}}/static.test.server.error.log;
 }

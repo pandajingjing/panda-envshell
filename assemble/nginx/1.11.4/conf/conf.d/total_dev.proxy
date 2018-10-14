@@ -13,6 +13,6 @@ server {
         proxy_pass http://$backend;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.dev.access.log;
+    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.dev.access.log more;
     error_log {{INSTALL_DIR_LOG_BIN}}/proxy.dev.error.log;
 }
