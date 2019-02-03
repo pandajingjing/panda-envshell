@@ -11,7 +11,7 @@ NTP_INSTALLED=`rpm -qa | grep ntpdate | wc -l`
 
 if [ 0 -eq $NTP_INSTALLED ];then
     info 'we will install ntpdate for time sync.'
-    yum install -y -q ntpdate
+    yum install -y ntpdate
     info 'ntpdate is installed.'
 fi
 
@@ -37,9 +37,10 @@ s2m.time.edu.cn'
 
 for SERVER in $NTP_SERVERS
 do
-    info 'sync '$SERVER
-    ntpdate $SERVER
-    if [ 0 -eq $? ];then
+    debug 'sync '"$SERVER"'.'
+    ntpdate "$SERVER"
+    if [ 0 -eq $? ]
+    then
         info 'time sync is down.'
         break;
     fi

@@ -9,7 +9,7 @@ source $EXEC_DIR_ROOT'/inc/initial.sh'
 
 parse_bin "$@"
 
-info 'configure '$BIN_NAME'('$BIN_VERSION') start.'
+info 'configure '"$BIN_NAME"'('"$BIN_VERSION"') start.'
 
 source_assemble_file 'config'
 
@@ -18,4 +18,4 @@ EXEC_DIR_NOW=`pwd`
 source_assemble_file 'configure.sh'
 cd $EXEC_DIR_NOW
 
-info 'configure '$BIN_NAME'('$BIN_VERSION') successfully.'
+info 'configure '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'

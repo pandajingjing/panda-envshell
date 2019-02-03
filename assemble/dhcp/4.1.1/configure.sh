@@ -8,6 +8,5 @@ info 'configure dhcpd start.'
 info 'configure dhcpd successfully.'
 info 'mod dhcpd service start.'
     chkconfig --level 3 dhcpd on
-    chkconfig --level 3 dhcpd6 on
     info "`chkconfig --list | grep dhcpd`"
 info 'mod dhcpd service successfully.'

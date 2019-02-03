@@ -1,7 +1,7 @@
 Port {{BIN_PORT}}
 Protocol 2
 
-SyslogFacility AUTHPRIV
+SyslogFacility local5
 
 LoginGraceTime 2m
 PermitRootLogin no

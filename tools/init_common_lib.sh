@@ -9,7 +9,7 @@ source $EXEC_DIR_ROOT'/inc/initial.sh'
 
 info 'install all common lib for this scripts or enhance your experience by using yum tools, lib for application will installed with procedure of its own.'
 
-debug "we will install: '$COMMON_LIB'."
+debug 'we will install: '"$COMMON_LIB"'.'
 
 yum install -y $COMMON_LIB
 yum update -y

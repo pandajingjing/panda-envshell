@@ -3,9 +3,9 @@
 #do some configure script
 
 info 'configure bind start.'
-    create_dir $INSTALL_DIR_LOG_BIN
-    create_dir $INSTALL_DIR_BIN_BIN/etc/default
-    create_dir $INSTALL_DIR_BIN_BIN/etc/mydomain
+    create_dir "$INSTALL_DIR_LOG_BIN"
+    create_dir "$INSTALL_DIR_BIN_BIN"/etc/default
+    create_dir "$INSTALL_DIR_BIN_BIN"/etc/mydomain
 
     $INSTALL_DIR_BIN_BIN/sbin/rndc-confgen > $INSTALL_DIR_BIN_BIN/etc/rndc.conf
     tail -10 $INSTALL_DIR_BIN_BIN/etc/rndc.conf | head -9 | sed 's/#//g' > $INSTALL_DIR_BIN_BIN/etc/named.conf
