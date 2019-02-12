@@ -141,7 +141,11 @@ function configure_bin(){
     if [ ! -z "$3" ] && [ ! -z "$4" ]; then
         START_LINE=`grep -n "$3" $2 | awk -F ':' '{print $1}'`
         END_LINE=`grep -n "$4" $2 | awk -F ':' '{print $1}'`
-        TOTAL_LINE=`wc -l $1 | awk '{print $1}'`
+        TOTAL_LINE=`wc -l $2 | awk '{print $1}'`
+
+        debug 'we find where to start: '"$START_LINE"'.'
+        debug 'we find where to end: '"$END_LINE"'.'
+        debug 'line number of custom configuration file: '"$TOTAL_LINE"'.'
 
         if [ -z $START_LINE ]; then
             START_LINE=0

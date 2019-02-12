@@ -1,14 +1,17 @@
-export HISTTIMEFORMAT='%F %T '
-
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}' |sed -e 's/[()]//g'`
 if [ $USER_IP = '' ]; then
     USER_IP=`hostname`
 fi
+USER_MAC=`arp -a 2>/dev/null | grep "$USER_IP" | awk '{print $4}'`
+USER_NAME=`whoami`
+DT=`date +%Y%m%d`
 
-HISDIR=~/.history
+HISDIR={{INSTALL_DIR_LOG_BIN}}/$DT
 if [ ! -d $HISDIR ]; then
-    mkdir $HISDIR
+    mkdir -p $HISDIR
+    chmod 0777 $HISDIR
 fi
 
-DT=`date +%Y%m%d`
-export HISTFILE="$HISDIR/$DT.$USER_IP.bash_history"
+export HISTTIMEFORMAT='[%F %T] '
+
+export HISTFILE="$HISDIR/[$USER_NAME][$USER_IP][$USER_MAC].bash_history"
