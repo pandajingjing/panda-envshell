@@ -3,10 +3,10 @@
 #do some configure script
 
 info 'add mysql service start.'
-	configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/mysqld' '/etc/init.d/mysqld'
-	chkconfig --add mysqld
-	chkconfig --level 3 mysqld on
-	info "`chkconfig --list | grep mysqld`"
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/mysqld' '/etc/init.d/mysqld'
+    chkconfig --add mysqld
+    chkconfig --level 3 mysqld on
+    info "`chkconfig --list | grep mysqld`"
 info 'add mysql service successfully.'
 info 'start mysql.'
     create_dir $INSTALL_DIR_LOG_BIN

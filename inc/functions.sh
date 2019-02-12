@@ -145,7 +145,7 @@ function configure_bin(){
 
         debug 'we find where to start: '"$START_LINE"'.'
         debug 'we find where to end: '"$END_LINE"'.'
-        debug 'line number of custom configuration file: '"$TOTAL_LINE"'.'
+        debug 'total line number of old configuration file: '"$TOTAL_LINE"'.'
 
         if [ -z $START_LINE ]; then
             START_LINE=0
