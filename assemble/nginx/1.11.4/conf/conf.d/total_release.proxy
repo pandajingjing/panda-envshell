@@ -12,7 +12,7 @@ server {
     index web_release.php;
 
     set $backend php-release;
-    if ($host ~ ^static\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ ^{{BIN_STATIC_SUB_DOMAIN_REG}}\.{{BIN_BASE_DOMAIN_REG}}$){
         set $backend static-release;
     }
 

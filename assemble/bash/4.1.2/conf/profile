@@ -2,7 +2,7 @@ USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}' |sed -e 's/[()]//g'`
 if [ $USER_IP = '' ]; then
     USER_IP=`hostname`
 fi
-USER_MAC=`arp -a 2>/dev/null | grep "$USER_IP" | awk '{print $4}'`
+USER_MAC=`arp -an 2>/dev/null | grep "$USER_IP" | awk '{print $4}'`
 USER_NAME=`whoami`
 DT=`date +%Y%m%d`
 
