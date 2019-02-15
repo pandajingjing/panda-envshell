@@ -1,11 +1,13 @@
 {{INSTALL_DIR_LOG_BIN}}/*.log {
+    daily
+    rotate 10
+    create 0664 {{ENV_USER}} {{ENV_GROUP}}
+    missingok
+    notifempty
     compress
     delaycompress
-    notifempty
-    daily
-    missingok
-    sharedscripts
     postrotate
         kill -USR2 `cat {{INSTALL_FILE_BIN_PID}}`
     endscript
+    sharedscripts
 }

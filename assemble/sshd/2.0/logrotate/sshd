@@ -6,4 +6,8 @@
     notifempty
     compress
     delaycompress
+    postrotate
+        {{INSTALL_DIR_BIN_BIN}}/sbin/squid -k restart
+    endscript
+    sharedscripts
 }

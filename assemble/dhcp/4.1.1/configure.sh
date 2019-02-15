@@ -11,3 +11,6 @@ info 'mod dhcpd service start.'
     chkconfig --level 3 dhcpd on
     info "`chkconfig --list | grep dhcpd`"
 info 'mod dhcpd service successfully.'
+info 'add dhcpd logrotate start.'
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/dhcpd' '/etc/logrotate.d/dhcpd'
+info 'add dhcpd logrotate successfully.'

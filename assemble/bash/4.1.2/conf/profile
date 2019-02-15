@@ -6,7 +6,7 @@ USER_MAC=`arp -an 2>/dev/null | grep "$USER_IP" | awk '{print $4}'`
 USER_NAME=`whoami`
 DT=`date +%Y%m%d`
 
-HISDIR={{INSTALL_DIR_LOG_BIN}}/$DT
+HISDIR={{INSTALL_DIR_LOG_BIN}}
 if [ ! -d $HISDIR ]; then
     mkdir -p $HISDIR
     chmod 0777 $HISDIR

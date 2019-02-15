@@ -1,4 +1,4 @@
-{{INSTALL_DIR_LOG_BIN}}/*.log {
+{{INSTALL_DIR_LOG_BIN}}/*.bash_history {
     daily
     rotate 10
     create 0664 {{ENV_USER}} {{ENV_GROUP}}

@@ -13,3 +13,6 @@ info 'mod samba service start.'
     chkconfig --level 3 smb on
     info "`chkconfig --list | grep smb`"
 info 'mod samba service successfully.'
+info 'add samba logrotate start.'
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/smb' '/etc/logrotate.d/smb'
+info 'add samba logrotate successfully.'
