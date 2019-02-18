@@ -19,7 +19,6 @@ test.sh|加载所有配置文件并输出所有配置变量和值
 tools/init_common_lib.sh|安装系统需要或者增强体验所需要的基本库
 tools/init_user_group.sh|创建环境运行所需要的用户和用户组
 tools/ntpdate.sh|由于使用虚拟机,所以增加了ntp同步时间的脚本
-tools/back_db_web.sh|物理备份数据库和web目录的文件
 assemble|所有应用的配置文件,安装脚本,配置脚本等
 inc|通用文件,包括函数和脚本初始化文件等
 tar|下载的tar包存放在这里
@@ -30,19 +29,25 @@ temp|解压缩出来的文件放在这里,还有一些其他临时文件
 ## 使用过程介绍
 - 所有命令基于CentOS6.*版本,对于编译安装的应用,应该影响不大,对于下载编译好的应用,请注意系统环境,下载对应的版本.如果使用CentOS7,那就不要用这些程序了,自己重写吧╮(╯▽╰)╭
 - 请使用root用户运行,且程序所在目录可写(用于下载tar包)
-- 0.运行tools/nptdate.sh,与国内的ntp服务器同步本地时间
-- 1.找到assemble里面对应应用和版本,就能查看具体的配置和脚本,如果没什么特别需求,就不要改了吧.另外文件中配置了相关的目录结构.
-	- /local-data ``#应用根目录``
-	- /local-data/bin ``#程序文件安装目录``
-	- /remote-data/logs ``#相关日志目录``
-	- /local-data/app ``#web代码存放目录``
-	- /local-data/share ``#samba匿名共享目录``
-- 2.运行tools/init_user_group.sh,创建环境用户和用户组,密码随意,不会用
-- 3.运行tools/init_common_lib.sh,安装运行本系统需要的和增强个人体验的基本库
-- 4.运行test.sh,检查你安装的软件的各项配置是否符合你的需要
-- 5.运行download.sh,下载你所需要的tar包
-- 6.运行extract.sh,解压缩你所需要的tar包
-- 7.运行install.sh安装你所需要的应用,安装程序会自动安装程序,并且根据配置和模板完成应用的配置
+- 0.基本准备工作
+	- 此处可以先添加运维人员用户,密码(请留意系统默认用户组).方便使用远程登录进行相关工作.(本地环境有点丑)
+	- 运行 yum install git -y 安装git (以上都是废话)
+	- 运行 git clone https://github.com/pandajingjing/panda-envshell.git 获取本代码
+- 1.检查相关配置
+	- 检查 ./config 文件,查看ENV_USER, ENV_GROUP 作为运行环境的用户名和用户组
+	- 确认相关环境目录
+		- /local-data ``#应用根目录``
+		- /local-data/bin ``#程序文件安装目录``
+		- /local-data/app ``#web代码存放目录``
+		- /remote-data/logs ``#相关日志目录, 存放云服务器的云磁盘``
+	- 找到assemble里面对应应用和版本,就能查看具体的配置和脚本,如果没什么特别需求,就不要改了吧
+- 2.运行tools/nptdate.sh,与国内的ntp服务器同步本地时间
+- 3.运行tools/init_user_group.sh,创建环境用户和用户组,密码随意,不会用
+- 4.运行tools/init_common_lib.sh,安装运行本系统需要的和增强个人体验的基本库
+- 5.运行test.sh,检查你安装的软件的各项配置是否符合你的需要
+- 6.运行download.sh,下载你所需要的tar包
+- 7.运行extract.sh,解压缩你所需要的tar包
+- 8.运行install.sh安装你所需要的应用,安装程序会自动安装程序,并且根据配置和模板完成应用的配置
 
 可以根据你自己的需要安装不同的应用,安装前都运行一下test.sh,确认配置符合你的要求.在后续的维护中,我会尽量把应用都做到可以通过service来控制,比如开机自动启动,重启应用,平滑加载配置等.
 
