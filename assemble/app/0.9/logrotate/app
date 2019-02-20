@@ -1,4 +1,24 @@
-{{INSTALL_DIR_LOG_BIN}}/*/*.log {
+{{INSTALL_DIR_LOG_BIN}}/release/logs/*.log {
+    daily
+    rotate 10
+    create 0664 {{ENV_USER}} {{ENV_GROUP}}
+    missingok
+    notifempty
+    compress
+    delaycompress
+}
+
+{{INSTALL_DIR_LOG_BIN}}/dev/*/*/logs/*.log {
+    daily
+    rotate 10
+    create 0664 {{ENV_USER}} {{ENV_GROUP}}
+    missingok
+    notifempty
+    compress
+    delaycompress
+}
+
+{{INSTALL_DIR_LOG_BIN}}/test/*/*/logs/*.log {
     daily
     rotate 10
     create 0664 {{ENV_USER}} {{ENV_GROUP}}

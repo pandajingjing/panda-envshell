@@ -1,6 +1,7 @@
 #env user and group
 ENV_USER='app'
 ENV_GROUP='app'
+DEPLOY_USER='deployer'
 
 #frame configuration
 COMMON_LIB='wget gcc make man epel-release vim-enhanced'

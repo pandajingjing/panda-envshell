@@ -12,3 +12,11 @@ warn 'do not forget restart rsyslog service.'
 info 'add sshd logrotate start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/sshd' '/etc/logrotate.d/sshd'
 info 'add sshd logrotate successfully.'
+if [ 'yesx' = "$BIN_REMOTE_TUNNEL"'x' ];then
+    info 'add ssh remote tunnel service start.'
+        configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/ssh_remote_tunnel' '/etc/init.d/ssh_remote_tunnel'
+        chkconfig --add ssh_remote_tunnel
+        chkconfig --level 3 ssh_remote_tunnel on
+        info "`chkconfig --list | grep ssh_remote_tunnel`"
+    info 'add ssh remote tunnel service successfully.'
+fi

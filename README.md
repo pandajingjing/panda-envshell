@@ -84,6 +84,8 @@ class me extends 码畜
 	- 9.补全各类应用的logrotate
 	- 10.增加对app与系统有联系的功能的配置
 	- 11.增加ssh隧道功能
+	- 12.增加部署账号
+	???service的脚本需要+x权限,ssh tunnel还是有问题
 - 20190131 V5.3
 	- 1.增加dhcp服务的功能
 - 20190125 V5.2.5
