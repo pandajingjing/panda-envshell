@@ -8,11 +8,11 @@ COMMON_LIB='wget gcc make man epel-release vim-enhanced'
 DEBUG=1
 
 #dir we put all stuff
-INSTALL_DIR_LOCAL_DATA='/local-data'
-INSTALL_DIR_REMOTE_DATA='/remote-data'
-INSTALL_DIR_BIN=$INSTALL_DIR_LOCAL_DATA'/bin'
-INSTALL_DIR_LOG=$INSTALL_DIR_REMOTE_DATA'/log'
-INSTALL_DIR_APP=$INSTALL_DIR_LOCAL_DATA'/app'
+INSTALL_DIR_FIX_DATA='/fix-data'
+INSTALL_DIR_DYNAMIC_DATA='/dynamic-data'
+INSTALL_DIR_BIN=$INSTALL_DIR_FIX_DATA'/bin'
+INSTALL_DIR_LOG=$INSTALL_DIR_DYNAMIC_DATA'/log'
+INSTALL_DIR_APP=$INSTALL_DIR_FIX_DATA'/app'
 
 #dir we balabala all we need, do not modify these unless you exactly know what it means
 EXEC_DIR_TAR=$EXEC_DIR_ROOT'/tar'

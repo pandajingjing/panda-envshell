@@ -36,10 +36,6 @@ temp|解压缩出来的文件放在这里,还有一些其他临时文件
 - 1.检查相关配置
 	- 检查 ./config 文件,查看ENV_USER, ENV_GROUP 作为运行环境的用户名和用户组
 	- 确认相关环境目录
-		- /local-data ``#应用根目录``
-		- /local-data/bin ``#程序文件安装目录``
-		- /local-data/app ``#web代码存放目录``
-		- /remote-data/logs ``#相关日志目录, 存放云服务器的云磁盘``
 	- 找到assemble里面对应应用和版本,就能查看具体的配置和脚本,如果没什么特别需求,就不要改了吧
 - 2.运行tools/nptdate.sh,与国内的ntp服务器同步本地时间
 - 3.运行tools/init_user_group.sh,创建环境用户和用户组,密码随意,不会用
@@ -78,7 +74,7 @@ class me extends 码畜
 ## change log
 - 20190201 V6.0
 	- 1.除根目录下的几个可执行文件权限调整为755外,其他文件调整为644
-	- 2.针对现有云主机环境,区分local-data与remote-data,即本地磁盘和云磁盘
+	- 2.针对现有云主机环境,区分fix-data与dynamic-data,即本地磁盘和云磁盘
 	- 3.对变量使用单引号及双引号的检查
 	- 4.删除业务代码的发布功能,专注于运维环境维护
 	- 5.修复configure_bin被非首次调用时修改文件的错误

@@ -14,8 +14,8 @@ info 'install '"$BIN_NAME"'('"$BIN_VERSION"') start.'
 source_assemble_file 'config'
 
 #create base dir
-create_dir $INSTALL_DIR_LOCAL_DATA
-create_dir $INSTALL_DIR_REMOTE_DATA
+create_dir $INSTALL_DIR_FIX_DATA
+create_dir $INSTALL_DIR_DYNAMIC_DATA
 create_dir $INSTALL_DIR_BIN
 create_dir $INSTALL_DIR_LOG
 create_dir $INSTALL_DIR_APP
