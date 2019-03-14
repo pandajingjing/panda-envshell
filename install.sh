@@ -2,8 +2,8 @@
 
 #install what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)
-EXEC_DIR_ROOT=`readlink -f $EXEC_CURRENT_DIR/`
+EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
+EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 
@@ -36,9 +36,9 @@ fi
 
 #yum install its basic lib
 if [ ! -z "$BIN_COMMON_LIB" ]; then
-	info "we will install: '$BIN_COMMON_LIB' for your app installation."
-	yum install -y $BIN_COMMON_LIB
-	info 'app lib install successfully.'
+    info "we will install: '$BIN_COMMON_LIB' for your app installation."
+    yum install -y $BIN_COMMON_LIB
+    info 'app lib install successfully.'
 fi
 
 #start app install script

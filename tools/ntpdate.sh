@@ -2,8 +2,8 @@
 
 #ntp while it is done
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)
-EXEC_DIR_ROOT=`readlink -f $EXEC_CURRENT_DIR/../`
+EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
+EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/../`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 

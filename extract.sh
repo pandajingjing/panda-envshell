@@ -2,8 +2,8 @@
 
 #extract what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; pwd)
-EXEC_DIR_ROOT=`readlink -f $EXEC_CURRENT_DIR/`
+EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
+EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 
@@ -29,7 +29,7 @@ if [ -d $EXEC_DIR_BIN_CODE ];then
     /bin/rm $EXEC_DIR_BIN_CODE -rf
 fi
 info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' start.'
-	/bin/tar -zxf "$EXEC_FILE_BIN_CODE_TAR" -C "$EXEC_DIR_TEMP"
+    /bin/tar -zxf "$EXEC_FILE_BIN_CODE_TAR" -C "$EXEC_DIR_TEMP"
 info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' success.'
 
 info 'extract '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
