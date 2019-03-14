@@ -64,7 +64,7 @@ class me extends 码畜
 
     public $_sNickName = 'pandajingjing';
 
-    public $_sWebSite = 'http://www.jxu.life';
+    public $_sWebSite = 'http://www.jxulife.com';
 
     protected $_iQQ = 18073848;
 }
