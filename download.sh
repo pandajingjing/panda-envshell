@@ -20,7 +20,7 @@ if [ -z $BIN_DOWNLOAD_URL ];then
 fi
 
 info 'download '"$BIN_DOWNLOAD_URL"' start.'
-wget -P "$EXEC_DIR_TAR" -c "$BIN_DOWNLOAD_URL"
+    /usr/bin/wget -P "$EXEC_DIR_TAR" -c "$BIN_DOWNLOAD_URL"
 info 'download '"$BIN_DOWNLOAD_URL"' successfully.'
 
 info 'download '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'

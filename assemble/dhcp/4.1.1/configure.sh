@@ -8,8 +8,8 @@ info 'configure dhcpd start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/rsyslog.conf' '/etc/rsyslog.conf' '#dhcpd log configuration start from here:' '#dhcpd log configuration end here.'
 info 'configure dhcpd successfully.'
 info 'mod dhcpd service start.'
-    chkconfig --level 3 dhcpd on
-    info "`chkconfig --list | grep dhcpd`"
+    /sbin/chkconfig --level 3 dhcpd on
+    info "`/sbin/chkconfig --list | /bin/grep dhcpd`"
 info 'mod dhcpd service successfully.'
 info 'add dhcpd logrotate start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/dhcpd' '/etc/logrotate.d/dhcpd'

@@ -3,5 +3,5 @@
 #do some install scripts
 
 info 'yum install samba start.'
-    yum install samba samba-client -y
+    /usr/bin/yum install samba samba-client -y
 info 'yum install samba successfully.'

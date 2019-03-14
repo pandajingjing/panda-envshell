@@ -7,5 +7,5 @@ info 'configure bind installation start.'
     ./configure --prefix="$INSTALL_DIR_BIN_BIN" --enable-largefile --enable-threads
 info 'configure bind installation successfully.'
 info 'compile and install bind start.'
-    make && make install
+    /usr/bin/make && /usr/bin/make install
 info 'compile and install bind successfully.'

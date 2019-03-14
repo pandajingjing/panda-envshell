@@ -26,10 +26,10 @@ EXEC_FILE_BIN_CODE_TAR=$EXEC_DIR_TAR'/'$BIN_CODE_TAR
 debug 'extracted source code dir is: '"$EXEC_DIR_BIN_CODE"'.'
 if [ -d $EXEC_DIR_BIN_CODE ];then
     debug 'source code dir is exists. clear it.'
-    rm $EXEC_DIR_BIN_CODE -rf
+    /bin/rm $EXEC_DIR_BIN_CODE -rf
 fi
 info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' start.'
-tar -zxf "$EXEC_FILE_BIN_CODE_TAR" -C "$EXEC_DIR_TEMP"
+	/bin/tar -zxf "$EXEC_FILE_BIN_CODE_TAR" -C "$EXEC_DIR_TEMP"
 info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' success.'
 
 info 'extract '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'

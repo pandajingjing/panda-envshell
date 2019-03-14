@@ -47,11 +47,11 @@ function debug(){
 
 #show help we need
 show_help() {
-    echo 'Usage: '`basename $1`' -n appname [-v version]'
-    echo `basename $1 .sh`' application in the newest or specific version'
-    echo '  -n appname'
-    echo '  -v specific version'
-    echo '  -h show this help'
+    /bin/echo 'Usage: '`basename $1`' -n appname [-v version]'
+    /bin/echo `basename $1 .sh`' application in the newest or specific version'
+    /bin/echo '  -n appname'
+    /bin/echo '  -v specific version'
+    /bin/echo '  -h show this help'
     exit
 }
 
@@ -107,14 +107,14 @@ function create_dir(){
         debug 'dir '"$1"' is exists.'
         if [ ! -z $2 ]; then
             debug "$1"' will be cleaned.'
-            rm -rf "$1"
-            mkdir -p "$1"
+            /bin/rm -rf "$1"
+            /bin/mkdir -p "$1"
         fi
     else
-        mkdir -p "$1"
+        /bin/mkdir -p "$1"
     fi
-    chown $ENV_USER:$ENV_GROUP "$1"
-    chmod 0775 "$1" -R
+    /bin/chown $ENV_USER:$ENV_GROUP "$1"
+    /bin/chmod 0775 "$1" -R
     debug 'create dir: '"$1"' successfully.'
 }
 
@@ -134,14 +134,14 @@ function configure_bin(){
     info 'configure '"$2"' start.'
     BACK_FILE=$2'.'`date +%s`
     if [ ! -f $2 ];then
-        touch $2
+        /bin/touch $2
     fi
-    cp -f "$2" "$BACK_FILE"
+    /bin/cp -f "$2" "$BACK_FILE"
 
     if [ ! -z "$3" ] && [ ! -z "$4" ]; then
-        START_LINE=`grep -n "$3" $2 | awk -F ':' '{print $1}'`
-        END_LINE=`grep -n "$4" $2 | awk -F ':' '{print $1}'`
-        TOTAL_LINE=`wc -l $2 | awk '{print $1}'`
+        START_LINE=`/bin/grep -n "$3" $2 | /bin/awk -F ':' '{print $1}'`
+        END_LINE=`/bin/grep -n "$4" $2 | /bin/awk -F ':' '{print $1}'`
+        TOTAL_LINE=`/usr/bin/wc -l $2 | /bin/awk '{print $1}'`
 
         debug 'we find where to start: '"$START_LINE"'.'
         debug 'we find where to end: '"$END_LINE"'.'
@@ -176,19 +176,19 @@ function configure_bin(){
         fi
 
         if [ 0 -eq $START_LINE ];then
-            echo $3 >> $2
-            cat $1 >> $2
-            echo $4 >> $2
+            /bin/echo $3 >> $2
+            /bin/cat $1 >> $2
+            /bin/echo $4 >> $2
         else
             head -n $[$START_LINE-1] $BACK_FILE > $2
-            echo $3 >> $2
-            cat $1 >> $2
-            echo $4 >> $2
-            tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $2
+            /bin/echo $3 >> $2
+            /bin/cat $1 >> $2
+            /bin/echo $4 >> $2
+            /usr/bin/tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $2
         fi
     else
         if [ -f $1 ];then
-            cp -f -p "$1" "$2"
+            /bin/cp -f -p "$1" "$2"
         fi
     fi
 
@@ -203,7 +203,7 @@ function configure_bin(){
     do
         eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
         EXEC_CONFIGURE_SCRIPT='s#{{'$EXEC_CONFIGURE_NAME'}}#'$EXEC_CONFIGURE_VAL'#g'
-        sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
+        /bin/sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
     done
     info 'configure '"$2"' success.'
 }

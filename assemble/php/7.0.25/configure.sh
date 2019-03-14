@@ -10,9 +10,9 @@ info 'configure php-fpm start.'
 info 'configure php-fpm successfully.'
 info 'add php-fpm service start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/service/php-fpm /etc/init.d/php-fpm
-    chkconfig --add php-fpm
-    chkconfig --level 3 php-fpm on
-    info "`chkconfig --list | grep php-fpm`"
+    /sbin/chkconfig --add php-fpm
+    /sbin/chkconfig --level 3 php-fpm on
+    info "`/sbin/chkconfig --list | /bin/grep php-fpm`"
 info 'add php-fpm service successfully.'
 info 'add php-fpm logrotate start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/php-fpm' '/etc/logrotate.d/php-fpm'

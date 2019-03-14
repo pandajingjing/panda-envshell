@@ -44,7 +44,7 @@ fi
 #start app install script
 EXEC_DIR_NOW=`pwd`
 info 'run custom scripts start.'
-source_assemble_file 'install.sh'
+    source_assemble_file 'install.sh'
 info 'run custom scripts successfully.'
 cd $EXEC_DIR_NOW
 

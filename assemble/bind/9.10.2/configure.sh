@@ -8,8 +8,8 @@ info 'configure bind start.'
     create_dir "$INSTALL_DIR_BIN_BIN"/etc/mydomain
 
     $INSTALL_DIR_BIN_BIN/sbin/rndc-confgen > $INSTALL_DIR_BIN_BIN/etc/rndc.conf
-    tail -10 $INSTALL_DIR_BIN_BIN/etc/rndc.conf | head -9 | sed 's/#//g' > $INSTALL_DIR_BIN_BIN/etc/named.conf
-    echo "include \"$INSTALL_DIR_BIN_BIN/etc/named.ext.conf\";" >> $INSTALL_DIR_BIN_BIN/etc/named.conf
+    /usr/bin/tail -10 $INSTALL_DIR_BIN_BIN/etc/rndc.conf | /usr/bin/head -9 | /bin/sed 's/#//g' > $INSTALL_DIR_BIN_BIN/etc/named.conf
+    /bin/echo "include \"$INSTALL_DIR_BIN_BIN/etc/named.ext.conf\";" >> $INSTALL_DIR_BIN_BIN/etc/named.conf
 
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/named.ext.conf $INSTALL_DIR_BIN_BIN/etc/named.ext.conf
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/mydomain/zone.conf $INSTALL_DIR_BIN_BIN/etc/mydomain/zone.conf
@@ -26,9 +26,9 @@ info 'configure bind start.'
 info 'configure bind successfully.'           
 info 'add bind service start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/bind' '/etc/init.d/bind'
-    chkconfig --add bind
-    chkconfig --level 3 bind on
-    info "`chkconfig --list | grep bind`"
+    /sbin/chkconfig --add bind
+    /sbin/chkconfig --level 3 bind on
+    info "`/sbin/chkconfig --list | /bin/grep bind`"
 info 'add bind service successfully.'
 info 'add bind logrotate start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/bind' '/etc/logrotate.d/bind'

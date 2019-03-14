@@ -7,5 +7,5 @@ info 'configure zeromq installation start.'
     ./configure --prefix=$INSTALL_DIR_BIN_BIN
 info 'configure zeromq installation successfully.'
 info 'compile and install zeromq start.'
-    make && make install
+    /usr/bin/make && /usr/bin/make install
 info 'compile and install zeromq successfully.'

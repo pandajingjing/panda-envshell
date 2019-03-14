@@ -7,11 +7,11 @@ EXEC_DIR_ROOT=`readlink -f $EXEC_CURRENT_DIR/../`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 
-NTP_INSTALLED=`rpm -qa | grep ntpdate | wc -l`
+NTP_INSTALLED=`/bin/rpm -qa | /bin/grep ntpdate | /usr/bin/wc -l`
 
 if [ 0 -eq $NTP_INSTALLED ];then
     info 'we will install ntpdate for time sync.'
-    yum install -y ntpdate
+    /usr/bin/yum install -y ntpdate
     info 'ntpdate is installed.'
 fi
 
@@ -38,12 +38,10 @@ s2m.time.edu.cn'
 for SERVER in $NTP_SERVERS
 do
     debug 'sync '"$SERVER"'.'
-    ntpdate "$SERVER"
+    /usr/sbin/ntpdate "$SERVER"
     if [ 0 -eq $? ]
     then
         info 'time sync is down.'
         break;
     fi
 done
-#info $?
-

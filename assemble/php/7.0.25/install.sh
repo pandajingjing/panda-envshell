@@ -7,5 +7,5 @@ info 'configure php-fpm installation start.'
     ./configure --prefix=$INSTALL_DIR_BIN_BIN --with-fpm-user=$ENV_USER --with-fpm-group=$ENV_GROUP --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --enable-zip --with-mcrypt --with-curl --with-gd --with-vpx-dir=/usr/include/vpx --with-webp-dir=/usr/include/webp --with-png-dir=/usr/include/png --enable-sockets --enable-bcmath --enable-exif
 info 'configure php-fpm installation successfully.'
 info 'compile and install php-fpm start.'
-    make && make install
+    /usr/bin/make && /usr/bin/make install
 info 'compile and install php-fpm successfully.'
