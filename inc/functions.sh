@@ -5,16 +5,16 @@ function msg(){
     _MSG=`date +"%Y-%m-%d %H:%M:%S"`'('"$1"'): '"$2"
     case $1 in
         error)
-        echo -e "\033[31m$_MSG\033[0m"
+        /bin/echo -e "\033[31m$_MSG\033[0m"
         ;;
         warn)
-        echo -e "\033[33m$_MSG\033[0m"
+        /bin/echo -e "\033[33m$_MSG\033[0m"
         ;;
         debug)
-        echo -e "\033[37m$_MSG\033[0m"
+        /bin/echo -e "\033[37m$_MSG\033[0m"
         ;;
         *)
-        echo "$_MSG"
+        /bin/echo "$_MSG"
         ;;
     esac
 }

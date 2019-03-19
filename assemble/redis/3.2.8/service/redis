@@ -22,22 +22,22 @@ CFGFILE={{INSTALL_DIR_BIN_BIN}}/redis.conf
 KIND=redis
 
 start() {
-    echo -n $"Starting $KIND services: "
+    /bin/echo -n $"Starting $KIND services: "
     $BINFILE $CFGFILE
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 stop() {
-    echo -n $"Shutting down $KIND services: "
+    /bin/echo -n $"Shutting down $KIND services: "
     kill -TERM `cat $PIDFILE`
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
     return $RETVAL
 }
@@ -49,15 +49,15 @@ restart() {
 
 status() {
     if [ ! -r $PIDFILE ]; then
-        echo "redis is stopped"
+        /bin/echo "redis is stopped"
         exit 0
     fi
 
     PID=`cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
-        echo "redis (pid $PID) is running..."
+        /bin/echo "redis (pid $PID) is running..."
     else
-        echo "redis dead but pid file exists"
+        /bin/echo "redis dead but pid file exists"
     fi
 }
 
@@ -78,7 +78,7 @@ case "$1" in
         status
         ;;
     *)
-        echo $"Usage: $0 {start|stop|restart|status}"
+        /bin/echo $"Usage: $0 {start|stop|restart|status}"
         exit 2
 esac
 

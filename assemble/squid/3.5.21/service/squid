@@ -22,44 +22,44 @@ CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/squid.conf
 KIND=squid
 
 start() {
-    echo -n $"Starting $KIND services: "
+    /bin/echo -n $"Starting $KIND services: "
     $BINFILE -z
     $BINFILE
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 stop() {
-    echo -n $"Shutting down $KIND services: "
+    /bin/echo -n $"Shutting down $KIND services: "
     $BINFILE -k shutdown
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
     return $RETVAL
 }
 
 restart() {
-    echo -n $"restart $KIND services: "
+    /bin/echo -n $"restart $KIND services: "
     $BINFILE -k restart
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 reload() {
-    echo -n $"Reloading $CFGFILE: "
+    /bin/echo -n $"Reloading $CFGFILE: "
     $BINFILE -k reconfigure
     RETVAL=$?
     success
-    echo
+    /bin/echo
     return $RETVAL
 }
 
@@ -67,7 +67,7 @@ configtest() {
     $BINFILE -k parse
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
-        echo Syntax OK
+        /bin/echo Syntax OK
         return $RETVAL
     fi 
     return $RETVAL
@@ -75,15 +75,15 @@ configtest() {
 
 status() {
     if [ ! -r $PIDFILE ]; then
-        echo "squid is stopped"
+        /bin/echo "squid is stopped"
         exit 0
     fi
 
     PID=`cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
-        echo "squid (pid $PID) is running..."
+        /bin/echo "squid (pid $PID) is running..."
     else
-        echo "squid dead but pid file exists"
+        /bin/echo "squid dead but pid file exists"
     fi
 }
 
@@ -110,7 +110,7 @@ case "$1" in
         status
         ;;
     *)
-        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        /bin/echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
         exit 2
 esac
 

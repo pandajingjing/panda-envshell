@@ -22,22 +22,22 @@ CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/named.conf
 KIND=bind
 
 start() {
-    echo -n $"Starting $KIND services: "
+    /bin/echo -n $"Starting $KIND services: "
     $BINFILE -u {{ENV_USER}} &
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 stop() {
-    echo -n $"Shutting down $KIND services: "
+    /bin/echo -n $"Shutting down $KIND services: "
     {{INSTALL_DIR_BIN_BIN}}/sbin/rndc stop
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ] && rm -f $PIDFILE
     return $RETVAL
 }
@@ -48,11 +48,11 @@ restart() {
 }
 
 reload() {
-    echo -n $"Reloading $CFGFILE: "
+    /bin/echo -n $"Reloading $CFGFILE: "
     {{INSTALL_DIR_BIN_BIN}}/sbin/rndc reload
     RETVAL=$?
     success
-    echo
+    /bin/echo
     return $RETVAL
 }
 
@@ -61,7 +61,7 @@ configtest() {
     {{INSTALL_DIR_BIN_BIN}}/sbin/named-checkzone {{BIN_DOMAIN}} {{INSTALL_DIR_BIN_BIN}}/etc/mydomain/zone.conf
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
-        echo Syntax OK
+        /bin/echo Syntax OK
         return $RETVAL
     fi
     return $RETVAL
@@ -69,15 +69,15 @@ configtest() {
 
 status() {
     if [ ! -r $PIDFILE ]; then
-        echo "bind is stopped"
+        /bin/echo "bind is stopped"
         exit 0
     fi
 
     PID=`cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
-        echo "bind (pid $PID) is running..."
+        /bin/echo "bind (pid $PID) is running..."
     else
-        echo "bind dead but pid file exists"
+        /bin/echo "bind dead but pid file exists"
     fi
 }
 
@@ -104,7 +104,7 @@ case "$1" in
         status
         ;;
     *)
-        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        /bin/echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
         exit 2
 esac
 

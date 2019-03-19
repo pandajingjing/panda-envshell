@@ -22,22 +22,22 @@ CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/php-fpm.conf
 KIND=php-fpm
 
 start() {
-    echo -n $"Starting $KIND services: "
+    /bin/echo -n $"Starting $KIND services: "
     $BINFILE
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 stop() {
-    echo -n $"Shutting down $KIND services: "
+    /bin/echo -n $"Shutting down $KIND services: "
     kill -QUIT `cat $PIDFILE`
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
     return $RETVAL
 }
@@ -48,11 +48,11 @@ restart() {
 }
 
 reload() {
-    echo -n $"Reloading $CFGFILE: "
+    /bin/echo -n $"Reloading $CFGFILE: "
     kill -USR2 `cat $PIDFILE`
     RETVAL=$?
     success
-    echo
+    /bin/echo
     return $RETVAL
 }
 
@@ -60,7 +60,7 @@ configtest() {
     $BINFILE -t
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
-        echo Syntax OK
+        /bin/echo Syntax OK
         return $RETVAL
     fi
     return $RETVAL
@@ -68,15 +68,15 @@ configtest() {
 
 status() {
     if [ ! -r $PIDFILE ]; then
-        echo "php-fpm is stopped"
+        /bin/echo "php-fpm is stopped"
         exit 0
     fi
 
     PID=`cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
-        echo "php-fpm (pid $PID) is running..."
+        /bin/echo "php-fpm (pid $PID) is running..."
     else
-        echo "php-fpm dead but pid file exists"
+        /bin/echo "php-fpm dead but pid file exists"
     fi
 }
 
@@ -103,7 +103,7 @@ case "$1" in
         status
         ;;
     *)
-        echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
+        /bin/echo $"Usage: $0 {start|stop|restart|reload|status|configtest}"
         exit 2
 esac
 

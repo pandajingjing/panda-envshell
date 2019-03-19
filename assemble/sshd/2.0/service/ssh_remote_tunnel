@@ -21,25 +21,25 @@ PIDFILE=/var/run/ssh_tunnel.pid
 KIND=ssh_remote_tunnel
 
 start() {
-    echo -n $"Starting $KIND services: "
+    /bin/echo -n $"Starting $KIND services: "
     CMD="$BINFILE"' -afgNTR 0.0.0.0:{{BIN_REMOTE_TUNNEL_REMOTE_PORT}}:localhost:{{BIN_REMOTE_TUNNEL_LOCAL_PORT}} {{BIN_REMOTE_TUNNEL_REMOTE_USER}}@{{BIN_REMOTE_TUNNEL_REMOTE_HOST}} -o ServerAliveInterval=300 -o TCPKeepAlive=yes -o ServerAliveCountMax=100'
     /bin/su -l {{DEPLOY_USER}} -c "$CMD"
     PID=`/bin/ps aux|/bin/grep "$CMD"|/bin/grep -v 'grep'|/bin/awk '{print $2}'`
-    echo $PID > $PIDFILE
+    /bin/echo $PID > $PIDFILE
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ]
         RETVAL=1
     return $RETVAL
 }
 
 stop() {
-    echo -n $"Shutting down $KIND services: "
+    /bin/echo -n $"Shutting down $KIND services: "
     kill -QUIT `cat $PIDFILE`
     RETVAL=$?
     success
-    echo
+    /bin/echo
     [ $RETVAL -eq 0 ] && rm -f $PIDFILE 
     return $RETVAL
 }
@@ -51,15 +51,15 @@ restart() {
 
 status() {
     if [ ! -r $PIDFILE ]; then
-        echo "ssh remote tunnel is stopped"
+        /bin/echo "ssh remote tunnel is stopped"
         exit 0
     fi
 
     PID=`cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
-        echo "ssh remote tunnel (pid $PID) is running..."
+        /bin/echo "ssh remote tunnel (pid $PID) is running..."
     else
-        echo "ssh remote tunnel dead but pid file exists"
+        /bin/echo "ssh remote tunnel dead but pid file exists"
     fi
 }
 
@@ -80,7 +80,7 @@ case "$1" in
         status
         ;;
     *)
-        echo $"Usage: $0 {start|stop|restart|status}"
+        /bin/echo $"Usage: $0 {start|stop|restart|status}"
         exit 2
 esac
 

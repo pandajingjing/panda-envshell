@@ -26,7 +26,7 @@ if [ -z $INSTALL_DIR_BIN_BIN ];then
     if [ 'yx' = "$IGNORE_ERROR"'x' ];then
         info 'we use yum to install app in custom scripts.'
     else
-        echo -e
+        /bin/echo -e
         error 'INSTALL_DIR_BIN_BIN is empty, we need it to put app bin file.'
     fi
 else
