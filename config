@@ -4,7 +4,7 @@ ENV_GROUP='app'
 DEPLOY_USER='deployer'
 
 #frame configuration
-COMMON_LIB='wget gcc make man epel-release vim-enhanced'
+COMMON_LIB='wget gcc make man epel-release vim-enhanced openssh-server'
 DEBUG=1
 
 #dir we put all stuff
