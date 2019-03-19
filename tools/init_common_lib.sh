@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #install all common lib for this scripts
 

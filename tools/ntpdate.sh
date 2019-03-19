@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #ntp while it is done
 

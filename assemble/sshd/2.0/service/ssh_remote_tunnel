@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # chkconfig: 3 30 70
 # description: Starts and stops the ssh remote tunnel

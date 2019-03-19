@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #check if env user and group exist or initialize them
 
