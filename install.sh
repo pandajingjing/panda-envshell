@@ -37,7 +37,7 @@ fi
 #yum install its basic lib
 if [ ! -z "$BIN_COMMON_LIB" ]; then
     info "we will install: '$BIN_COMMON_LIB' for your app installation."
-    yum install -y $BIN_COMMON_LIB
+    /usr/bin/yum install -y $BIN_COMMON_LIB
     info 'app lib install successfully.'
 fi
 

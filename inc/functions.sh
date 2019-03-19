@@ -2,7 +2,7 @@
 
 #show some messages
 function msg(){
-    _MSG=`date +"%Y-%m-%d %H:%M:%S"`'('"$1"'): '"$2"
+    _MSG=`/bin/date +"%Y-%m-%d %H:%M:%S"`'('"$1"'): '"$2"
     case $1 in
         error)
         /bin/echo -e "\033[31m$_MSG\033[0m"
@@ -82,7 +82,7 @@ parse_bin(){
         	
     if [ -d $EXEC_DIR_ASSEMBLE_BIN ]; then
         if [ -z $BIN_VERSION ]; then
-            BIN_VERSION=`ls -vr $EXEC_DIR_ASSEMBLE_BIN | head -1`
+            BIN_VERSION=`/bin/ls -vr $EXEC_DIR_ASSEMBLE_BIN | /usr/bin/head -1`
             if [ -z $BIN_VERSION ]; then
                 error 'assemble('"$BIN_NAME"') have no version file.'
             fi
@@ -132,7 +132,7 @@ function source_assemble_file(){
 #configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
 function configure_bin(){
     info 'configure '"$2"' start.'
-    BACK_FILE=$2'.'`date +%s`
+    BACK_FILE=$2'.'`/bin/date +%s`
     if [ ! -f $2 ];then
         /bin/touch $2
     fi
@@ -180,7 +180,7 @@ function configure_bin(){
             /bin/cat $1 >> $2
             /bin/echo $4 >> $2
         else
-            head -n $[$START_LINE-1] $BACK_FILE > $2
+            /usr/bin/head -n $[$START_LINE-1] $BACK_FILE > $2
             /bin/echo $3 >> $2
             /bin/cat $1 >> $2
             /bin/echo $4 >> $2
@@ -196,7 +196,7 @@ function configure_bin(){
     do
         eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
         EXEC_CONFIGURE_SCRIPT='s#{{'$EXEC_CONFIGURE_NAME'}}#'$EXEC_CONFIGURE_VAL'#g'
-        sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
+        /bin/sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
     done
 
     for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_VARS
