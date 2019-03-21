@@ -24,7 +24,7 @@ start() {
     /bin/echo -n $"Starting $KIND services: "
     CMD="$BINFILE"' -afgNTR 0.0.0.0:{{BIN_REMOTE_TUNNEL_REMOTE_PORT}}:localhost:{{BIN_REMOTE_TUNNEL_LOCAL_PORT}} {{BIN_REMOTE_TUNNEL_REMOTE_USER}}@{{BIN_REMOTE_TUNNEL_REMOTE_HOST}} -o ServerAliveInterval=300 -o TCPKeepAlive=yes -o ServerAliveCountMax=100'
     /bin/su -l {{DEPLOY_USER}} -c "$CMD"
-    PID=`/bin/ps aux|/bin/grep "$CMD"|/bin/grep -v 'grep'|/bin/awk '{print $2}'`
+    PID=`/bin/ps aux|/bin/grep "$CMD"|/bin/grep -v 'grep'|/usr/bin/awk '{print $2}'`
     /bin/echo $PID > $PIDFILE
     RETVAL=$?
     success

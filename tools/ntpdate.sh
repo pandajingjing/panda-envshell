@@ -7,11 +7,11 @@ EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/../`
 
 source $EXEC_DIR_ROOT'/inc/initial.sh'
 
-NTP_INSTALLED=`/bin/rpm -qa | /bin/grep ntpdate | /usr/bin/wc -l`
+NTP_INSTALLED=`/usr/bin/dpkg --get-selections | /bin/grep ntpdate | /usr/bin/wc -l`
 
 if [ 0 -eq $NTP_INSTALLED ];then
     info 'we will install ntpdate for time sync.'
-    /usr/bin/yum install -y ntpdate
+    /usr/bin/apt-get install ntpdate -y
     info 'ntpdate is installed.'
 fi
 

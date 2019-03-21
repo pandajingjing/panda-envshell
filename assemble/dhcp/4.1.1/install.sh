@@ -2,6 +2,6 @@
 
 #do some install scripts
 
-info 'yum install dhcp start.'
-    /usr/bin/yum install dhcp -y
-info 'yum install dhcp successfully.'
+info 'apt install dhcp start.'
+    /usr/bin/apt-get install isc-dhcp-server -y
+info 'apt install dhcp successfully.'

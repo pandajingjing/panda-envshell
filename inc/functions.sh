@@ -139,9 +139,9 @@ function configure_bin(){
     /bin/cp -f "$2" "$BACK_FILE"
 
     if [ ! -z "$3" ] && [ ! -z "$4" ]; then
-        START_LINE=`/bin/grep -n "$3" $2 | /bin/awk -F ':' '{print $1}'`
-        END_LINE=`/bin/grep -n "$4" $2 | /bin/awk -F ':' '{print $1}'`
-        TOTAL_LINE=`/usr/bin/wc -l $2 | /bin/awk '{print $1}'`
+        START_LINE=`/bin/grep -n "$3" $2 | /usr/bin/awk -F ':' '{print $1}'`
+        END_LINE=`/bin/grep -n "$4" $2 | /usr/bin/awk -F ':' '{print $1}'`
+        TOTAL_LINE=`/usr/bin/wc -l $2 | /usr/bin/awk '{print $1}'`
 
         debug 'we find where to start: '"$START_LINE"'.'
         debug 'we find where to end: '"$END_LINE"'.'
