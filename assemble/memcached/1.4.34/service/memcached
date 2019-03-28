@@ -35,7 +35,7 @@ start() {
 
 stop() {
     /bin/echo -n $"Shutting down $KIND services: "
-    kill `cat $PIDFILE`
+    /bin/kill `cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
