@@ -34,7 +34,7 @@ start() {
 
 stop() {
     /bin/echo -n $"Shutting down $KIND services: "
-    kill -QUIT `cat $PIDFILE`
+    /bin/kill -QUIT `cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
@@ -49,7 +49,7 @@ restart() {
 
 reload() {
     /bin/echo -n $"Reloading $CFGFILE: "
-    kill -HUP `cat $PIDFILE`
+    /bin/kill -HUP `cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
