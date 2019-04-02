@@ -1,0 +1,9 @@
+#!/bin/bash
+
+errors=$({{INSTALL_DIR_BIN_BIN}}/sbin/php-fpm --fpm-config "{{INSTALL_DIR_BIN_BIN}}/etc/php-fpm.conf" -t 2>&1 | grep 'ERROR' || true);
+if [ -n "$errors" ]; then
+    echo 'Please fix your configuration file...'
+    echo "$errors"
+    exit 1
+fi
+exit 0
