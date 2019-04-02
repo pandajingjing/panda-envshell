@@ -3,25 +3,18 @@ Protocol 2
 
 SyslogFacility local5
 
-LoginGraceTime 2m
+LoginGraceTime 1m
 PermitRootLogin no
-PubkeyAuthentication yes
-PermitEmptyPasswords no
 PasswordAuthentication no
 ChallengeResponseAuthentication no
 
-GSSAPIAuthentication yes
-GSSAPICleanupCredentials yes
-
-UsePAM yes
-
-AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv LANG LC_*
 AcceptEnv XMODIFIERS
 
 X11Forwarding no
-UseDNS no 
+ClientAliveInterval 10
+ClientAliveCountMax 3
+UseDNS no
 
 Subsystem   sftp    /usr/lib/openssh/sftp-server
 

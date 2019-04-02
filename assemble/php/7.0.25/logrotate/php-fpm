@@ -7,7 +7,7 @@
     compress
     delaycompress
     postrotate
-        /bin/kill -USR2 `cat {{INSTALL_FILE_BIN_PID}}`
+        /bin/kill -USR1 $(cat {{INSTALL_FILE_BIN_PID}})`
     endscript
     sharedscripts
 }

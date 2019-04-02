@@ -32,7 +32,7 @@ function warn(){
 #show error message
 function error(){
     msg 'error' "$1"
-    exit
+    exit 1
 }
 
 #show debug message
@@ -178,11 +178,13 @@ function configure_bin(){
         if [ 0 -eq $START_LINE ];then
             /bin/echo $3 >> $2
             /bin/cat $1 >> $2
+            /bin/echo >> $2
             /bin/echo $4 >> $2
         else
             /usr/bin/head -n $[$START_LINE-1] $BACK_FILE > $2
             /bin/echo $3 >> $2
             /bin/cat $1 >> $2
+            /bin/echo >> $2
             /bin/echo $4 >> $2
             /usr/bin/tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $2
         fi

@@ -1,28 +1,18 @@
 [Unit]
 Description=nginx
-After=network.target    #在此服务之后启动
-#Before= #在此服务之前启动
-#Wants=  #如果本单元启动了,则此单元也会启动
-#StopWhenUnneeded
-#Conflicts=shutdown.target
-#DefaultDependencies=no
+After=network.target
 
 [Service]
 Type=forking
-#ExecStartPre=
-ExecStart={{INSTALL_DIR_BIN_BIN}}/sbin/nginx
-#ExecStartPost=
-ExecReload=/bin/kill -HUP $MAINPID
-ExecStop=/bin/kill -QUIT $MAINPID
-#PrivateTmp=true
-#WorkingDirectory=
-#User=
+PIDFile={{INSTALL_FILE_BIN_PID}}
+ExecStartPre={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -t -q -g 'daemon on; master_process on;'
+ExecStart={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -g 'daemon on; master_process on;'
+ExecReload={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -g 'daemon on; master_process on;' -s reload
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile {{INSTALL_FILE_BIN_PID}}
 Restart=on-failure
-#EnvironmentFile
-#RemainAfterExit
-#TimeoutStartSec
-#SuccessExitStatus=
-RestartSec=42   #每次重启前需要等待的秒数
+RestartSec=42
+TimeoutStopSec=5
+KillMode=mixed
 
 [Install]
 WantedBy=multi-user.target
