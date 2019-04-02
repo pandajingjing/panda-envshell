@@ -1,3 +1,5 @@
+set -e
+
 source $EXEC_DIR_ROOT'/config'
 source $EXEC_DIR_ROOT'/inc/functions.sh'
 

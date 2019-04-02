@@ -32,7 +32,7 @@ function warn(){
 #show error message
 function error(){
     msg 'error' "$1"
-    exit
+    exit 1
 }
 
 #show debug message
