@@ -10,6 +10,7 @@ info 'configure php-fpm start.'
     
     create_dir $INSTALL_DIR_BIN_BIN/helper
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/helper/php-checkconf $INSTALL_DIR_BIN_BIN/helper/php-checkconf
+    chmod +x $EXEC_DIR_ASSEMBLE_BIN_VERSION/helper/php-checkconf
 info 'configure php-fpm successfully.'
 info 'add php-fpm service start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/php-fpm.service' '/lib/systemd/system/php-fpm.service'
