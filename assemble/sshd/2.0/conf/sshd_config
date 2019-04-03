@@ -17,5 +17,6 @@ ClientAliveCountMax 3
 UseDNS no
 
 Subsystem   sftp    /usr/libexec/openssh/sftp-server
+Subsystem   sftp    /usr/lib/openssh/sftp-server
 
 DenyUsers {{ENV_USER}}

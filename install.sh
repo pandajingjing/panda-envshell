@@ -24,7 +24,7 @@ create_dir $INSTALL_DIR_APP
 if [ -z $INSTALL_DIR_BIN_BIN ];then
     read -t 5 -p 'INSTALL_DIR_BIN_BIN is empty, ignore it? [y/N]:' IGNORE_ERROR
     if [ 'yx' = "$IGNORE_ERROR"'x' ];then
-        info 'we use yum to install app in custom scripts.'
+        info 'we use apt to install app in custom scripts.'
     else
         /bin/echo -e
         error 'INSTALL_DIR_BIN_BIN is empty, we need it to put app bin file.'
@@ -34,10 +34,10 @@ else
     create_dir $INSTALL_DIR_BIN_BIN 'y'
 fi
 
-#yum install its basic lib
+#apt install its basic lib
 if [ ! -z "$BIN_COMMON_LIB" ]; then
     info "we will install: '$BIN_COMMON_LIB' for your app installation."
-    /usr/bin/yum install -y $BIN_COMMON_LIB
+    /usr/bin/apt-get install -y $BIN_COMMON_LIB
     info 'app lib install successfully.'
 fi
 

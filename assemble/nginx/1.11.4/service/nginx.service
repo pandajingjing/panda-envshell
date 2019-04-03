@@ -1,0 +1,18 @@
+[Unit]
+Description=nginx
+After=network.target
+
+[Service]
+Type=forking
+PIDFile={{INSTALL_FILE_BIN_PID}}
+ExecStartPre={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -t -q -g 'daemon on; master_process on;'
+ExecStart={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -g 'daemon on; master_process on;'
+ExecReload={{INSTALL_DIR_BIN_BIN}}/sbin/nginx -g 'daemon on; master_process on;' -s reload
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile {{INSTALL_FILE_BIN_PID}}
+Restart=on-failure
+RestartSec=42
+TimeoutStopSec=5
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

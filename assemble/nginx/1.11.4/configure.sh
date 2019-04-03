@@ -24,10 +24,9 @@ info 'configure nginx start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/conf.d/total_test.proxy' $INSTALL_DIR_BIN_BIN'/conf/conf.d/total_test.proxy'
 info 'configure nginx successfully.'	
 info 'add nginx service start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/nginx' '/etc/init.d/nginx'
-    /sbin/chkconfig --add nginx
-    /sbin/chkconfig --level 3 nginx on
-    info "`/sbin/chkconfig --list | /bin/grep nginx`"
+    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/nginx.service' '/lib/systemd/system/nginx.service'
+    /bin/systemctl enable nginx.service
+    info "`/bin/systemctl is-enabled nginx.service`"
 info 'add nginx service successfully.'
 info 'add nginx logrotate start.'
     configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/nginx' '/etc/logrotate.d/nginx'

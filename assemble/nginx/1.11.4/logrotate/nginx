@@ -8,6 +8,7 @@
     delaycompress
     postrotate
         /bin/kill -USR1 $(cat {{INSTALL_FILE_BIN_PID}} 2>/dev/null) 2>/dev/null || :
+        /sbin/start-stop-daemon --stop --signal USR1 --quiet --pidfile {{INSTALL_FILE_BIN_PID}} --name nginx
     endscript
     sharedscripts
 }
