@@ -209,3 +209,62 @@ function configure_bin(){
     done
     info 'configure '"$2"' success.'
 }
+
+
+CENTOS_OS="CentOS"
+UBUNTU_OS="Ubuntu"
+DEBIAN_OS="Debian"
+ALIYUN_OS="Aliyun"
+OPENSUSE_OS="openSUSE"
+OTHER_OS="other"
+
+ARCH=$X64
+arch_issue=`uname -m | tr A-Z a-z`
+if [ `uname -m | tr A-Z a-z` = "x86_64" ]; then
+    ARCH=$X64
+else
+    ARCH=$X32
+    echo "linux x86 not supported, exit"
+    exit 1
+fi
+
+OS_VERSION=$OTHER_OS
+os_issue=`cat /etc/issue | tr A-Z a-z`
+
+get_os_version()
+{   
+    if [ `echo $os_issue | grep debian | wc -l` -ge 1 ]; then
+        OS_VERSION=$DEBIAN_OS
+    elif [ `echo $os_issue | grep ubuntu | wc -l` -ge 1 ]; then
+        OS_VERSION=$UBUNTU_OS
+    elif [ `echo $os_issue | grep centos | wc -l` -ge 1 ]; then
+        OS_VERSION=$CENTOS_OS
+    elif [ `echo $os_issue | grep 'red hat' | wc -l` -ge 1 ]; then
+        OS_VERSION=$CENTOS_OS
+    elif [ `echo $os_issue | grep aliyun | wc -l` -ge 1 ]; then
+        OS_VERSION=$ALIYUN_OS
+    elif [ `echo $os_issue | grep opensuse | wc -l` -ge 1 ]; then
+        OS_VERSION=$OPENSUSE_OS
+    fi
+}
+
+get_os_version
+if [ $OS_VERSION = $OTHER_OS ]; then
+    echo -e "Can not get os version from /etc/issue, try lsb_release"
+    os_issue=`lsb_release -a`
+    get_os_version
+fi
+
+if [ $OS_VERSION = $OTHER_OS ]; then
+    echo -e "Can not get os version from lsb_release, try check specific files"
+    if [ -f "/etc/redhat-release" ]; then
+        OS_VERSION=$CENTOS_OS
+    elif [ -f "/etc/debian_version" ]; then
+        OS_VERSION=$DEBIAN_OS
+    else
+        logError "Can not get os verison"
+    fi
+fi
+
+echo -e "OS Arch:\t"$ARCH
+echo -e "OS Distribution:\t"$OS_VERSION
