@@ -118,7 +118,7 @@ function getOsName(){
     _findOsName "$sOsIssue"
     if [ $sOsName = $OS_OTHER ]; then
         showWarning 'Can not get os name from /etc/issue, try lsb_release.'
-        sOsIssue=`lsb_release -a`
+        sOsIssue=`lsb_release -a 2>/dev/null`
         _findOsName "$sOsIssue"
     fi
     if [ $sOsName = $OS_OTHER ]; then
@@ -309,6 +309,15 @@ function installPackage(){
         /usr/bin/apt-get install $_sPackage -y
     elif [ $sOsName = $OS_CENTOS ]; then
         /usr/bin/yum install $_sPackage -y
+    fi
+    return $?
+}
+
+function updateAllPackage(){
+    if [ $sOsName = $OS_UBUNTU ]; then
+        /usr/bin/apt-get upgrade -y
+    elif [ $sOsName = $OS_CENTOS ]; then
+        /usr/bin/yum update -y
     fi
     return $?
 }

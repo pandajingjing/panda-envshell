@@ -9,3 +9,9 @@ if [ 0 -eq $? ]; then
 else
     showError 'install common lib failed.'
 fi
+updateAllPackage
+if [ 0 -eq $? ]; then
+    showInfo 'update package successfully.'
+else
+    showError 'update package failed.'
+fi
