@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure profile start.'
+    createDir $sBinLogInstallDir
+    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom profile start from here:' '#custom profile end here.'
+showInfo 'configure profile successfully.'
+showInfo 'add bash logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/bash' '/etc/logrotate.d/bash'
+showInfo 'add bash logrotate successfully.'

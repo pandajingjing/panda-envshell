@@ -1,17 +1,17 @@
-BIN_FULL_NAME='memcached-1.4.34'
-BIN_DOWNLOAD_URL='http://www.memcached.org/files/'$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_DIR='/'$BIN_FULL_NAME
+sBinFullName='memcached-1.4.34'
+sBinDownloadUrl='http://www.memcached.org/files/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
 
-BIN_COMMON_LIB='libevent-devel'
+sBinCommonLib='libevent-devel'
 
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/memcached'
-INSTALL_FILE_LOG_BIN=$INSTALL_DIR_LOG_BIN'/memcached.log'
-INSTALL_FILE_BIN_PID=$INSTALL_DIR_BIN_BIN'/memcached.pid'
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/memcached'
+INSTALL_FILE_LOG_BIN=$sBinLogInstallDir'/memcached.log'
+sBinPidInstallFile=$sBinInstallDir'/memcached.pid'
 
 BIN_BINDIP='127.0.0.1:11211'
 BIN_MAX_MEMORY=64
 BIN_FACTOR=1.25
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN INSTALL_DIR_LOG_BIN INSTALL_FILE_LOG_BIN INSTALL_FILE_BIN_PID BIN_BINDIP BIN_MAX_MEMORY BIN_FACTOR'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir INSTALL_FILE_LOG_BIN sBinPidInstallFile BIN_BINDIP BIN_MAX_MEMORY BIN_FACTOR'

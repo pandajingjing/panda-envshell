@@ -1,0 +1,21 @@
+Port {{sBinListenPort}}
+Protocol 2
+
+SyslogFacility local5
+
+LoginGraceTime 1m
+PermitRootLogin no
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
+AcceptEnv LANG LC_*
+AcceptEnv XMODIFIERS
+
+X11Forwarding no
+ClientAliveInterval 10
+ClientAliveCountMax 3
+UseDNS no
+
+Subsystem   sftp    /usr/libexec/openssh/sftp-server
+
+DenyUsers {{sEnvUser}}

@@ -2,16 +2,16 @@
 
 #do some configure script
 
-info 'configure redis start.'
-    create_dir $INSTALL_DIR_LOG_BIN
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/redis.conf' $INSTALL_DIR_BIN_BIN'/redis.conf'
-info 'configure redis successfully.'	
-info 'add redis service start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/redis' '/etc/init.d/redis'
+showInfo 'configure redis start.'
+    createDir $sBinLogInstallDir
+    configBin $sExecBinVersionAssembleDir'/conf/redis.conf' $sBinInstallDir'/redis.conf'
+showInfo 'configure redis successfully.'	
+showInfo 'add redis service start.'
+    configBin $sExecBinVersionAssembleDir'/service/redis' '/etc/init.d/redis'
     /sbin/chkconfig --add redis
     /sbin/chkconfig --level 3 redis on
-    info "`/sbin/chkconfig --list | /bin/grep redis`"
-info 'add redis service successfully.'
-info 'add redis logrotate start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/redis' '/etc/logrotate.d/redis'
-info 'add redis logrotate successfully.'
+    showInfo "`/sbin/chkconfig --list | /bin/grep redis`"
+showInfo 'add redis service successfully.'
+showInfo 'add redis logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/redis' '/etc/logrotate.d/redis'
+showInfo 'add redis logrotate successfully.'

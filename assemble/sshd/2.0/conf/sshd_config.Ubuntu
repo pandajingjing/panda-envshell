@@ -1,4 +1,4 @@
-Port {{BIN_PORT}}
+Port {{sBinListenPort}}
 Protocol 2
 
 SyslogFacility local5
@@ -16,7 +16,6 @@ ClientAliveInterval 10
 ClientAliveCountMax 3
 UseDNS no
 
-Subsystem   sftp    /usr/libexec/openssh/sftp-server
 Subsystem   sftp    /usr/lib/openssh/sftp-server
 
-DenyUsers {{ENV_USER}}
+DenyUsers {{sEnvUser}}

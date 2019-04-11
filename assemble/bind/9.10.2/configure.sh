@@ -2,34 +2,34 @@
 
 #do some configure script
 
-info 'configure bind start.'
-    create_dir "$INSTALL_DIR_LOG_BIN"
-    create_dir "$INSTALL_DIR_BIN_BIN"/etc/default
-    create_dir "$INSTALL_DIR_BIN_BIN"/etc/mydomain
+showInfo 'configure bind start.'
+    createDir "$sBinLogInstallDir"
+    createDir "$sBinInstallDir"/etc/default
+    createDir "$sBinInstallDir"/etc/mydomain
 
-    $INSTALL_DIR_BIN_BIN/sbin/rndc-confgen > $INSTALL_DIR_BIN_BIN/etc/rndc.conf
-    /usr/bin/tail -10 $INSTALL_DIR_BIN_BIN/etc/rndc.conf | /usr/bin/head -9 | /bin/sed 's/#//g' > $INSTALL_DIR_BIN_BIN/etc/named.conf
-    /bin/echo "include \"$INSTALL_DIR_BIN_BIN/etc/named.ext.conf\";" >> $INSTALL_DIR_BIN_BIN/etc/named.conf
+    $sBinInstallDir/sbin/rndc-confgen > $sBinInstallDir/etc/rndc.conf
+    /usr/bin/tail -10 $sBinInstallDir/etc/rndc.conf | /usr/bin/head -9 | /bin/sed 's/#//g' > $sBinInstallDir/etc/named.conf
+    /bin/echo "include \"$sBinInstallDir/etc/named.ext.conf\";" >> $sBinInstallDir/etc/named.conf
 
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/named.ext.conf $INSTALL_DIR_BIN_BIN/etc/named.ext.conf
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/mydomain/zone.conf $INSTALL_DIR_BIN_BIN/etc/mydomain/zone.conf
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/mydomain/named.conf $INSTALL_DIR_BIN_BIN/etc/mydomain/named.conf
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/default/named.default.zone $INSTALL_DIR_BIN_BIN/etc/default/named.default.zone
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/default/named.empty $INSTALL_DIR_BIN_BIN/etc/default/named.empty
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/default/named.localhost $INSTALL_DIR_BIN_BIN/etc/default/named.localhost
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/default/named.loopback $INSTALL_DIR_BIN_BIN/etc/default/named.loopback
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/default/named.root $INSTALL_DIR_BIN_BIN/etc/default/named.root
+    configBin $sExecBinVersionAssembleDir/conf/named.ext.conf $sBinInstallDir/etc/named.ext.conf
+    configBin $sExecBinVersionAssembleDir/conf/mydomain/zone.conf $sBinInstallDir/etc/mydomain/zone.conf
+    configBin $sExecBinVersionAssembleDir/conf/mydomain/named.conf $sBinInstallDir/etc/mydomain/named.conf
+    configBin $sExecBinVersionAssembleDir/conf/default/named.default.zone $sBinInstallDir/etc/default/named.default.zone
+    configBin $sExecBinVersionAssembleDir/conf/default/named.empty $sBinInstallDir/etc/default/named.empty
+    configBin $sExecBinVersionAssembleDir/conf/default/named.localhost $sBinInstallDir/etc/default/named.localhost
+    configBin $sExecBinVersionAssembleDir/conf/default/named.loopback $sBinInstallDir/etc/default/named.loopback
+    configBin $sExecBinVersionAssembleDir/conf/default/named.root $sBinInstallDir/etc/default/named.root
 
-    $INSTALL_DIR_BIN_BIN/sbin/named-checkconf $INSTALL_DIR_BIN_BIN/etc/named.conf
-    $INSTALL_DIR_BIN_BIN/sbin/named-checkzone $BIN_DOMAIN $INSTALL_DIR_BIN_BIN/etc/mydomain/zone.conf
+    $sBinInstallDir/sbin/named-checkconf $sBinInstallDir/etc/named.conf
+    $sBinInstallDir/sbin/named-checkzone $BIN_DOMAIN $sBinInstallDir/etc/mydomain/zone.conf
 
-info 'configure bind successfully.'           
-info 'add bind service start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/bind' '/etc/init.d/bind'
+showInfo 'configure bind successfully.'           
+showInfo 'add bind service start.'
+    configBin $sExecBinVersionAssembleDir'/service/bind' '/etc/init.d/bind'
     /sbin/chkconfig --add bind
     /sbin/chkconfig --level 3 bind on
-    info "`/sbin/chkconfig --list | /bin/grep bind`"
-info 'add bind service successfully.'
-info 'add bind logrotate start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/bind' '/etc/logrotate.d/bind'
-info 'add bind logrotate successfully.'
+    showInfo "`/sbin/chkconfig --list | /bin/grep bind`"
+showInfo 'add bind service successfully.'
+showInfo 'add bind logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/bind' '/etc/logrotate.d/bind'
+showInfo 'add bind logrotate successfully.'

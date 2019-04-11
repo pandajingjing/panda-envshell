@@ -16,9 +16,9 @@ fi
 unset TMPDIR
 
 RETVAL=0
-BINFILE={{INSTALL_DIR_BIN_BIN}}/redis-server
-PIDFILE={{INSTALL_FILE_BIN_PID}}
-CFGFILE={{INSTALL_DIR_BIN_BIN}}/redis.conf
+BINFILE={{sBinInstallDir}}/redis-server
+PIDFILE={{sBinPidInstallFile}}
+CFGFILE={{sBinInstallDir}}/redis.conf
 KIND=redis
 
 start() {
@@ -34,7 +34,7 @@ start() {
 
 stop() {
     /bin/echo -n $"Shutting down $KIND services: "
-    /bin/kill -TERM `cat $PIDFILE`
+    /bin/kill -TERM `/bin/cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
@@ -53,7 +53,7 @@ status() {
         exit 0
     fi
 
-    PID=`cat $PIDFILE`
+    PID=`/bin/cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
         /bin/echo "redis (pid $PID) is running..."
     else

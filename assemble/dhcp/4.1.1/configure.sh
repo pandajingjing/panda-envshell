@@ -2,15 +2,15 @@
 
 #do some configure script
 
-info 'configure dhcpd start.'
-    create_dir $INSTALL_DIR_LOG_BIN
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/dhcpd.conf' '/etc/dhcp/dhcpd.conf'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/rsyslog.conf' '/etc/rsyslog.conf' '#dhcpd log configuration start from here:' '#dhcpd log configuration end here.'
-info 'configure dhcpd successfully.'
-info 'mod dhcpd service start.'
+showInfo 'configure dhcpd start.'
+    createDir $sBinLogInstallDir
+    configBin $sExecBinVersionAssembleDir'/conf/dhcpd.conf' '/etc/dhcp/dhcpd.conf'
+    configBin $sExecBinVersionAssembleDir'/conf/rsyslog.conf' '/etc/rsyslog.conf' '#dhcpd log configuration start from here:' '#dhcpd log configuration end here.'
+showInfo 'configure dhcpd successfully.'
+showInfo 'mod dhcpd service start.'
     /sbin/chkconfig --level 3 dhcpd on
-    info "`/sbin/chkconfig --list | /bin/grep dhcpd`"
-info 'mod dhcpd service successfully.'
-info 'add dhcpd logrotate start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/dhcpd' '/etc/logrotate.d/dhcpd'
-info 'add dhcpd logrotate successfully.'
+    showInfo "`/sbin/chkconfig --list | /bin/grep dhcpd`"
+showInfo 'mod dhcpd service successfully.'
+showInfo 'add dhcpd logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/dhcpd' '/etc/logrotate.d/dhcpd'
+showInfo 'add dhcpd logrotate successfully.'

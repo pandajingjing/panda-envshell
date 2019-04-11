@@ -2,9 +2,9 @@
 
 #do some install scripts
 
-info 'compile and install redis start.'
-    cd $EXEC_DIR_TEMP$BIN_CODE_DIR
+showInfo 'compile and install redis start.'
+    cd $sExecTempDir$sBinSourceCodeSubDir
     /usr/bin/make
     cd src
-    /bin/cp `/bin/ls -hl | /bin/grep 'rwx' | /usr/bin/awk '{print $9}'` $INSTALL_DIR_BIN_BIN/
-info 'compile and install redis successfully.'
+    /bin/cp `/bin/ls -hl | /bin/grep 'rwx' | /usr/bin/awk '{print $9}'` $sBinInstallDir/
+showInfo 'compile and install redis successfully.'

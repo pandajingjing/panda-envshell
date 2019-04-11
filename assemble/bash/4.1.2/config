@@ -1,3 +1,3 @@
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/bash'
+sBinLogInstallDir=$sLogInstallRootDir'/bash'
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_LOG_BIN'
+sBinConfigVars='sBinLogInstallDir'

@@ -2,10 +2,10 @@
 
 #do some install scripts
 
-info 'configure bind installation start.'
-    cd $EXEC_DIR_TEMP$BIN_CODE_DIR
-    ./configure --prefix="$INSTALL_DIR_BIN_BIN" --enable-largefile --enable-threads
-info 'configure bind installation successfully.'
-info 'compile and install bind start.'
+showInfo 'configure bind installation start.'
+    cd $sExecTempDir$sBinSourceCodeSubDir
+    ./configure --prefix="$sBinInstallDir" --enable-largefile --enable-threads
+showInfo 'configure bind installation successfully.'
+showInfo 'compile and install bind start.'
     /usr/bin/make && /usr/bin/make install
-info 'compile and install bind successfully.'
+showInfo 'compile and install bind successfully.'

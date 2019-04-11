@@ -1,20 +1,19 @@
 #env user and group
-ENV_USER='app'
-ENV_GROUP='app'
-DEPLOY_USER='deployer'
+sEnvUser='app'
+sEnvGroup='app'
+sDeployUser='deployer'
 
 #frame configuration
-COMMON_LIB='wget gcc make man openssh-server'
-DEBUG=1
+iDebug=1
 
 #dir we put all stuff
-INSTALL_DIR_FIX_DATA='/fix-data'
-INSTALL_DIR_DYNAMIC_DATA='/dynamic-data'
-INSTALL_DIR_BIN=$INSTALL_DIR_FIX_DATA'/bin'
-INSTALL_DIR_LOG=$INSTALL_DIR_DYNAMIC_DATA'/log'
-INSTALL_DIR_APP=$INSTALL_DIR_FIX_DATA'/app'
+sFixDataInstallDir='/fix-data'
+sDynamicDataInstallDir='/dynamic-data'
+sBinInstallRootDir=$sFixDataInstallDir'/bin'
+sLogInstallRootDir=$sDynamicDataInstallDir'/log'
+sAppInstallRootDir=$sFixDataInstallDir'/app'
 
 #dir we balabala all we need, do not modify these unless you exactly know what it means
-EXEC_DIR_TAR=$EXEC_DIR_ROOT'/tar'
-EXEC_DIR_TEMP=$EXEC_DIR_ROOT'/temp'
-EXEC_DIR_ASSEMBLE=$EXEC_DIR_ROOT'/assemble'
+sExecTarDir=$sExecRootDir'/tar'
+sExecTempDir=$sExecRootDir'/temp'
+sExecAssembleDir=$sExecRootDir'/assemble'

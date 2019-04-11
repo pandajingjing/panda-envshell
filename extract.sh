@@ -2,34 +2,41 @@
 
 #extract what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-parse_bin "$@"
+parseBin "$@"
 
-info 'extract '"$BIN_NAME"'('"$BIN_VERSION"') start.'
+showInfo 'extract '"$sBinName"'('"$sBinVersion"') start.'
 
-source_assemble_file 'config'
+loadAssembleFile 'config'
 
-create_dir "$EXEC_DIR_TEMP"
+createDir "$sExecTempDir"
 
-if [ -z $BIN_CODE_TAR ];then
-    error 'BIN_CODE_TAR is empty, we need it to find app source code tar.'
+if [ -z $sBinCodeTar ];then
+    showError 'sBinCodeTar is empty, we need it to find app source code tar.'
 fi
-if [ -z $BIN_CODE_DIR ];then
-    error 'BIN_CODE_DIR is empty, we need it to put app source code.'
+if [ -z $sBinSourceCodeSubDir ];then
+    showError 'sBinSourceCodeSubDir is empty, we need it to put app source code.'
 fi
-EXEC_DIR_BIN_CODE=$EXEC_DIR_TEMP$BIN_CODE_DIR
-EXEC_FILE_BIN_CODE_TAR=$EXEC_DIR_TAR'/'$BIN_CODE_TAR
-debug 'extracted source code dir is: '"$EXEC_DIR_BIN_CODE"'.'
-if [ -d $EXEC_DIR_BIN_CODE ];then
-    debug 'source code dir is exists. clear it.'
-    /bin/rm $EXEC_DIR_BIN_CODE -rf
+sExecBinCodeDir=$sExecTempDir$sBinSourceCodeSubDir
+sExecBinCodeTarFile=$sExecTarDir'/'$sBinCodeTar
+showDebug 'extracted source code dir is: '"$sExecBinCodeDir"'.'
+if [ -d $sExecBinCodeDir ];then
+    showDebug 'source code dir is exists. clear it.'
+    /bin/rm $sExecBinCodeDir -rf
 fi
-info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' start.'
-    /bin/tar -zxf "$EXEC_FILE_BIN_CODE_TAR" -C "$EXEC_DIR_TEMP"
-info 'extract source code: '"$EXEC_FILE_BIN_CODE_TAR"' success.'
 
-info 'extract '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
+if [ -f $sExecBinCodeTarFile ];then
+    showInfo 'extract source code: '"$sExecBinCodeTarFile"' start.'
+    /bin/tar -zxf "$sExecBinCodeTarFile" -C "$sExecTempDir"
+    if [ 0 -eq $? ];then
+        showInfo 'extract source code: '"$sExecBinCodeTarFile"' successfully.'
+    else
+        showError 'extract source code: '"$sExecBinCodeTarFile"' failed.'
+    fi
+else
+    showError 'we miss '"$sExecBinCodeTarFile"', try to download it.'
+fi

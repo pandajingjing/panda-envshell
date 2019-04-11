@@ -1,12 +1,12 @@
-BIN_FULL_NAME='php-7.0.25'
-BIN_DOWNLOAD_URL='http://cn2.php.net/distributions/'$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_DIR='/'$BIN_FULL_NAME
+sBinFullName='php-7.0.25'
+sBinDownloadUrl='https://www.php.net/distributions/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
 
-BIN_COMMON_LIB='libxml2-dev libmcrypt-dev libssl-dev libcurl4-openssl-dev libpng16-dev libwebp-dev'
+sBinCommonLib=''
 
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/php-fpm'
-INSTALL_FILE_BIN_PID=$INSTALL_DIR_BIN_BIN'/php-fpm.pid'
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/php-fpm'
+sBinPidInstallFile=$sBinInstallDir'/php-fpm.pid'
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN INSTALL_DIR_LOG_BIN INSTALL_FILE_BIN_PID'
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile'

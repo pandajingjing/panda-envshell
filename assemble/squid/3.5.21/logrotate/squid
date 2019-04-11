@@ -1,4 +1,4 @@
-{{INSTALL_DIR_LOG_BIN}}/*.log {
+{{sBinLogInstallDir}}/*.log {
     compress
     delaycompress
     notifempty
@@ -6,6 +6,6 @@
     missingok
     sharedscripts
     postrotate
-        {{INSTALL_DIR_BIN_BIN}}/sbin/squid -k restart
+        {{sBinInstallDir}}/sbin/squid -k restart
     endscript
 }

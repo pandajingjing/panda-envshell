@@ -1,9 +1,9 @@
 server {
     listen 40088;
-    server_name ~^(?<loader>{{BIN_STATIC_SUB_DOMAIN_REG}})\.{{BIN_BASE_DOMAIN_REG}};
-    root {{INSTALL_DIR_APP}}/static-release/$loader;
+    server_name ~^(?<loader>{{sBinStaticSubDomainReg}})\.{{sBinBaseDomainReg}};
+    root {{sAppInstallRootDir}}/static-release/$loader;
     index index.html;
     add_header "Access-Control-Allow-Origin" "*";
-    access_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/static.release.server.error.log;
+    access_log {{sBinLogInstallDir}}/static.release.server.access.log more;
+    error_log {{sBinLogInstallDir}}/static.release.server.error.log;
 }

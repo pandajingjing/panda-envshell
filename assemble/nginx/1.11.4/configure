@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure nginx start.'
+    createDir $sBinLogInstallDir
+    createDir $sBinInstallDir'/conf/conf.d'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/total_release.proxy' $sBinInstallDir'/conf/conf.d/total_release.proxy'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_dev.server' $sBinInstallDir'/conf/conf.d/php_dev.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_test.server' $sBinInstallDir'/conf/conf.d/php_test.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_release.server' $sBinInstallDir'/conf/conf.d/php_release.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/static_dev.server' $sBinInstallDir'/conf/conf.d/static_dev.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_dev.server' $sBinInstallDir'/conf/conf.d/php_dev.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_test.server' $sBinInstallDir'/conf/conf.d/php_test.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/php_release.server' $sBinInstallDir'/conf/conf.d/php_release.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/static_dev.server' $sBinInstallDir'/conf/conf.d/static_dev.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/static_test.server' $sBinInstallDir'/conf/conf.d/static_test.server'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/static_release.server' $sBinInstallDir'/conf/conf.d/static_release.server'
+    configBin $sExecBinVersionAssembleDir'/conf/nginx.conf' $sBinInstallDir'/conf/nginx.conf'
+    configBin $sExecBinVersionAssembleDir'/conf/nginx.conf' $sBinInstallDir'/conf/nginx.conf'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/total.upstream' $sBinInstallDir'/conf/conf.d/total.upstream'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/total.proxy' $sBinInstallDir'/conf/conf.d/total.proxy'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/total_dev.proxy' $sBinInstallDir'/conf/conf.d/total_dev.proxy'
+    configBin $sExecBinVersionAssembleDir'/conf/conf.d/total_test.proxy' $sBinInstallDir'/conf/conf.d/total_test.proxy'
+showInfo 'configure nginx successfully.'	
+showInfo 'add nginx service start.'
+    configBin $sExecBinVersionAssembleDir'/service/nginx.service' '/lib/systemd/system/nginx.service'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable nginx.service
+    showInfo 'nginx service is '"`/bin/systemctl is-enabled nginx.service`"'.'
+showInfo 'add nginx service successfully.'
+showInfo 'add nginx logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/nginx' '/etc/logrotate.d/nginx'
+showInfo 'add nginx logrotate successfully.'

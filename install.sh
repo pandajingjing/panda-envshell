@@ -2,50 +2,53 @@
 
 #install what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-parse_bin "$@"
+parseBin "$@"
 
-info 'install '"$BIN_NAME"'('"$BIN_VERSION"') start.'
+showInfo 'install '"$sBinName"'('"$sBinVersion"') start.'
 
-source_assemble_file 'config'
+loadAssembleFile 'config'
 
 #create base dir
-create_dir $INSTALL_DIR_FIX_DATA
-create_dir $INSTALL_DIR_DYNAMIC_DATA
-create_dir $INSTALL_DIR_BIN
-create_dir $INSTALL_DIR_LOG
-create_dir $INSTALL_DIR_APP
+createDir $sFixDataInstallDir
+createDir $sDynamicDataInstallDir
+createDir $sBinInstallRootDir
+createDir $sLogInstallRootDir
+createDir $sAppInstallRootDir
 
-#empty app dir
-if [ -z $INSTALL_DIR_BIN_BIN ];then
-    read -t 5 -p 'INSTALL_DIR_BIN_BIN is empty, ignore it? [y/N]:' IGNORE_ERROR
-    if [ 'yx' = "$IGNORE_ERROR"'x' ];then
-        info 'we use apt to install app in custom scripts.'
+#empty bin dir
+if [ -z $sBinInstallDir ];then
+    read -t 5 -p 'sBinInstallDir is empty, ignore it? [y/N]:' sIgnoreError
+    if [ 'yx' = "$sIgnoreError"'x' ];then
+        showInfo 'we install app in custom scripts.'
     else
-        /bin/echo -e
-        error 'INSTALL_DIR_BIN_BIN is empty, we need it to put app bin file.'
+        showError 'sBinInstallDir is empty, we need it to put app bin file.'
     fi
 else
-    info 'app installed dir is: '"$INSTALL_DIR_BIN_BIN"'.'
-    create_dir $INSTALL_DIR_BIN_BIN 'y'
+    showInfo 'app installed dir is: '"$sBinInstallDir"'.'
+    createDir $sBinInstallDir 'y'
 fi
 
-#apt install its basic lib
-if [ ! -z "$BIN_COMMON_LIB" ]; then
-    info "we will install: '$BIN_COMMON_LIB' for your app installation."
-    /usr/bin/apt-get install -y $BIN_COMMON_LIB
-    info 'app lib install successfully.'
+#install its basic lib
+if [ ! -z "$sBinCommonLib" ]; then
+    showInfo "we will install: '$sBinCommonLib' for your app installation."
+    installPackage "$sBinCommonLib"
+    if [ 0 -eq $? ];then
+         showInfo 'app lib install successfully.'
+    else
+        showError 'app lib install failed.'
+    fi
 fi
 
 #start app install script
-EXEC_DIR_NOW=`pwd`
-info 'run custom scripts start.'
-    source_assemble_file 'install.sh'
-info 'run custom scripts successfully.'
-cd $EXEC_DIR_NOW
+sExecNowDir=`pwd`
+showInfo 'run custom scripts start.'
+    loadAssembleFile 'install'
+showInfo 'run custom scripts is finished.'
+cd $sExecNowDir
 
-info 'install '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
+showInfo 'install '"$sBinName"'('"$sBinVersion"') is finished.'

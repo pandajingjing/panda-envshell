@@ -1,23 +1,27 @@
 #!/bin/bash
 
-#ntp while it is done
+#ntp date and time
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/../`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/../`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-NTP_INSTALLED=`/usr/bin/dpkg --get-selections | /bin/grep ntpdate | /usr/bin/wc -l`
+findPackageInstalled 'ntpdate'
 
-if [ 0 -eq $NTP_INSTALLED ];then
-    info 'we will install ntpdate for time sync.'
-    /usr/bin/apt-get install ntpdate -y
-    info 'ntpdate is installed.'
+if [ 0 -eq $? ];then
+    showInfo 'we will install ntpdate for time sync.'
+    installPackage 'ntpdate'
+    if [ 0 -eq $? ]; then
+        showInfo 'ntpdate is installed.'
+    else
+        showError 'ntpdate install failed.'
+    fi
 fi
 
-info 'start time sync...'
+showInfo 'start time sync...'
 
-NTP_SERVERS='
+aNtpServers='
 s1a.time.edu.cn
 s1b.time.edu.cn
 s1c.time.edu.cn
@@ -35,13 +39,12 @@ s2j.time.edu.cn
 s2k.time.edu.cn
 s2m.time.edu.cn'
 
-for SERVER in $NTP_SERVERS
+for sServer in $aNtpServers
 do
-    debug 'sync '"$SERVER"'.'
-    /usr/sbin/ntpdate "$SERVER"
-    if [ 0 -eq $? ]
-    then
-        info 'time sync is down.'
+    showDebug 'sync '"$sServer"'.'
+    /usr/sbin/ntpdate "$sServer"
+    if [ 0 -eq $? ]; then
+        showInfo 'time sync is down.'
         break;
     fi
 done

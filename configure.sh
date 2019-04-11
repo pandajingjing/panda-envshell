@@ -2,20 +2,20 @@
 
 #configure what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-parse_bin "$@"
+parseBin "$@"
 
-info 'configure '"$BIN_NAME"'('"$BIN_VERSION"') start.'
+showInfo 'configure '"$sBinName"'('"$sBinVersion"') start.'
 
-source_assemble_file 'config'
+loadAssembleFile 'config'
 
 #start app configure script
-EXEC_DIR_NOW=`pwd`
-source_assemble_file 'configure.sh'
-cd $EXEC_DIR_NOW
+sExecNowDir=`pwd`
+loadAssembleFile 'configure'
+cd $sExecNowDir
 
-info 'configure '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
+showInfo 'configure '"$sBinName"'('"$sBinVersion"') is finished.'

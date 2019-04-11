@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'configure php-fpm installation start.'
+ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib
+cd $sExecTempDir$sBinSourceCodeSubDir
+./configure --prefix=$sBinInstallDir --with-fpm-user=$sEnvUser --with-fpm-group=$sEnvGroup --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --enable-zip --with-mcrypt --with-curl --with-gd --with-webp-dir=/usr/include/webp --with-png-dir=/usr/include/png --enable-sockets --enable-bcmath --enable-exif
+if [ 0 -eq $? ]; then
+    showInfo 'configure php-fpm installation successfully.'
+else
+    showError 'configure php-fpm installation failed.'
+fi
+showInfo 'compile and install php-fpm start.'
+/usr/bin/make && /usr/bin/make install
+if [ 0 -eq $? ]; then
+    showInfo 'compile and install php-fpm successfully.'
+else
+    showError 'compile and install php-fpm failed.'
+fi

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure php-fpm start.'
+    createDir $sBinLogInstallDir
+    configBin $sExecTempDir$sBinSourceCodeSubDir/php.ini-development $sBinInstallDir/lib/php.ini
+    configBin $sExecBinVersionAssembleDir'/conf/php.ini' $sBinInstallDir'/lib/php.ini' '#custom php.ini start from here:' '#custom php.ini end here.'
+    configBin $sExecBinVersionAssembleDir/conf/php-fpm.conf $sBinInstallDir/etc/php-fpm.conf
+    
+    createDir $sBinInstallDir/helper
+    configBin $sExecBinVersionAssembleDir/helper/php-checkconf $sBinInstallDir/helper/php-checkconf
+    chmod +x $sExecBinVersionAssembleDir/helper/php-checkconf
+showInfo 'configure php-fpm successfully.'
+showInfo 'add php-fpm service start.'
+    configBin $sExecBinVersionAssembleDir'/service/php-fpm.service' '/lib/systemd/system/php-fpm.service'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable php-fpm.service
+    showInfo 'php-fpm service is '"`/bin/systemctl is-enabled php-fpm.service`"'.'
+showInfo 'add php-fpm service successfully.'
+showInfo 'add php-fpm logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/php-fpm' '/etc/logrotate.d/php-fpm'
+showInfo 'add php-fpm logrotate successfully.'

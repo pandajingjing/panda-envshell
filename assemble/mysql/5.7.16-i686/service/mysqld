@@ -17,7 +17,7 @@ unset TMPDIR
 
 RETVAL=0
 BINFILE=/usr/local/mysql/bin/mysqld_safe
-PIDFILE={{INSTALL_FILE_BIN_PID}}
+PIDFILE={{sBinPidInstallFile}}
 ADMINFILE=/usr/local/mysql/bin/mysqladmin
 CFGFILE=/usr/local/mysql/my.cnf
 KIND=mysqld
@@ -54,7 +54,7 @@ status() {
         exit 0
     fi
 
-    PID=`cat $PIDFILE`
+    PID=`/bin/cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
         /bin/echo "mysqld (pid $PID) is running..."
     else

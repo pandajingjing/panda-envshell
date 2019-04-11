@@ -1,17 +1,19 @@
-BIN_FULL_NAME='nginx-1.11.4'
-BIN_DOWNLOAD_URL='http://nginx.org/download/'$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_DIR='/'$BIN_FULL_NAME
+sBinFullName='nginx-1.11.4'
+sBinDownloadUrl='http://nginx.org/download/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
 
-BIN_COMMON_LIB='libpcre3-dev libssl-dev'
+sBinCommonLib=''
 
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/nginx'
-INSTALL_FILE_BIN_PID=$INSTALL_DIR_BIN_BIN'/nginx.pid'
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/nginx'
+sBinPidInstallFile=$sBinInstallDir'/nginx.pid'
 
-BIN_WORKER_PROCESSES=2
-BIN_BASE_DOMAIN='jxulife.com'
-BIN_BASE_DOMAIN_REG='jxulife\.com'
-BIN_STATIC_SUB_DOMAIN_REG='(static)|(cms)'
+sBinWorkerProcesses=2
+sBinBaseDomain='jxulife.com'
+sBinBaseDomainReg='jxulife\.com'
+sBinStaticSubDomainReg='(static)|(cms)'
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN INSTALL_DIR_LOG_BIN INSTALL_FILE_BIN_PID BIN_WORKER_PROCESSES BIN_BASE_DOMAIN BIN_BASE_DOMAIN_REG BIN_STATIC_SUB_DOMAIN_REG'
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir
+sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile
+sBinWorkerProcesses sBinBaseDomain sBinBaseDomainReg sBinStaticSubDomainReg'

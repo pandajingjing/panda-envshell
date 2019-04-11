@@ -1,4 +1,4 @@
-{{INSTALL_DIR_LOG_BIN}}/*.log {
+{{sBinLogInstallDir}}/*.log {
     compress
     delaycompress
     notifempty

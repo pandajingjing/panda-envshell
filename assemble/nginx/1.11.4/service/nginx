@@ -16,9 +16,9 @@ fi
 unset TMPDIR
 
 RETVAL=0
-BINFILE={{INSTALL_DIR_BIN_BIN}}/sbin/nginx
-PIDFILE={{INSTALL_FILE_BIN_PID}}
-CFGFILE={{INSTALL_DIR_BIN_BIN}}/conf/nginx.conf
+BINFILE={{sBinInstallDir}}/sbin/nginx
+PIDFILE={{sBinPidInstallFile}}
+CFGFILE={{sBinInstallDir}}/conf/nginx.conf
 KIND=nginx
 
 start() {
@@ -34,7 +34,7 @@ start() {
 
 stop() {
     /bin/echo -n $"Shutting down $KIND services: "
-    /bin/kill -QUIT `cat $PIDFILE`
+    /bin/kill -QUIT `/bin/cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
@@ -49,7 +49,7 @@ restart() {
 
 reload() {
     /bin/echo -n $"Reloading $CFGFILE: "
-    /bin/kill -HUP `cat $PIDFILE`
+    /bin/kill -HUP `/bin/cat $PIDFILE`
     RETVAL=$?
     success
     /bin/echo
@@ -72,7 +72,7 @@ status() {
         exit 0
     fi
 
-    PID=`cat $PIDFILE`
+    PID=`/bin/cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
         /bin/echo "nginx (pid $PID) is running..."
     else

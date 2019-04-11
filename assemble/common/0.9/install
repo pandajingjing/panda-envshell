@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'install common lib start.'
+installPackage "$sCommonLib"
+if [ 0 -eq $? ]; then
+    showInfo 'install common lib successfully.'
+else
+    showError 'install common lib failed.'
+fi

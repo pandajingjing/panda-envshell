@@ -1,270 +1,314 @@
 #main functions
 
 #show some messages
-function msg(){
-    _MSG=`/bin/date +"%Y-%m-%d %H:%M:%S"`'('"$1"'): '"$2"
+function showMessage(){
+    _sMessage=`/bin/date +"%Y-%m-%d %H:%M:%S"`'('"$1"'): '"$2"
     case $1 in
         error)
-        /bin/echo -e "\033[31m$_MSG\033[0m"
+        /bin/echo -e "\033[31m$_sMessage\033[0m"
         ;;
         warn)
-        /bin/echo -e "\033[33m$_MSG\033[0m"
+        /bin/echo -e "\033[33m$_sMessage\033[0m"
         ;;
         debug)
-        /bin/echo -e "\033[37m$_MSG\033[0m"
+        /bin/echo -e "\033[37m$_sMessage\033[0m"
         ;;
         *)
-        /bin/echo "$_MSG"
+        /bin/echo "$_sMessage"
         ;;
     esac
 }
 
 #show info message
-function info(){
-    msg 'info' "$1"
+function showInfo(){
+    showMessage 'info' "$1"
 }
 
-#show warn message
-function warn(){
-    msg 'warn' "$1"
+#show warning message
+function showWarning(){
+    showMessage 'warn' "$1"
 }
 
 #show error message
-function error(){
-    msg 'error' "$1"
+function showError(){
+    showMessage 'error' "$1"
     exit 1
 }
 
 #show debug message
-function debug(){
-    if [ $DEBUG -eq 1 ]; then
-        msg 'debug' "$1"
-    elif [ $DEBUG -eq 2 ]; then
-        msg 'debug' "$1"
+function showDebug(){
+    if [ $iDebug -eq 1 ]; then
+        showMessage 'debug' "$1"
+    elif [ $iDebug -eq 2 ]; then
+        showMessage 'debug' "$1"
         read -t 10 -p 'press enter to continue...'
     fi
 }
 
 #show help we need
-show_help() {
+function showHelp() {
     /bin/echo 'Usage: '`basename $1`' -n appname [-v version]'
     /bin/echo `basename $1 .sh`' application in the newest or specific version'
     /bin/echo '  -n appname'
     /bin/echo '  -v specific version'
     /bin/echo '  -h show this help'
-    exit
-}
-
-#parse what todo
-parse_bin(){
-    while getopts 'n:v:h' arg; do
-        case $arg in
-            v) BIN_VERSION=$OPTARG
-                ;;
-            n) BIN_NAME=$OPTARG
-                ;;
-            h) show_help $0
-                ;;
-            ?) show_help $0
-                ;;
-        esac
-    done
-	
-    debug 'app name we got was: '"$BIN_NAME"'.'
-    debug 'app version we got was: '"$BIN_VERSION"'.'
-
-    if [ -z $BIN_NAME ]; then
-        show_help $0
-    fi
-
-    EXEC_DIR_ASSEMBLE_BIN=$EXEC_DIR_ASSEMBLE'/'$BIN_NAME
-    debug 'app assemble dir is: '"$EXEC_DIR_ASSEMBLE_BIN"'.'
-        	
-    if [ -d $EXEC_DIR_ASSEMBLE_BIN ]; then
-        if [ -z $BIN_VERSION ]; then
-            BIN_VERSION=`/bin/ls -vr $EXEC_DIR_ASSEMBLE_BIN | /usr/bin/head -1`
-            if [ -z $BIN_VERSION ]; then
-                error 'assemble('"$BIN_NAME"') have no version file.'
-            fi
-            EXEC_DIR_ASSEMBLE_BIN_VERSION=$EXEC_DIR_ASSEMBLE_BIN'/'$BIN_VERSION
-            debug 'versioned app assemble dir is: '"$EXEC_DIR_ASSEMBLE_BIN_VERSION"'.'
-        else
-            EXEC_DIR_ASSEMBLE_BIN_VERSION=$EXEC_DIR_ASSEMBLE_BIN'/'$BIN_VERSION
-            debug 'versioned app assemble dir is: '"$EXEC_DIR_ASSEMBLE_BIN_VERSION"'.'
-            if [ ! -d $EXEC_DIR_ASSEMBLE_BIN_VERSION ]; then
-                error 'assemble('"$BIN_NAME"'), version('"$BIN_VERSION"') does not exist.'
-            fi
-        fi
-    else
-        error 'assemble('"$BIN_NAME"') does not exist.'
-    fi
+    exit 0
 }
 
 #create dir
-function create_dir(){
-    debug 'create dir: '"$1"' start.'
+function createDir(){
+    showDebug 'create dir: '"$1"' start.'
     if [ -d $1 ]; then
-        debug 'dir '"$1"' is exists.'
+        showDebug 'dir '"$1"' is exists.'
         if [ ! -z $2 ]; then
-            debug "$1"' will be cleaned.'
+            showDebug "$1"' will be cleaned.'
             /bin/rm -rf "$1"
             /bin/mkdir -p "$1"
         fi
     else
         /bin/mkdir -p "$1"
     fi
-    /bin/chown $ENV_USER:$ENV_GROUP "$1"
+    /bin/chown $sEnvUser:$sEnvGroup "$1"
     /bin/chmod 0775 "$1" -R
-    debug 'create dir: '"$1"' successfully.'
+    showDebug 'create dir: '"$1"' successfully.'
+}
+
+function getOsArch(){
+    ARCH_32='x32'
+    ARCH_64='x64'
+    if [ -f /bin/usr/uname ];then
+        _sArchIssue=`/bin/usr/uname -m | /usr/bin/tr A-Z a-z`
+    else
+        _sArchIssue=`/bin/uname -m | /usr/bin/tr A-Z a-z`
+    fi
+    if [ $_sArchIssue = 'x86_64' ];then
+        sArch=$ARCH_64
+    else
+        sArch=$ARCH_32
+    fi
+}
+
+function _findOsName(){
+    _sOsIssue=$1
+    if [ `/bin/echo $_sOsIssue | /bin/grep 'debian' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_DEBIAN
+    elif [ `/bin/echo $_sOsIssue | /bin/grep 'ubuntu' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_UBUNTU
+    elif [ `/bin/echo $_sOsIssue | /bin/grep 'centos' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_CENTOS
+    elif [ `/bin/echo $_sOsIssue | /bin/grep 'red hat' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_CENTOS
+    elif [ `/bin/echo $_sOsIssue | /bin/grep 'aliyun' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_ALIYUN
+    elif [ `/bin/echo $_sOsIssue | /bin/grep 'opensuse' | /usr/bin/wc -l` -ge 1 ]; then
+        sOsName=$OS_OPENSUSE
+    fi
+}
+
+function getOsName(){
+    OS_CENTOS='CentOS'
+    OS_UBUNTU='Ubuntu'
+    OS_DEBIAN='Debian'
+    OS_ALIYUN='Aliyun'
+    OS_OPENSUSE='openSUSE'
+    OS_OTHER='other'
+    
+    sOsName=$OS_OTHER
+    sOsIssue=`/bin/cat /etc/issue | /usr/bin/tr A-Z a-z`
+    _findOsName "$sOsIssue"
+    if [ $sOsName = $OS_OTHER ]; then
+        showWarning 'Can not get os name from /etc/issue, try lsb_release.'
+        sOsIssue=`lsb_release -a`
+        _findOsName "$sOsIssue"
+    fi
+    if [ $sOsName = $OS_OTHER ]; then
+        showWarning 'Can not get os name from lsb_release, try check specific files.'
+        if [ -f '/etc/redhat-release' ]; then
+            sOsName=$OS_CENTOS
+        elif [ -f '/etc/debian_version' ]; then
+            sOsName=$OS_DEBIAN
+        else
+            showError 'can not get os name.'
+        fi
+    fi
+}
+
+#parse what todo
+function parseBin(){
+    while getopts 'n:v:h' arg; do
+        case $arg in
+            v) sBinVersion=$OPTARG
+                ;;
+            n) sBinName=$OPTARG
+                ;;
+            h) showHelp $0
+                ;;
+            ?) showHelp $0
+                ;;
+        esac
+    done
+	
+    showDebug 'app name we got was: '"$sBinName"'.'
+    showDebug 'app version we got was: '"$sBinVersion"'.'
+
+    if [ -z $sBinName ]; then
+        showHelp $0
+    fi
+
+    sExecBinAssembleDir=$sExecAssembleDir'/'$sBinName
+    showDebug 'app assemble dir is: '"$sExecBinAssembleDir"'.'
+        	
+    if [ -d $sExecBinAssembleDir ]; then
+        if [ -z $sBinVersion ]; then
+            sBinVersion=`/bin/ls -vr $sExecBinAssembleDir | /usr/bin/head -1`
+            if [ -z $sBinVersion ]; then
+                showError 'assemble('"$sBinName"') have no version file.'
+            fi
+            sExecBinVersionAssembleDir=$sExecBinAssembleDir'/'$sBinVersion
+            showDebug 'versioned app assemble dir is: '"$sExecBinVersionAssembleDir"'.'
+        else
+            sExecBinVersionAssembleDir=$sExecBinAssembleDir'/'$sBinVersion
+            showDebug 'versioned app assemble dir is: '"$sExecBinVersionAssembleDir"'.'
+            if [ ! -d $sExecBinVersionAssembleDir ]; then
+                showError 'assemble('"$sBinName"'), version('"$sBinVersion"') does not exist.'
+            fi
+        fi
+    else
+        showError 'assemble('"$sBinName"') does not exist.'
+    fi
 }
 
 #load assemble file
-function source_assemble_file(){
-    EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE=$EXEC_DIR_ASSEMBLE_BIN_VERSION'/'$1
-    debug 'load assemble '"$1"' file: '"$EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE"'.'
-    if [ ! -f $EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE ];then
-        error "$EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE"' does not exists.'
+function loadAssembleFile(){
+    _iLoadFileCnt=0;
+    sExecBinVersionAssembleFile=$sExecBinVersionAssembleDir'/'$1
+    if [ -f $sExecBinVersionAssembleFile ];then
+        showDebug 'load assemble '"$1"' file: '"$sExecBinVersionAssembleFile"'.'
+        source $sExecBinVersionAssembleFile
+        ((_iLoadFileCnt++))
     fi
-    source $EXEC_FILE_ASSEMBLE_BIN_VERSION_FILE
+    sExecBinVersionAssembleOsFile=$sExecBinVersionAssembleFile'.'$sOsName
+    if [ -f $sExecBinVersionAssembleOsFile ];then
+        showDebug 'load assemble '"$1"' file: '"$sExecBinVersionAssembleOsFile"'.'
+        source $sExecBinVersionAssembleOsFile
+        ((_iLoadFileCnt++))
+    fi
+    sExecBinVersionAssembleOsArchFile=$sExecBinVersionAssembleOsFile'.'$sArch
+    if [ -f $sExecBinVersionAssembleOsArchFile ];then
+        showDebug 'load assemble '"$1"' file: '"$sExecBinVersionAssembleOsArchFile"'.'
+        source $sExecBinVersionAssembleOsArchFile
+        ((_iLoadFileCnt++))
+    fi
+    if [ 0 -eq $_iLoadFileCnt ]; then
+        showError 'we miss any type of '"$1"' file.'
+    fi
 }
 
 #configure app from its template with frame var
-#configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
-function configure_bin(){
-    info 'configure '"$2"' start.'
-    BACK_FILE=$2'.'`/bin/date +%s`
-    if [ ! -f $2 ];then
-        /bin/touch $2
+#configBin $sExecBinVersionAssembleDir'/conf/bashrc' '/etc/bashrc' '#custom bashrc start from here:' '#custom bashrc end here.'
+function configBin(){
+    showInfo 'configure '"$2"' start.'
+    _sTemplateFile=$1
+    _sDestFile=$2
+    _sStartComment=$3
+    _sEndComment=$4
+    _sBackupFile=$_sDestFile'.'`/bin/date +%s`
+    if [ ! -f $_sTemplateFile ]; then
+        showError 'we miss template file: '"$_sTemplateFile"'.'
     fi
-    /bin/cp -f "$2" "$BACK_FILE"
+    if [ ! -f $_sDestFile ];then
+        /bin/touch $_sDestFile
+    fi
+    /bin/cp -f "$_sDestFile" "$_sBackupFile"
 
-    if [ ! -z "$3" ] && [ ! -z "$4" ]; then
-        START_LINE=`/bin/grep -n "$3" $2 | /usr/bin/awk -F ':' '{print $1}'`
-        END_LINE=`/bin/grep -n "$4" $2 | /usr/bin/awk -F ':' '{print $1}'`
-        TOTAL_LINE=`/usr/bin/wc -l $2 | /usr/bin/awk '{print $1}'`
+    if [ ! -z "$_sStartComment" ] && [ ! -z "$_sEndComment" ]; then
+        iCommentStartLine=`/bin/grep -n "$_sStartComment" $_sDestFile | /usr/bin/awk -F ':' '{print $1}'`
+        iCommentEndLine=`/bin/grep -n "$_sEndComment" $_sDestFile | /usr/bin/awk -F ':' '{print $1}'`
+        iTotalLine=`/usr/bin/wc -l $_sDestFile | /usr/bin/awk '{print $1}'`
 
-        debug 'we find where to start: '"$START_LINE"'.'
-        debug 'we find where to end: '"$END_LINE"'.'
-        debug 'total line number of old configuration file: '"$TOTAL_LINE"'.'
+        showDebug 'we find where to start: '"$iCommentStartLine"'.'
+        showDebug 'we find where to end: '"$iCommentEndLine"'.'
+        showDebug 'total line number of old configuration file: '"$iTotalLine"'.'
 
-        if [ -z $START_LINE ]; then
-            START_LINE=0
+        if [ -z $iCommentStartLine ]; then
+            iCommentStartLine=0
         fi
 
-        if [ -z $END_LINE ]; then
-            END_LINE=0
+        if [ -z $iCommentEndLine ]; then
+            iCommentEndLine=0
         fi
 
-        if [ -z $TOTAL_LINE ]; then
-            TOTAL_LINE=0
+        if [ -z $iTotalLine ]; then
+            iTotalLine=0
         fi
 
-        debug 'START_LINE: '"$START_LINE"'.'
-        debug 'END_LINE: '"$END_LINE"'.'
-        debug 'TOTAL_LINE: '"$TOTAL_LINE"'.'
+        showDebug 'iCommentStartLine: '"$iCommentStartLine"'.'
+        showDebug 'iCommentEndLine: '"$iCommentEndLine"'.'
+        showDebug 'iTotalLine: '"$iTotalLine"'.'
 
-        ERROR_MSG='can not parse '"$2"', file may modified manually.'
+        sErrorMessage='can not parse '"$_sDestFile"', file may modified manually.'
 
-        if [ 0 -eq $START_LINE ];then
-            if [ 0 -lt $END_LINE ];then
-                error "$ERROR_MSG"
+        if [ 0 -eq $iCommentStartLine ];then
+            if [ 0 -lt $iCommentEndLine ];then
+                showError "$sErrorMessage"
             fi
         else
-            if [ $START_LINE -gt $END_LINE ] || [ $START_LINE -eq $END_LINE ];then
-                error "$ERROR_MSG"
+            if [ $iCommentStartLine -gt $iCommentEndLine ] || [ $iCommentStartLine -eq $iCommentEndLine ];then
+                showError "$sErrorMessage"
             fi
         fi
 
-        if [ 0 -eq $START_LINE ];then
-            /bin/echo $3 >> $2
-            /bin/cat $1 >> $2
-            /bin/echo >> $2
-            /bin/echo $4 >> $2
+        if [ 0 -eq $iCommentStartLine ];then
+            /bin/echo $_sStartComment >> $_sDestFile
+            /bin/cat $_sTemplateFile >> $_sDestFile
+            /bin/echo >> $_sDestFile
+            /bin/echo $_sEndComment >> $_sDestFile
         else
-            /usr/bin/head -n $[$START_LINE-1] $BACK_FILE > $2
-            /bin/echo $3 >> $2
-            /bin/cat $1 >> $2
-            /bin/echo >> $2
-            /bin/echo $4 >> $2
-            /usr/bin/tail -n $[$TOTAL_LINE-$END_LINE] $BACK_FILE >> $2
+            /usr/bin/head -n $[$iCommentStartLine-1] $_sBackupFile > $_sDestFile
+            /bin/echo $_sStartComment >> $_sDestFile
+            /bin/cat $_sTemplateFile >> $_sDestFile
+            /bin/echo >> $_sDestFile
+            /bin/echo $_sEndComment >> $_sDestFile
+            /usr/bin/tail -n $[$iTotalLine-$iCommentEndLine] $_sBackupFile >> $_sDestFile
         fi
     else
-        if [ -f $1 ];then
-            /bin/cp -f -p "$1" "$2"
+        if [ -f $_sTemplateFile ];then
+            /bin/cp -f -p "$_sTemplateFile" "$_sDestFile"
         fi
     fi
 
-    for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_FRAME_VARS
+    for sExecConfigName in $sBinConfigFrameVars
     do
-        eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
-        EXEC_CONFIGURE_SCRIPT='s#{{'$EXEC_CONFIGURE_NAME'}}#'$EXEC_CONFIGURE_VAL'#g'
-        /bin/sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
+        eval sExecConfigValue="\$$sExecConfigName"
+        _sExecConfigScript='s#{{'$sExecConfigName'}}#'$sExecConfigValue'#g'
+        /bin/sed -i "$_sExecConfigScript" "$_sDestFile"
     done
 
-    for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_VARS
+    for sExecConfigName in $sBinConfigVars
     do
-        eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
-        EXEC_CONFIGURE_SCRIPT='s#{{'$EXEC_CONFIGURE_NAME'}}#'$EXEC_CONFIGURE_VAL'#g'
-        /bin/sed -i "$EXEC_CONFIGURE_SCRIPT" "$2"
+        eval sExecConfigValue="\$$sExecConfigName"
+        _sExecConfigScript='s#{{'$sExecConfigName'}}#'$sExecConfigValue'#g'
+        /bin/sed -i "$_sExecConfigScript" "$_sDestFile"
     done
-    info 'configure '"$2"' success.'
+    showInfo 'configure '"$_sDestFile"' success.'
 }
 
-
-CENTOS_OS="CentOS"
-UBUNTU_OS="Ubuntu"
-DEBIAN_OS="Debian"
-ALIYUN_OS="Aliyun"
-OPENSUSE_OS="openSUSE"
-OTHER_OS="other"
-
-ARCH=$X64
-arch_issue=`uname -m | tr A-Z a-z`
-if [ `uname -m | tr A-Z a-z` = "x86_64" ]; then
-    ARCH=$X64
-else
-    ARCH=$X32
-    echo "linux x86 not supported, exit"
-    exit 1
-fi
-
-OS_VERSION=$OTHER_OS
-os_issue=`cat /etc/issue | tr A-Z a-z`
-
-get_os_version()
-{   
-    if [ `echo $os_issue | grep debian | wc -l` -ge 1 ]; then
-        OS_VERSION=$DEBIAN_OS
-    elif [ `echo $os_issue | grep ubuntu | wc -l` -ge 1 ]; then
-        OS_VERSION=$UBUNTU_OS
-    elif [ `echo $os_issue | grep centos | wc -l` -ge 1 ]; then
-        OS_VERSION=$CENTOS_OS
-    elif [ `echo $os_issue | grep 'red hat' | wc -l` -ge 1 ]; then
-        OS_VERSION=$CENTOS_OS
-    elif [ `echo $os_issue | grep aliyun | wc -l` -ge 1 ]; then
-        OS_VERSION=$ALIYUN_OS
-    elif [ `echo $os_issue | grep opensuse | wc -l` -ge 1 ]; then
-        OS_VERSION=$OPENSUSE_OS
+function findPackageInstalled(){
+    _sPackage=$1
+    if [ $sOsName = $OS_UBUNTU ]; then
+        _iIsInstalled=`/usr/bin/dpkg --get-selections | /bin/grep "$_sPackage" | /usr/bin/wc -l`
+    elif [ $sOsName = $OS_CENTOS ]; then
+        _iIsInstalled=`/bin/rpm -qa | /bin/grep "$_sPackage" | /usr/bin/wc -l`
     fi
+    return $_iIsInstalled
 }
 
-get_os_version
-if [ $OS_VERSION = $OTHER_OS ]; then
-    echo -e "Can not get os version from /etc/issue, try lsb_release"
-    os_issue=`lsb_release -a`
-    get_os_version
-fi
-
-if [ $OS_VERSION = $OTHER_OS ]; then
-    echo -e "Can not get os version from lsb_release, try check specific files"
-    if [ -f "/etc/redhat-release" ]; then
-        OS_VERSION=$CENTOS_OS
-    elif [ -f "/etc/debian_version" ]; then
-        OS_VERSION=$DEBIAN_OS
-    else
-        logError "Can not get os verison"
+function installPackage(){
+    _sPackage=$1
+    if [ $sOsName = $OS_UBUNTU ]; then
+        /usr/bin/apt-get install $_sPackage -y
+    elif [ $sOsName = $OS_CENTOS ]; then
+        /usr/bin/yum install $_sPackage -y
     fi
-fi
-
-echo -e "OS Arch:\t"$ARCH
-echo -e "OS Distribution:\t"$OS_VERSION
+    return $?
+}

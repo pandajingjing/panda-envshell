@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure app start.'
+    createDir $sBinLogInstallDir
+showInfo 'configure app successfully.'
+showInfo 'add app logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/app' '/etc/logrotate.d/app'
+showInfo 'add app logrotate successfully.'

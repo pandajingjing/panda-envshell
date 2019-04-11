@@ -1,14 +1,14 @@
-BIN_FULL_NAME='bind-9.10.2'
-BIN_DOWNLOAD_URL='ftp://ftp.isc.org/isc/bind9/9.10.2/'$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_DIR='/'$BIN_FULL_NAME
+sBinFullName='bind-9.10.2'
+sBinDownloadUrl='ftp://ftp.isc.org/isc/bind9/9.10.2/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
 
-BIN_COMMON_LIB='bind-utils openssl-devel'
+sBinCommonLib='bind-utils openssl-devel'
 
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/bind'
-INSTALL_FILE_BIN_PID=$INSTALL_DIR_BIN_BIN'/bind.pid'
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/bind'
+sBinPidInstallFile=$sBinInstallDir'/bind.pid'
 
 BIN_DOMAIN='jxulife.com'
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN INSTALL_DIR_LOG_BIN INSTALL_FILE_BIN_PID BIN_DOMAIN'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile BIN_DOMAIN'

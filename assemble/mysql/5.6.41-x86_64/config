@@ -1,17 +1,17 @@
-BIN_FULL_NAME='mysql-5.6.41-linux-glibc2.12-x86_64'
-BIN_DOWNLOAD_URL='http://dev.mysql.com/get/downloads/mysql-5.6/'$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_TAR=$BIN_FULL_NAME'.tar.gz'
-BIN_CODE_DIR='/'$BIN_FULL_NAME
+sBinFullName='mysql-5.6.41-linux-glibc2.12-x86_64'
+sBinDownloadUrl='http://dev.mysql.com/get/downloads/mysql-5.6/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
 
-BIN_COMMON_LIB='numactl'
+sBinCommonLib='numactl'
 
-INSTALL_DIR_BIN_BIN=$INSTALL_DIR_BIN'/'$BIN_FULL_NAME
-INSTALL_DIR_LOG_BIN=$INSTALL_DIR_LOG'/mysql'
-INSTALL_FILE_BIN_PID=$INSTALL_DIR_BIN_BIN'/mysql.pid'
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/mysql'
+sBinPidInstallFile=$sBinInstallDir'/mysql.pid'
 
 LN_DIR_MYSQL='/usr/local/mysql'
 
-BIN_PORT=3306
-BIN_START_PARAM="--user=$ENV_USER --log-error=$INSTALL_DIR_LOG_BIN/mysql.err.log --slow-query-log=$INSTALL_DIR_LOG_BIN/mysql.slow.log --general-log=$INSTALL_DIR_LOG_BIN/mysql.log --pid-file=$INSTALL_FILE_BIN_PID --port=$BIN_PORT --socket=/dev/shm/mysql.sock"
+sBinListenPort=3306
+BIN_START_PARAM="--user=$sEnvUser --log-error=$sBinLogInstallDir/mysql.err.log --slow-query-log=$sBinLogInstallDir/mysql.slow.log --general-log=$sBinLogInstallDir/mysql.log --pid-file=$sBinPidInstallFile --port=$sBinListenPort --socket=/dev/shm/mysql.sock"
 
-BIN_CONFIGURE_VARS='INSTALL_DIR_BIN_BIN INSTALL_DIR_LOG_BIN INSTALL_FILE_BIN_PID LN_DIR_MYSQL BIN_PORT BIN_START_PARAM'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile LN_DIR_MYSQL sBinListenPort BIN_START_PARAM'

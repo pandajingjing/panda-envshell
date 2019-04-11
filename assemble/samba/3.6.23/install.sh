@@ -2,6 +2,6 @@
 
 #do some install scripts
 
-info 'apt install samba start.'
+showInfo 'apt install samba start.'
     /usr/bin/apt-get install samba samba-client -y
-info 'apt install samba successfully.'
+showInfo 'apt install samba successfully.'

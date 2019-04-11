@@ -2,30 +2,30 @@
 
 #test all script configure and behaviour
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-parse_bin "$@"
+parseBin "$@"
 
-info 'test '"$BIN_NAME"'('"$BIN_VERSION"') start.'
+showInfo 'test '"$sBinName"'('"$sBinVersion"') start.'
 
-source_assemble_file 'config'
+loadAssembleFile 'config'
 
-info 'show all frame variables start.'
-    for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_FRAME_VARS
+showInfo 'show all frame variables start.'
+    for sExecConfigName in $sBinConfigFrameVars
     do
-        eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
-        msg "$EXEC_CONFIGURE_NAME" "$EXEC_CONFIGURE_VAL"
+        eval sExecConfigValue="\$$sExecConfigName"
+        showMessage "$sExecConfigName" "$sExecConfigValue"
     done
-info 'show all frame variables successfully.'
-info 'show all custom variables start.'
-    for EXEC_CONFIGURE_NAME in $BIN_CONFIGURE_VARS
+showInfo 'show all frame variables successfully.'
+showInfo 'show all custom variables start.'
+    for sExecConfigName in $sBinConfigVars
     do
-        eval EXEC_CONFIGURE_VAL="\$$EXEC_CONFIGURE_NAME"
-        msg "$EXEC_CONFIGURE_NAME" "$EXEC_CONFIGURE_VAL"
+        eval sExecConfigValue="\$$sExecConfigName"
+        showMessage "$sExecConfigName" "$sExecConfigValue"
     done
-info 'show all custom variables successfully.'
+showInfo 'show all custom variables successfully.'
 
-info 'test '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
+showInfo 'test '"$sBinName"'('"$sBinVersion"') successfully.'

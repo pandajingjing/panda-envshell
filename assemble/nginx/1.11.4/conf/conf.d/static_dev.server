@@ -1,9 +1,9 @@
 server {
     listen 40084;
-    server_name ~^(?<loader>{{BIN_STATIC_SUB_DOMAIN_REG}})\.(?<code_ver>.*)\.dev\.{{BIN_BASE_DOMAIN_REG}}$;
-    root {{INSTALL_DIR_APP}}/static-dev/$code_ver/$loader;
+    server_name ~^(?<loader>{{sBinStaticSubDomainReg}})\.(?<code_ver>.*)\.dev\.{{sBinBaseDomainReg}}$;
+    root {{sAppInstallRootDir}}/static-dev/$code_ver/$loader;
     index index.html;
     add_header "Access-Control-Allow-Origin" "*";
-    access_log {{INSTALL_DIR_LOG_BIN}}/static.dev.server.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/static.dev.server.error.log;
+    access_log {{sBinLogInstallDir}}/static.dev.server.access.log more;
+    error_log {{sBinLogInstallDir}}/static.dev.server.error.log;
 }

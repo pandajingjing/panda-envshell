@@ -2,19 +2,19 @@
 
 #do some configure script
 
-info 'configure squid start.'
-    create_dir $INSTALL_DIR_LOG_BIN
-    /bin/chown -R $ENV_USER:$ENV_GROUP $BIN_CACHE_DIR
-    /bin/chown -R $ENV_USER:$ENV_GROUP $BIN_COREDUMP_DIR
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/squid.conf $INSTALL_DIR_BIN_BIN/etc/squid.conf
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/conf/squid.acl.conf $INSTALL_DIR_BIN_BIN/etc/squid.acl.conf
-info 'configure squid successfully.'
-info 'add squid service start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION/service/squid /etc/init.d/squid
+showInfo 'configure squid start.'
+    createDir $sBinLogInstallDir
+    /bin/chown -R $sEnvUser:$sEnvGroup $BIN_CACHE_DIR
+    /bin/chown -R $sEnvUser:$sEnvGroup $BIN_COREDUMP_DIR
+    configBin $sExecBinVersionAssembleDir/conf/squid.conf $sBinInstallDir/etc/squid.conf
+    configBin $sExecBinVersionAssembleDir/conf/squid.acl.conf $sBinInstallDir/etc/squid.acl.conf
+showInfo 'configure squid successfully.'
+showInfo 'add squid service start.'
+    configBin $sExecBinVersionAssembleDir/service/squid /etc/init.d/squid
     /sbin/chkconfig --add squid
     /sbin/chkconfig --level 3 squid on
-    info "`/sbin/chkconfig --list | /bin/grep squid`"
-info 'add squid service successfully.'
-info 'add squid logrotate start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/squid' '/etc/logrotate.d/squid'
-info 'add squid logrotate successfully.'
+    showInfo "`/sbin/chkconfig --list | /bin/grep squid`"
+showInfo 'add squid service successfully.'
+showInfo 'add squid logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/squid' '/etc/logrotate.d/squid'
+showInfo 'add squid logrotate successfully.'

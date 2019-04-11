@@ -16,14 +16,14 @@ fi
 unset TMPDIR
 
 RETVAL=0
-BINFILE={{INSTALL_DIR_BIN_BIN}}/sbin/named
-PIDFILE={{INSTALL_FILE_BIN_PID}}
-CFGFILE={{INSTALL_DIR_BIN_BIN}}/etc/named.conf
+BINFILE={{sBinInstallDir}}/sbin/named
+PIDFILE={{sBinPidInstallFile}}
+CFGFILE={{sBinInstallDir}}/etc/named.conf
 KIND=bind
 
 start() {
     /bin/echo -n $"Starting $KIND services: "
-    $BINFILE -u {{ENV_USER}} &
+    $BINFILE -u {{sEnvUser}} &
     RETVAL=$?
     success
     /bin/echo
@@ -34,7 +34,7 @@ start() {
 
 stop() {
     /bin/echo -n $"Shutting down $KIND services: "
-    {{INSTALL_DIR_BIN_BIN}}/sbin/rndc stop
+    {{sBinInstallDir}}/sbin/rndc stop
     RETVAL=$?
     success
     /bin/echo
@@ -49,7 +49,7 @@ restart() {
 
 reload() {
     /bin/echo -n $"Reloading $CFGFILE: "
-    {{INSTALL_DIR_BIN_BIN}}/sbin/rndc reload
+    {{sBinInstallDir}}/sbin/rndc reload
     RETVAL=$?
     success
     /bin/echo
@@ -57,8 +57,8 @@ reload() {
 }
 
 configtest() {
-    {{INSTALL_DIR_BIN_BIN}}/sbin/named-checkconf {{INSTALL_DIR_BIN_BIN}}/etc/named.conf
-    {{INSTALL_DIR_BIN_BIN}}/sbin/named-checkzone {{BIN_DOMAIN}} {{INSTALL_DIR_BIN_BIN}}/etc/mydomain/zone.conf
+    {{sBinInstallDir}}/sbin/named-checkconf {{sBinInstallDir}}/etc/named.conf
+    {{sBinInstallDir}}/sbin/named-checkzone {{BIN_DOMAIN}} {{sBinInstallDir}}/etc/mydomain/zone.conf
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
         /bin/echo Syntax OK
@@ -73,7 +73,7 @@ status() {
         exit 0
     fi
 
-    PID=`cat $PIDFILE`
+    PID=`/bin/cat $PIDFILE`
     if ps -p $PID | grep -q $PID; then
         /bin/echo "bind (pid $PID) is running..."
     else

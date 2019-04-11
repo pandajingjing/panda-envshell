@@ -1,11 +1,11 @@
 server {
     listen 40081;
-    server_name *.test.{{BIN_BASE_DOMAIN}};
-    root {{INSTALL_DIR_APP}}/index;
+    server_name *.test.{{sBinBaseDomain}};
+    root {{sAppInstallRootDir}}/index;
     index web_test.php;
 
     set $backend php-test;
-    if ($host ~ ^{{BIN_STATIC_SUB_DOMAIN_REG}}\..+\.test\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ ^{{sBinStaticSubDomainReg}}\..+\.test\.{{sBinBaseDomainReg}}$){
         set $backend static-test;
     }
 
@@ -13,6 +13,6 @@ server {
         proxy_pass http://$backend;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.test.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/proxy.test.error.log;
+    access_log {{sBinLogInstallDir}}/proxy.test.access.log more;
+    error_log {{sBinLogInstallDir}}/proxy.test.error.log;
 }

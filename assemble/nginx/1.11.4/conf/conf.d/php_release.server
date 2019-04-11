@@ -1,15 +1,15 @@
 server {
     listen 40087;
-    server_name *.{{BIN_BASE_DOMAIN}};
-    root {{INSTALL_DIR_APP}}/index;
+    server_name *.{{sBinBaseDomain}};
+    root {{sAppInstallRootDir}}/index;
 
     set $phpfile web_release.php;
 
-    if ($host ~ .*\.s\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ .*\.s\.{{sBinBaseDomainReg}}$){
         set $phpfile service_release.php;
     }
 
-    if ($host ~ .*\.m\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ .*\.m\.{{sBinBaseDomainReg}}$){
         set $phpfile mobile_release.php;
     }
 
@@ -27,6 +27,6 @@ server {
         fastcgi_keep_conn on;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/php.release.server.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/php.release.server.error.log;
+    access_log {{sBinLogInstallDir}}/php.release.server.access.log more;
+    error_log {{sBinLogInstallDir}}/php.release.server.error.log;
 }

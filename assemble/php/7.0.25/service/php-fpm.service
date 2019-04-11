@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=forking
-PIDFile={{INSTALL_FILE_BIN_PID}}
-ExecStartPre={{INSTALL_DIR_BIN_BIN}}/helper/php-checkconf
-ExecStart={{INSTALL_DIR_BIN_BIN}}/sbin/php-fpm
-ExecReload={{INSTALL_DIR_BIN_BIN}}/helper/php-checkconf
+PIDFile={{sBinPidInstallFile}}
+ExecStartPre={{sBinInstallDir}}/helper/php-checkconf
+ExecStart={{sBinInstallDir}}/sbin/php-fpm
+ExecReload={{sBinInstallDir}}/helper/php-checkconf
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]

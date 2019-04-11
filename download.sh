@@ -2,25 +2,27 @@
 
 #download what you need
 
-EXEC_CURRENT_DIR=$(cd "$(dirname "$0")"; /bin/pwd)
-EXEC_DIR_ROOT=`/bin/readlink -f $EXEC_CURRENT_DIR/`
+sExecCurrentDir=$(cd "$(dirname "$0")"; /bin/pwd)
+sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
-source $EXEC_DIR_ROOT'/inc/initial.sh'
+source $sExecRootDir'/inc/initial.sh'
 
-parse_bin "$@"
+parseBin "$@"
 
-info 'download '"$BIN_NAME"'('"$BIN_VERSION"') start.'
+showInfo 'download '"$sBinName"'('"$sBinVersion"') start.'
 
-source_assemble_file 'config'
+loadAssembleFile 'config'
 
-create_dir "$EXEC_DIR_TAR"
+createDir "$sExecTarDir"
 
-if [ -z $BIN_DOWNLOAD_URL ];then
-    error 'BIN_DOWNLOAD_URL is empty, we need it to get app source code tar.'
+if [ -z $sBinDownloadUrl ];then
+    showError 'sBinDownloadUrl is empty, we need it to get app source code tar.'
 fi
 
-info 'download '"$BIN_DOWNLOAD_URL"' start.'
-    /usr/bin/wget -P "$EXEC_DIR_TAR" -c "$BIN_DOWNLOAD_URL"
-info 'download '"$BIN_DOWNLOAD_URL"' successfully.'
-
-info 'download '"$BIN_NAME"'('"$BIN_VERSION"') successfully.'
+showInfo 'download '"$sBinDownloadUrl"' start.'
+/usr/bin/wget -P "$sExecTarDir" -c "$sBinDownloadUrl"
+if [ 0 -eq $? ];then
+    showInfo 'download '"$sBinDownloadUrl"' successfully.'
+else
+    showError 'download '"$sBinDownloadUrl"' failed.'
+fi

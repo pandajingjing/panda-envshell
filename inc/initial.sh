@@ -1,13 +1,19 @@
-source $EXEC_DIR_ROOT'/config'
-source $EXEC_DIR_ROOT'/inc/functions.sh'
+source $sExecRootDir'/inc/functions.sh'
+source $sExecRootDir'/config'
 
-debug 'UID is: '"$UID"'.'
+showDebug 'UID is: '"$UID"'.'
 if [ $UID -ne 0 ] ; then
-    error 'You should run as root!!!'
+    showError 'You should run as root!!!'
 fi
 
+getOsName
+getOsArch
+
+showDebug 'Os Name is: '"$sOsName"
+showDebug 'Arch is: '"$sArch"
+
 #create bin configure variables
-BIN_CONFIGURE_FRAME_VARS='BIN_NAME BIN_VERSION ENV_USER ENV_GROUP DEBUG COMMON_LIB 
-INSTALL_DIR_FIX_DATA INSTALL_DIR_DYNAMIC_DATA INSTALL_DIR_BIN INSTALL_DIR_LOG INSTALL_DIR_APP
-EXEC_CURRENT_DIR EXEC_DIR_ROOT EXEC_DIR_TAR EXEC_DIR_TEMP EXEC_DIR_ASSEMBLE EXEC_DIR_ASSEMBLE_BIN_VERSION 
-BIN_FULL_NAME BIN_DOWNLOAD_URL BIN_CODE_TAR BIN_CODE_DIR BIN_COMMON_LIB'
+sBinConfigFrameVars='sEnvUser sEnvGroup sDeployUser iDebug sFixDataInstallDir sDynamicDataInstallDir sBinInstallRootDir sLogInstallRootDir sAppInstallRootDir
+sExecCurrentDir sExecRootDir sExecTarDir sExecTempDir sExecAssembleDir
+sOsName sArch
+sBinName sBinVersion sExecBinAssembleDir sExecBinVersionAssembleDir sExecBinVersionAssembleFile sExecBinVersionAssembleOsFile sExecBinVersionAssembleOsArchFile'

@@ -2,15 +2,15 @@
 
 #do some configure script
 
-info 'configure memcached start.'
-    create_dir $INSTALL_DIR_LOG_BIN
-info 'configure memcached successfully.'	
-info 'add memcached service start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/service/memcached' '/etc/init.d/memcached'
+showInfo 'configure memcached start.'
+    createDir $sBinLogInstallDir
+showInfo 'configure memcached successfully.'	
+showInfo 'add memcached service start.'
+    configBin $sExecBinVersionAssembleDir'/service/memcached' '/etc/init.d/memcached'
     /sbin/chkconfig --add memcached
     /sbin/chkconfig --level 3 memcached on
-    info "`/sbin/chkconfig --list | /bin/grep memcached`"
-info 'add memcached service successfully.'
-info 'add memcached logrotate start.'
-    configure_bin $EXEC_DIR_ASSEMBLE_BIN_VERSION'/logrotate/memcached' '/etc/logrotate.d/memcached'
-info 'add memcached logrotate successfully.'
+    showInfo "`/sbin/chkconfig --list | /bin/grep memcached`"
+showInfo 'add memcached service successfully.'
+showInfo 'add memcached logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/memcached' '/etc/logrotate.d/memcached'
+showInfo 'add memcached logrotate successfully.'

@@ -1,15 +1,15 @@
 server {
     listen 80;
-    server_name {{BIN_BASE_DOMAIN}};
-    root {{INSTALL_DIR_APP}}/index;
+    server_name {{sBinBaseDomain}};
+    root {{sAppInstallRootDir}}/index;
     index index_release.php;
 
     set $backend server-release;
-    if ($host ~ .+\.dev\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ .+\.dev\.{{sBinBaseDomainReg}}$){
         set $backend server-dev;
     }
 
-    if ($host ~ .+\.test\.{{BIN_BASE_DOMAIN_REG}}$){
+    if ($host ~ .+\.test\.{{sBinBaseDomainReg}}$){
         set $backend server-test;
     }
 
@@ -17,24 +17,24 @@ server {
         proxy_pass http://$backend;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/proxy.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/proxy.error.log;
+    access_log {{sBinLogInstallDir}}/proxy.access.log more;
+    error_log {{sBinLogInstallDir}}/proxy.error.log;
 }
 
 server {
     listen 80;
-    server_name _ local.{{BIN_BASE_DOMAIN}};
-    root {{INSTALL_DIR_APP}}/local;
+    server_name _ local.{{sBinBaseDomain}};
+    root {{sAppInstallRootDir}}/local;
     index index.php;
 
     location ~ \.php$ {
         include fastcgi_params;
         fastcgi_pass php-fpm;
         fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME {{INSTALL_DIR_APP}}/local$fastcgi_script_name;
+        fastcgi_param SCRIPT_FILENAME {{sAppInstallRootDir}}/local$fastcgi_script_name;
     }
 
-    access_log {{INSTALL_DIR_LOG_BIN}}/local.access.log more;
-    error_log {{INSTALL_DIR_LOG_BIN}}/local.error.log;
+    access_log {{sBinLogInstallDir}}/local.access.log more;
+    error_log {{sBinLogInstallDir}}/local.error.log;
 
 }
