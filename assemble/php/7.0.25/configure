@@ -10,7 +10,7 @@ showInfo 'configure php-fpm start.'
     
     createDir $sBinInstallDir/helper
     configBin $sExecBinVersionAssembleDir/helper/php-checkconf $sBinInstallDir/helper/php-checkconf
-    chmod +x $sExecBinVersionAssembleDir/helper/php-checkconf
+    /bin/chmod +x $sExecBinVersionAssembleDir/helper/php-checkconf
 showInfo 'configure php-fpm successfully.'
 showInfo 'add php-fpm service start.'
     configBin $sExecBinVersionAssembleDir'/service/php-fpm.service' '/lib/systemd/system/php-fpm.service'

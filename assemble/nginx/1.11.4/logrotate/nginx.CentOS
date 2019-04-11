@@ -1,0 +1,13 @@
+{{sBinLogInstallDir}}/*.log {
+    daily
+    rotate 10
+    create 0664 {{sEnvUser}} {{sEnvGroup}}
+    missingok
+    notifempty
+    compress
+    delaycompress
+    postrotate
+        /bin/kill -SIGUSR1 `cat {{sBinPidInstallFile}}`
+    endscript
+    sharedscripts
+}

@@ -29,6 +29,3 @@ showInfo 'add nginx service start.'
     /bin/systemctl enable nginx.service
     showInfo 'nginx service is '"`/bin/systemctl is-enabled nginx.service`"'.'
 showInfo 'add nginx service successfully.'
-showInfo 'add nginx logrotate start.'
-    configBin $sExecBinVersionAssembleDir'/logrotate/nginx' '/etc/logrotate.d/nginx'
-showInfo 'add nginx logrotate successfully.'
