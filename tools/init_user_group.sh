@@ -48,7 +48,7 @@ showInfo 'add our operator.'
         /bin/grep -P "^$OPR_NAME:" /etc/passwd > /dev/null
         if [ $? -ne 0 ]
         then
-            /usr/sbin/useradd -g "$sEnvGroup" "$OPR_NAME"
+            /usr/sbin/useradd -m -g "$sEnvGroup" "$OPR_NAME"
             /usr/bin/passwd $OPR_NAME
         else
             showWarning 'user '"$OPR_NAME"' exist.'
