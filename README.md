@@ -76,7 +76,7 @@ class me extends 码畜
 ## change log
 - 20190418 V8.0.1
     - 1.修正一些小错误
-    - 2.useradd 添加 -m 参数
+    - 2.useradd 添加 -m -s 参数
 - 20190403 V8.0
     - 1.全面支持Ubuntu 15及CentOS 7
     - 2.支持32位及64位机器

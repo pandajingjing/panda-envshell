@@ -22,7 +22,7 @@ if [ $? -ne 0 ]
 then
     sEnvPassword=`/bin/cat /proc/sys/kernel/random/uuid`
     showInfo 'user '"$sEnvUser"' does not exist, create it.its pwd is '"$sEnvPassword"'.'
-    /usr/sbin/useradd -m -g "$sEnvGroup" -p "$sEnvPassword" "$sEnvUser"
+    /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" -p "$sEnvPassword" "$sEnvUser"
 else
     showWarning 'user '"$sEnvUser"' exist, keep it alive, and never mind its pwd, we dont need it.'
 fi
@@ -35,7 +35,7 @@ if [ $? -ne 0 ]
 then
     sEnvPassword=`/bin/cat /proc/sys/kernel/random/uuid`
     showInfo 'user '"$sDeployUser"' does not exist, create it.its pwd is '"$sEnvPassword"'.'
-    /usr/sbin/useradd -m -g "$sEnvGroup" -p "$sEnvPassword" "$sDeployUser"
+    /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" -p "$sEnvPassword" "$sDeployUser"
 else
     showWarning 'user '"$sDeployUser"' exist, keep it alive, and never mind its pwd, we dont need it.'
 fi
@@ -48,7 +48,7 @@ showInfo 'add our operator.'
         /bin/grep -P "^$OPR_NAME:" /etc/passwd > /dev/null
         if [ $? -ne 0 ]
         then
-            /usr/sbin/useradd -m -g "$sEnvGroup" "$OPR_NAME"
+            /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" "$OPR_NAME"
             /usr/bin/passwd $OPR_NAME
         else
             showWarning 'user '"$OPR_NAME"' exist.'
