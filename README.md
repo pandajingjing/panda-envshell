@@ -80,6 +80,7 @@ class me extends 码畜
     - 2.useradd 添加 -m -s 参数
     - 3.添加autoremove功能
     - 4.添加挂载云盘的说明
+    - 5.修改php配置脚本中的错误
 - 20190403 V8.0
     - 1.全面支持Ubuntu 15及CentOS 7
     - 2.支持32位及64位机器
