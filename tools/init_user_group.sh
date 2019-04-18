@@ -22,7 +22,7 @@ if [ $? -ne 0 ]
 then
     sEnvPassword=`/bin/cat /proc/sys/kernel/random/uuid`
     showInfo 'user '"$sEnvUser"' does not exist, create it.its pwd is '"$sEnvPassword"'.'
-    /usr/sbin/useradd -g "$sEnvGroup" -p "$sEnvPassword" "$sEnvUser"
+    /usr/sbin/useradd -m -g "$sEnvGroup" -p "$sEnvPassword" "$sEnvUser"
 else
     showWarning 'user '"$sEnvUser"' exist, keep it alive, and never mind its pwd, we dont need it.'
 fi
