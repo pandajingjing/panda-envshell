@@ -212,7 +212,7 @@ function configBin(){
     _sDestFile=$2
     _sStartComment=$3
     _sEndComment=$4
-    _sBackupFile=$_sDestFile'.'`/bin/date +%s`
+    _sBackupFile=$_sDestFile'.'`/bin/date +%Y%m%d%H%M%S`
     if [ ! -f $_sTemplateFile ]; then
         showError 'we miss template file: '"$_sTemplateFile"'.'
     fi

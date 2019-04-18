@@ -72,3 +72,4 @@ loadAssembleFile|加载当前应用当前版本目录中的文件|sExecBinVersio
 configBin|配置应用的配置文件|
 findPackageInstalled|查找系统中是否安装了某个package|
 installPackage|在系统中安装某个package|
+updateAllPackage|更新系统中所有的package, 并删除没有被依赖的package|
