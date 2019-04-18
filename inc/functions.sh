@@ -316,6 +316,7 @@ function installPackage(){
 function updateAllPackage(){
     if [ $sOsName = $OS_UBUNTU ]; then
         /usr/bin/apt-get upgrade -y
+        /usr/bin/apt autoremove -y
     elif [ $sOsName = $OS_CENTOS ]; then
         /usr/bin/yum update -y
     fi

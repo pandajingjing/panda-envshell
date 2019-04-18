@@ -32,7 +32,7 @@ temp|解压缩出来的文件放在这里, 还有一些其他临时文件
 	- 安装git.
 	- 运行 git clone https://github.com/pandajingjing/panda-envshell.git 获取本代码.
 - 1.检查相关配置.
-	- 检查 ./config 文件,查看env\_user, env\_group 作为运行环境的用户名和用户组, sDeployUser 作为部署环境的用户名.
+	- 检查 ./config 文件,查看sEnvUser, sEnvGroup 作为运行环境的用户名和用户组, sDeployUser 作为部署环境的用户名.
 	- 确认相关环境目录.
 	- 找到 assemble 里面对应应用和版本, 就能查看具体的配置和脚本, 如果没什么特别需求, 就不要改了吧.
 - 2.运行 tools/nptdate.sh, 与国内的 ntp 服务器同步本地时间.
@@ -74,6 +74,8 @@ class me extends 码畜
 ```
 
 ## change log
+- 20190418 V8.0.1
+    - 1.修正一些小错误
 - 20190403 V8.0
     - 1.全面支持Ubuntu 15及CentOS 7
     - 2.支持32位及64位机器
