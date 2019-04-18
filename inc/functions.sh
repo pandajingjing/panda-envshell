@@ -319,6 +319,7 @@ function updateAllPackage(){
         /usr/bin/apt autoremove -y
     elif [ $sOsName = $OS_CENTOS ]; then
         /usr/bin/yum update -y
+        /usr/bin/yum autoremove -y
     fi
     return $?
 }
