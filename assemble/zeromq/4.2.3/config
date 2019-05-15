@@ -3,7 +3,7 @@ sBinDownloadUrl='https://github.com/zeromq/libzmq/releases/download/v4.2.3/'$sBi
 sBinCodeTar=$sBinFullName'.tar.gz'
 sBinSourceCodeSubDir='/'$sBinFullName
 
-sBinCommonLib='gcc-c++'
+sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 
