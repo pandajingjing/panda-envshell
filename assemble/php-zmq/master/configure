@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure php-zmq start.'
+    configBin $sExecBinVersionAssembleDir'/conf/php.ini' $sBinPhpInstallDir'/lib/php.ini' '#zmq php.ini start from here:' '#zmq php.ini end here.'
+showInfo 'configure php-zmq successfully.'
+showWarning 'remember to restart php-fpm.'

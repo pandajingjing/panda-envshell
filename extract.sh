@@ -31,7 +31,21 @@ fi
 
 if [ -f $sExecBinCodeTarFile ];then
     showInfo 'extract source code: '"$sExecBinCodeTarFile"' start.'
-    /bin/tar -zxf "$sExecBinCodeTarFile" -C "$sExecTempDir"
+    sFileExt="${sExecBinCodeTarFile##*.}"
+    case $sFileExt in
+    'tar')
+         /bin/tar -zxf "$sExecBinCodeTarFile" -C "$sExecTempDir"
+    ;;
+    'gz')
+        /bin/tar -zxf "$sExecBinCodeTarFile" -C "$sExecTempDir"
+    ;;
+    'zip')
+        /usr/bin/unzip "$sExecBinCodeTarFile" -d "$sExecTempDir"
+    ;;
+    *)
+        showError 'unknown file type.'
+    ;;
+    esac
     if [ 0 -eq $? ];then
         showInfo 'extract source code: '"$sExecBinCodeTarFile"' successfully.'
     else

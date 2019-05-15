@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure php-msgpack start.'
+    configBin $sExecBinVersionAssembleDir'/conf/php.ini' $sBinPhpInstallDir'/lib/php.ini' '#msgpack php.ini start from here:' '#msgpack php.ini end here.'
+showInfo 'configure php-msgpack successfully.'
+showWarning 'remember to restart php-fpm.'

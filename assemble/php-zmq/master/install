@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'configure php-zmq installation start.'
+
+cd $sExecTempDir$sBinSourceCodeSubDir
+
+$sBinPhpInstallDir'/bin/phpize'
+./configure --with-zmq=$sBinZeroMqInstallDir --with-php-config=$sBinPhpInstallDir'/bin/php-config'
+if [ 0 -eq $? ]; then
+    showInfo 'configure php-zmq installation successfully.'
+else
+    showError 'configure php-zmq installation failed.'
+fi
+showInfo 'compile and install php-zmq start.'
+/usr/bin/make && /usr/bin/make install
+if [ 0 -eq $? ]; then
+    showInfo 'compile and install php-zmq successfully.'
+else
+    showError 'compile and install php-zmq failed.'
+fi
