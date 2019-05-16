@@ -10,8 +10,8 @@ sBinLogInstallDir=$sLogInstallRootDir'/nginx'
 sBinPidInstallFile=$sBinInstallDir'/nginx.pid'
 
 sBinWorkerProcesses=2
-sBinBaseDomain='jxulife.com'
-sBinBaseDomainReg='jxulife\.com'
+sBinBaseDomain='lanehub.cn'
+sBinBaseDomainReg='lanehub\.cn'
 sBinStaticSubDomainReg='(static)|(cms)'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir

@@ -12,35 +12,30 @@
 
 zone "localhost.localdomain" IN {
         type master;
-        file "{{sBinInstallDir}}/etc/default/named.localhost";
+        file "named.localhost";
         allow-update { none; };
 };
 
 zone "localhost" IN {
         type master;
-        file "{{sBinInstallDir}}/etc/default/named.localhost";
+        file "named.localhost";
         allow-update { none; };
 };
 
 zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN {
         type master;
-        file "{{sBinInstallDir}}/etc/default/named.loopback";
+        file "named.loopback";
         allow-update { none; };
 };
 
 zone "1.0.0.127.in-addr.arpa" IN {
         type master;
-        file "{{sBinInstallDir}}/etc/default/named.loopback";
+        file "named.loopback";
         allow-update { none; };
 };
 
 zone "0.in-addr.arpa" IN {
         type master;
-        file "{{sBinInstallDir}}/etc/default/named.empty";
+        file "named.empty";
         allow-update { none; };
-};
-
-zone "." in {
-        type hint;
-        file "{{sBinInstallDir}}/etc/default/named.root";
 };

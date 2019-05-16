@@ -6,4 +6,7 @@
     notifempty
     compress
     delaycompress
+    postrotate
+        
+    endscript
 }
