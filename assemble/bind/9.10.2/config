@@ -3,12 +3,12 @@ sBinDownloadUrl='ftp://ftp.isc.org/isc/bind9/9.10.2/'$sBinFullName'.tar.gz'
 sBinCodeTar=$sBinFullName'.tar.gz'
 sBinSourceCodeSubDir='/'$sBinFullName
 
-sBinCommonLib='bind-utils openssl-devel'
+sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/bind'
 sBinPidInstallFile=$sBinInstallDir'/bind.pid'
 
-BIN_DOMAIN='jxulife.com'
+sBinDomain='lanehub.cn'
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile BIN_DOMAIN'
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile sBinDomain'

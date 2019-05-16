@@ -1,0 +1,14 @@
+[Unit]
+Description=bind
+After=network.target
+
+[Service]
+Type=forking
+PIDFile={{sBinPidInstallFile}}
+ExecStartPre={{sBinInstallDir}}/helper/php-checkconf
+ExecStart={{sBinInstallDir}}/sbin/php-fpm
+ExecReload={{sBinInstallDir}}/helper/php-checkconf
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

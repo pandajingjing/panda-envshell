@@ -58,7 +58,7 @@ reload() {
 
 configtest() {
     {{sBinInstallDir}}/sbin/named-checkconf {{sBinInstallDir}}/etc/named.conf
-    {{sBinInstallDir}}/sbin/named-checkzone {{BIN_DOMAIN}} {{sBinInstallDir}}/etc/mydomain/zone.conf
+    {{sBinInstallDir}}/sbin/named-checkzone {{sBinDomain}} {{sBinInstallDir}}/etc/mydomain/zone.conf
     RETVAL=$?
     if [ $RETVAL -eq 0 ]; then
         /bin/echo Syntax OK
