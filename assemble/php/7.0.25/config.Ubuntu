@@ -1,1 +1,1 @@
-sBinCommonLib='libxml2-dev libmcrypt-dev libssl-dev libcurl4-openssl-dev libpng16-dev libwebp-dev'
+sBinCommonLib='libxml2-dev libmcrypt-dev libcurl4-openssl-dev libssl-dev libpng12-dev libwebp-dev libjpeg-dev zlib1g-dev libfreetype6-dev'

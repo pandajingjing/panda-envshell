@@ -5,7 +5,7 @@
 showInfo 'configure php-fpm installation start.'
 ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib
 cd $sExecTempDir$sBinSourceCodeSubDir
-./configure --prefix=$sBinInstallDir --with-fpm-user=$sEnvUser --with-fpm-group=$sEnvGroup --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --enable-zip --with-mcrypt --with-curl --with-gd --with-webp-dir=/usr/include/webp --with-png-dir=/usr/include/png --enable-sockets --enable-bcmath --enable-exif
+./configure --prefix=$sBinInstallDir --with-fpm-user=$sEnvUser --with-fpm-group=$sEnvGroup --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --enable-zip --with-mcrypt --with-curl --with-gd --with-webp-dir=/usr/include/webp --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-freetype-dir=/usr/include/freetype2 --enable-sockets --enable-bcmath --enable-exif
 if [ 0 -eq $? ]; then
     showInfo 'configure php-fpm installation successfully.'
 else
