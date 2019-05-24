@@ -41,17 +41,22 @@ else
 fi
 
 showInfo 'add our operator.'
-    read -t 10 -p "please input operator's name:" OPR_NAME
-    if [ 'x' = "$OPR_NAME"'x' ];then
+    read -t 10 -p "please input operator's name:" sOprName
+    if [ 'x' = "$sOprName"'x' ];then
         showInfo 'you can add our operator later.'
     else
-        /bin/grep -P "^$OPR_NAME:" /etc/passwd > /dev/null
-        if [ $? -ne 0 ]
-        then
-            /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" "$OPR_NAME"
-            /usr/bin/passwd $OPR_NAME
+        /bin/grep -P "^$sOprName:" /etc/passwd > /dev/null
+        if [ $? -ne 0 ]; then
+            read -t 10 -p "want your own password? or we create a system password.[y/N]" sCustomPwd
+            if [ 'yx' = "$sCustomPwd"'x' ];then
+                /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" "$sOprName"
+                /usr/bin/passwd $sOprName
+            else
+                sEnvPassword=`/bin/cat /proc/sys/kernel/random/uuid`
+                /usr/sbin/useradd -m -s '/bin/bash' -g "$sEnvGroup" -p "$sEnvPassword" "$sOprName"
+            fi
         else
-            showWarning 'user '"$OPR_NAME"' exist.'
+            showWarning 'user '"$sOprName"' exist.'
         fi
     fi
 showInfo 'our operator is ready.'
