@@ -1,6 +1,6 @@
 {{sBinLogInstallDir}}/*.bash_history {
     daily
-    rotate 10
+    rotate 365
     create 0664 {{sEnvUser}} {{sEnvGroup}}
     missingok
     notifempty

@@ -1,1 +1,1 @@
-sCommonLib='wget gcc make man epel-release vim-enhanced openssh-server'
+sCommonLib='wget gcc make man epel-release vim-enhanced openssh-server unzip'
