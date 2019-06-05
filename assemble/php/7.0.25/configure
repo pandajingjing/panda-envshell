@@ -4,8 +4,13 @@
 
 showInfo 'configure php-fpm start.'
     createDir $sBinLogInstallDir
-    configBin $sExecTempDir$sBinSourceCodeSubDir/php.ini-development $sBinInstallDir/lib/php.ini
-    configBin $sExecBinVersionAssembleDir'/conf/php.ini' $sBinInstallDir'/lib/php.ini' '#custom php.ini start from here:' '#custom php.ini end here.'
+    _sPhpIniPath=$sBinInstallDir'/lib/php.ini'
+    if [ -f "$_sPhpIniPath" ]; then
+        showWarning 'file: '"$_sPhpIniPath"' is exist, you jump, I jump.'
+    else
+        configBin $sExecTempDir$sBinSourceCodeSubDir/php.ini-development "$_sPhpIniPath"
+    fi
+    configBin $sExecBinVersionAssembleDir'/conf/php.ini' "$_sPhpIniPath" '#custom php.ini start from here:' '#custom php.ini end here.'
     configBin $sExecBinVersionAssembleDir/conf/php-fpm.conf $sBinInstallDir/etc/php-fpm.conf
     
     createDir $sBinInstallDir/helper
