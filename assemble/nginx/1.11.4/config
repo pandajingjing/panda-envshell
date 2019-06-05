@@ -9,7 +9,7 @@ sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/nginx'
 sBinPidInstallFile=$sBinInstallDir'/nginx.pid'
 
-sBinWorkerProcesses=2
+sBinWorkerProcesses=4
 sBinBaseDomain='lanehub.cn'
 sBinBaseDomainReg='lanehub\.cn'
 sBinStaticSubDomainReg='(static)|(cms)'
