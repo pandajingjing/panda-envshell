@@ -1,9 +1,12 @@
 {{sBinLogInstallDir}}/*.log {
     daily
-    rotate 10
-    create 0664 {{sEnvUser}} {{sEnvGroup}}
+    rotate 365
+    create 0644 syslog adm
     missingok
     notifempty
     compress
     delaycompress
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
 }

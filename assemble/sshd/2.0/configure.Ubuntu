@@ -4,6 +4,7 @@
 
 showInfo 'configure sshd start.'
     createDir $sBinLogInstallDir
+    chmod 0777 $sBinLogInstallDir
     configBin $sExecBinVersionAssembleDir'/conf/sshd_config.Ubuntu' '/etc/ssh/sshd_config' 
     configBin $sExecBinVersionAssembleDir'/conf/rsyslog.conf' '/etc/rsyslog.conf' '#sshd log configuration start from here:' '#sshd log configuration end here.'
 showInfo 'configure sshd successfully.'

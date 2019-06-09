@@ -3,7 +3,7 @@ Protocol 2
 
 SyslogFacility local5
 
-LoginGraceTime 1m
+LoginGraceTime {{sBinGraceTime}}
 PermitRootLogin no
 PasswordAuthentication no
 ChallengeResponseAuthentication no
