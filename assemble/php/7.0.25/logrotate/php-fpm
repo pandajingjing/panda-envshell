@@ -1,6 +1,6 @@
 {{sBinLogInstallDir}}/*.log {
     daily
-    rotate 30
+    rotate 365
     create 0664 {{sEnvUser}} {{sEnvGroup}}
     missingok
     notifempty
