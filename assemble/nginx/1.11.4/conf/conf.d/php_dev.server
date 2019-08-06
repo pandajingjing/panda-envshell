@@ -1,5 +1,5 @@
 server {
-    listen 40083;
+    listen 40083 backlog=1024;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
     server_name *.dev.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
 
@@ -15,17 +15,33 @@ server {
 
     index $phpfile;
 
+    location /status1 {
+        fastcgi_pass php-fpm;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        access_log off;
+        allow 127.0.0.1;
+    }
+    
+    location /status2 {
+        fastcgi_pass php-fpm;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        access_log off;
+        allow 127.0.0.1;
+    }
+
     location / {
         try_files $uri $uri/ /$phpfile?$args;
     }
 
     location ~ \.php$ {
-        fastcgi_pass   php-fpm;
-        fastcgi_index  $phpfile;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
+        include fastcgi_params;
+        fastcgi_pass php-fpm;
+        fastcgi_index $phpfile;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_keep_conn on;
-        
+
         add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
         add_header Access-Control-Allow-Credentials 'true';

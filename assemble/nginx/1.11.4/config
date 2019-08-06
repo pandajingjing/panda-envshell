@@ -9,11 +9,12 @@ sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/nginx'
 sBinPidInstallFile=$sBinInstallDir'/nginx.pid'
 
-sBinWorkerProcesses=4
+sBinWorkerProcesses=8
+sBinWorkerCpuAffinity='0001 0010 0100 1000 0001 0010 0100 1000'
 sBinBaseDomain='lanehub.cn'
 sBinBaseDomainReg='lanehub\.cn'
 sBinStaticSubDomainReg='(static)|(cms)'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir
 sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile
-sBinWorkerProcesses sBinBaseDomain sBinBaseDomainReg sBinStaticSubDomainReg'
+sBinWorkerProcesses sBinWorkerCpuAffinity sBinBaseDomain sBinBaseDomainReg sBinStaticSubDomainReg'

@@ -17,6 +17,8 @@ showInfo 'configure nginx start.'
     configBin $sExecBinVersionAssembleDir'/conf/conf.d/total_dev.proxy' $sBinInstallDir'/conf/conf.d/total_dev.proxy'
     configBin $sExecBinVersionAssembleDir'/conf/conf.d/total_test.proxy' $sBinInstallDir'/conf/conf.d/total_test.proxy'
     configBin $sExecBinVersionAssembleDir'/conf/conf.d/total.upstream' $sBinInstallDir'/conf/conf.d/total.upstream'
+    
+    configBin $sExecBinVersionAssembleDir'/conf/fastcgi_param' $sBinInstallDir'/conf/fastcgi_param' '#custom fastcgi_param start from here:' '#custom fastcgi_param end here.'
 showInfo 'configure nginx successfully.'	
 showInfo 'add nginx service start.'
     configBin $sExecBinVersionAssembleDir'/service/nginx.service' '/lib/systemd/system/nginx.service'

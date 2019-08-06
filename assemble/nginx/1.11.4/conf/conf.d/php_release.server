@@ -1,5 +1,5 @@
 server {
-    listen 40087;
+    listen 40087 backlog=1024; # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
     server_name *.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
 
@@ -20,12 +20,12 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass   php-fpm;
-        fastcgi_index  $phpfile;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
+        include fastcgi_params;
+        fastcgi_pass php-fpm;
+        fastcgi_index $phpfile;
+        fastcgi_param SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         fastcgi_keep_conn on;
-        
+
         add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
         add_header Access-Control-Allow-Credentials 'true';
