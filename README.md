@@ -77,6 +77,7 @@ class me extends 码畜
 ## change log
 - 20190807 V8.3.1
     - 1.关闭php版本头信息
+    - 2.开启opcache
 - 20190806 V8.3
     - 1.优化php-fpm配置
     - 2.优化nginx配置
