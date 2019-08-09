@@ -16,7 +16,7 @@ fi
 unset TMPDIR
 
 RETVAL=0
-BINFILE={{sBinInstallDir}}/redis-server
+BINFILE=sudo -u {{sEnvUser}} {{sBinInstallDir}}/redis-server
 PIDFILE={{sBinPidInstallFile}}
 CFGFILE={{sBinInstallDir}}/redis.conf
 KIND=redis

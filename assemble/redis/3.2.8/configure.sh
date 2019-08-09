@@ -5,6 +5,7 @@
 showInfo 'configure redis start.'
     createDir $sBinLogInstallDir
     configBin $sExecBinVersionAssembleDir'/conf/redis.conf' $sBinInstallDir'/redis.conf'
+    chmod 0600 $sBinInstallDir'/redis.conf'
 showInfo 'configure redis successfully.'	
 showInfo 'add redis service start.'
     configBin $sExecBinVersionAssembleDir'/service/redis' '/etc/init.d/redis'
