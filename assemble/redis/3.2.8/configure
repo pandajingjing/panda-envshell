@@ -8,12 +8,12 @@ showInfo 'configure redis start.'
     chmod 0600 $sBinInstallDir'/redis.conf'
     chown $sEnvUser:$sEnvGroup $sBinInstallDir'/redis.conf'
 showInfo 'configure redis successfully.'	
-showInfo 'add redis service start.'
-    configBin $sExecBinVersionAssembleDir'/service/redis' '/etc/init.d/redis'
-    /sbin/chkconfig --add redis
-    /sbin/chkconfig --level 3 redis on
-    showInfo "`/sbin/chkconfig --list | /bin/grep redis`"
-showInfo 'add redis service successfully.'
-showInfo 'add redis logrotate start.'
-    configBin $sExecBinVersionAssembleDir'/logrotate/redis' '/etc/logrotate.d/redis'
-showInfo 'add redis logrotate successfully.'
+showInfo 'add redis-server service start.'
+    configBin $sExecBinVersionAssembleDir'/service/redis-server.service' '/lib/systemd/system/redis-server.service'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable redis-server.service
+    showInfo 'redis-server service is '"`/bin/systemctl is-enabled redis-server.service`"'.'
+showInfo 'add redis-server service successfully.'
+showInfo 'add redis-server logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/redis-server' '/etc/logrotate.d/redis-server'
+showInfo 'add redis-server logrotate successfully.'

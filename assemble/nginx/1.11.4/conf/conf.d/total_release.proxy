@@ -1,12 +1,12 @@
 server {
-    listen 40082 backlog=1024;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
+    listen 40082 backlog=128;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
     server_name {{sBinBaseDomain}};
     rewrite ^/(.*) http://www.{{sBinBaseDomain}}/$1 redirect;
     access_log  off;
 }
 
 server {
-    listen 40082 backlog=1024;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
+    listen 40082 backlog=128;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认511,context:listen
     server_name *.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
     index web_release.php;
