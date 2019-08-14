@@ -11,7 +11,7 @@ sBinPidInstallFile=$sBinInstallDir'/mysql.pid'
 
 LN_DIR_MYSQL='/usr/local/mysql'
 
-sBinListenPort=3306
-BIN_START_PARAM="--user=$sEnvUser --log-error=$sBinLogInstallDir/mysql.err.log --slow-query-log=$sBinLogInstallDir/mysql.slow.log --general-log=$sBinLogInstallDir/mysql.log --pid-file=$sBinPidInstallFile --port=$sBinListenPort --socket=/dev/shm/mysql.sock"
+iBinListenPort=3306
+BIN_START_PARAM="--user=$sEnvUser --log-error=$sBinLogInstallDir/mysql.err.log --slow-query-log=$sBinLogInstallDir/mysql.slow.log --general-log=$sBinLogInstallDir/mysql.log --pid-file=$sBinPidInstallFile --port=$iBinListenPort --socket=/dev/shm/mysql.sock"
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile LN_DIR_MYSQL sBinListenPort BIN_START_PARAM'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile LN_DIR_MYSQL iBinListenPort BIN_START_PARAM'

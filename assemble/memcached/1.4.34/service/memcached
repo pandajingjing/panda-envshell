@@ -19,7 +19,7 @@ RETVAL=0
 BINFILE={{sBinInstallDir}}/bin/memcached
 PIDFILE={{sBinPidInstallFile}}
 CFGFILE={{sBinInstallDir}}/memcached.conf
-CFGPARAM='-d -u {{sEnvUser}} -l {{BIN_BINDIP}} -m {{BIN_MAX_MEMORY}} -v -P {{sBinPidInstallFile}} -f {{BIN_FACTOR}} >> {{INSTALL_FILE_LOG_BIN}} 2>&1'
+CFGPARAM='-d -u {{sEnvUser}} -l {{BIN_BINDIP}} -m {{sBinMaxMemory}} -v -P {{sBinPidInstallFile}} -f {{BIN_FACTOR}} >> {{sBinLogInstallFile}} 2>&1'
 KIND=memcached
 
 start() {

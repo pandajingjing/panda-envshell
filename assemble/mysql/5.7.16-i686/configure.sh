@@ -19,6 +19,6 @@ showInfo 'start mysql.'
 showInfo 'mysql started.'
 showInfo 'configure mysql start.'
     read -p 'input root password:' PWD
-    $LN_DIR_MYSQL/bin/mysql -h127.0.0.1 -uroot --port=$sBinListenPort -e "grant all privileges on *.* to root@'%' identified by '$PWD'"
-    $LN_DIR_MYSQL/bin/mysql -h127.0.0.1 -uroot --port=$sBinListenPort -e "grant all privileges on *.* to root@'localhost' identified by '$PWD'"
+    $LN_DIR_MYSQL/bin/mysql -h127.0.0.1 -uroot --port=$iBinListenPort -e "grant all privileges on *.* to root@'%' identified by '$PWD'"
+    $LN_DIR_MYSQL/bin/mysql -h127.0.0.1 -uroot --port=$iBinListenPort -e "grant all privileges on *.* to root@'localhost' identified by '$PWD'"
 showInfo 'configure mysql successfully.'

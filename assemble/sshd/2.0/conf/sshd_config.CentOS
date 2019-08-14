@@ -1,4 +1,4 @@
-Port {{sBinListenPort}}
+Port {{iBinListenPort}}
 Protocol 2
 
 SyslogFacility local5

@@ -7,12 +7,12 @@ sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/redis'
-INSTALL_FILE_LOG_BIN=$sBinLogInstallDir'/redis.log'
+sBinLogInstallFile=$sBinLogInstallDir'/redis.log'
 sBinPidInstallFile=$sBinInstallDir'/redis.pid'
 
-BIN_BIND_IP='127.0.0.1'
-sBinListenPort=6379
-BIN_PASSWORD=123456
-BIN_MAX_MEMORY=67108864
+sBinBindIp='127.0.0.1'
+iBinListenPort=6379
+sBinPassword=123456
+sBinMaxMemory=67108864
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir INSTALL_FILE_LOG_BIN sBinPidInstallFile BIN_BIND_IP sBinListenPort BIN_PASSWORD BIN_MAX_MEMORY'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile sBinBindIp iBinListenPort sBinPassword sBinMaxMemory'

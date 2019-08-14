@@ -7,11 +7,11 @@ sBinCommonLib='libevent-devel'
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/memcached'
-INSTALL_FILE_LOG_BIN=$sBinLogInstallDir'/memcached.log'
+sBinLogInstallFile=$sBinLogInstallDir'/memcached.log'
 sBinPidInstallFile=$sBinInstallDir'/memcached.pid'
 
 BIN_BINDIP='127.0.0.1:11211'
-BIN_MAX_MEMORY=64
+sBinMaxMemory=64
 BIN_FACTOR=1.25
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir INSTALL_FILE_LOG_BIN sBinPidInstallFile BIN_BINDIP BIN_MAX_MEMORY BIN_FACTOR'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile BIN_BINDIP sBinMaxMemory BIN_FACTOR'

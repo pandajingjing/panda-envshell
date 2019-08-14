@@ -10,11 +10,11 @@ sBinLogInstallDir=$sLogInstallRootDir'/squid'
 sBinPidInstallFile=$sBinInstallDir'/squid.pid'
 
 BIN_VISIBLE_HOSTNAME='squid.jxulife.com'
-sBinListenPort=3128
+iBinListenPort=3128
 BIN_CACHE_MEN_SIZE='256 MB'
 BIN_CACHE_DIR=$sBinInstallDir'/var/cache/squid'
 BIN_CACHE_DIR_SIZE=512
 BIN_COREDUMP_DIR=$sBinInstallDir'/var/cache/squid'
 BIN_NETDB_FILENAME=$sBinInstallDir'/var/cache/squid/netdb.state'
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile BIN_VISIBLE_HOSTNAME sBinListenPort BIN_CACHE_MEN_SIZE BIN_CACHE_DIR BIN_CACHE_DIR_SIZE BIN_COREDUMP_DIR BIN_NETDB_FILENAME'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile BIN_VISIBLE_HOSTNAME iBinListenPort BIN_CACHE_MEN_SIZE BIN_CACHE_DIR BIN_CACHE_DIR_SIZE BIN_COREDUMP_DIR BIN_NETDB_FILENAME'

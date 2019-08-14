@@ -1,4 +1,4 @@
-sBinListenPort=22
+iBinListenPort=22
 
 sBinLogInstallDir=$sLogInstallRootDir'/sshd'
 sBinGraceTime=10m
@@ -10,5 +10,5 @@ sBinRemoteTunnelRemoteListenPort=22
 sBinRemoteTunnelRemoteUser=$sDeployUser
 sBinRemoteTunnelRemoteHost=xx.xx.xx.xx
 
-sBinConfigVars='sBinListenPort sBinLogInstallDir sBinGraceTime sBinBuildRemoteTunnel
+sBinConfigVars='iBinListenPort sBinLogInstallDir sBinGraceTime sBinBuildRemoteTunnel
 sBinRemoteTunnelLocalListenPort sBinRemoteTunnelRemoteListenPort sBinRemoteTunnelRemoteUser sBinRemoteTunnelRemoteHost'
