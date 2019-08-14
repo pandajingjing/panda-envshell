@@ -78,6 +78,7 @@ class me extends 码畜
 - 20190814 V8.5
     - 1.优化backlog的值
     - 2.redis安装标准化
+    - 3.优化php-fpm的配置
 - 20190809 V8.4
     - 1.优化sshd的安全配置
     - 2.优化redis的安全配置
