@@ -75,6 +75,8 @@ class me extends 码畜
 ```
 
 ## change log
+- 20190815 V8.5.1
+    - 1.修正nginx中每个端口只能有一处地方设置backlog
 - 20190814 V8.5
     - 1.优化backlog的值
     - 2.redis安装标准化
