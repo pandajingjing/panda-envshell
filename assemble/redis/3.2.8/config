@@ -13,6 +13,6 @@ sBinPidInstallFile=$sBinInstallDir'/redis.pid'
 sBinBindIp='127.0.0.1'
 iBinListenPort=6379
 sBinPassword=123456
-sBinMaxMemory=67108864
+iBinMaxMemory=67108864
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile sBinBindIp iBinListenPort sBinPassword sBinMaxMemory'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile sBinBindIp iBinListenPort sBinPassword iBinMaxMemory'
