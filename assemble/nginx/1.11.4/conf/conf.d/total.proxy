@@ -1,5 +1,5 @@
 server {
-    listen 80 backlog=128; # backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
+    listen 80 backlog=128;# backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
     server_name {{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
     index index_release.php;
@@ -22,7 +22,7 @@ server {
 }
 
 server {
-    listen 80; # 对于同一个listen,只能有一个地方配置backlog
+    listen 80;# 对于同一个listen,只能有一个地方配置backlog
     server_name _ local.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/local;
     index index.php;

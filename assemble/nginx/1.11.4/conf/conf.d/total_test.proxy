@@ -1,5 +1,5 @@
 server {
-    listen 40081 backlog=128;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
+    listen 40081 backlog=128;# backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
     server_name *.test.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
     index web_test.php;

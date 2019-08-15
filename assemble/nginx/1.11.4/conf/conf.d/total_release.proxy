@@ -1,12 +1,12 @@
 server {
-    listen 40082 backlog=128;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
+    listen 40082 backlog=128;# backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
     server_name {{sBinBaseDomain}};
     rewrite ^/(.*) http://www.{{sBinBaseDomain}}/$1 redirect;
     access_log  off;
 }
 
 server {
-    listen 40082; # 对于同一个listen,只能有一个地方配置backlog
+    listen 40082;# 对于同一个listen,只能有一个地方配置backlog
     server_name *.{{sBinBaseDomain}};
     root {{sAppInstallRootDir}}/index;
     index web_release.php;

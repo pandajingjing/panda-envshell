@@ -1,5 +1,5 @@
 server {
-    listen 40084 backlog=128;  # backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
+    listen 40084 backlog=128;# backlog=xxx,用于设置挂起连接队列的最大长度,默认128,context:listen
     server_name ~^(?<loader>{{sBinStaticSubDomainReg}})\.(?<code_ver>.*)\.dev\.{{sBinBaseDomainReg}}$;
     root {{sAppInstallRootDir}}/static-dev/$code_ver/$loader;
     index index.html;
