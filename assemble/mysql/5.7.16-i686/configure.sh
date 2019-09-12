@@ -15,7 +15,7 @@ showInfo 'start mysql.'
     cd $LN_DIR_MYSQL
     /bin/rm ./my.cnf -rf
     bin/mysqld --initialize-insecure --user=$sEnvUser
-    bin/mysqld_safe $BIN_START_PARAM &
+    bin/mysqld_safe $sBinStartParam &
 showInfo 'mysql started.'
 showInfo 'configure mysql start.'
     read -p 'input root password:' PWD

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'mod samba service start.'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable smbd.service
+    showInfo 'samba service is '"`/bin/systemctl is-enabled smbd.service`"'.'
+showInfo 'mod samba service successfully.'

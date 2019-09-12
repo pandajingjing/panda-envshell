@@ -26,3 +26,4 @@ showInfo 'add php-fpm service successfully.'
 showInfo 'add php-fpm logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/php-fpm' '/etc/logrotate.d/php-fpm'
 showInfo 'add php-fpm logrotate successfully.'
+clearLogrotated

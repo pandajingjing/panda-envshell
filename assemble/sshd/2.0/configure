@@ -1,0 +1,14 @@
+showWarning 'make sure your public key has saved ~/.ssh/authorized_keys.'
+showWarning 'do not forget restart rsyslog service.'
+showInfo 'add sshd logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/sshd' '/etc/logrotate.d/sshd'
+showInfo 'add sshd logrotate successfully.'
+if [ 'yesx' = "$sBinBuildRemoteTunnel"'x' ];then
+    showInfo 'add ssh remote tunnel service start.'
+        configBin $sExecBinVersionAssembleDir'/service/ssh_remote_tunnel' '/etc/init.d/ssh_remote_tunnel'
+        /sbin/chkconfig --add ssh_remote_tunnel
+        /sbin/chkconfig --level 3 ssh_remote_tunnel on
+        showInfo "`/sbin/chkconfig --list | /bin/grep ssh_remote_tunnel`"
+    showInfo 'add ssh remote tunnel service successfully.'
+fi
+clearLogrotated

@@ -8,3 +8,4 @@ showInfo 'configure app successfully.'
 showInfo 'add app logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/app' '/etc/logrotate.d/app'
 showInfo 'add app logrotate successfully.'
+clearLogrotated

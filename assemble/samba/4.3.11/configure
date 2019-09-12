@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure samba start.'
+    createDir $sBinLogInstallDir
+    createDir $sBinSharePath
+    /bin/chmod -R 0775 $sBinSharePath
+    /bin/chown -R nobody:nobody $sBinSharePath
+    configBin $sExecBinVersionAssembleDir'/conf/smb.conf' '/etc/samba/smb.conf'
+showInfo 'configure samba successfully.'
+showInfo 'add samba logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/samba' '/etc/logrotate.d/samba'
+showInfo 'add samba logrotate successfully.'
+clearLogrotated

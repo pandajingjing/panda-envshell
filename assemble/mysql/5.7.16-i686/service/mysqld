@@ -24,7 +24,7 @@ KIND=mysqld
 
 start() {
     /bin/echo -n $"Starting $KIND services: "
-    $BINFILE {{BIN_START_PARAM}} &
+    $BINFILE {{sBinStartParam}} &
     RETVAL=$?
     success
     /bin/echo

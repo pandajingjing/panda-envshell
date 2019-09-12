@@ -17,3 +17,4 @@ showInfo 'add redis-server service successfully.'
 showInfo 'add redis-server logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/redis-server' '/etc/logrotate.d/redis-server'
 showInfo 'add redis-server logrotate successfully.'
+clearLogrotated

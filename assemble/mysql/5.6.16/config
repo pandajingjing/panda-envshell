@@ -1,5 +1,5 @@
-sBinFullName='mysql-5.7.14-linux-glibc2.5-x86_64'
-sBinDownloadUrl='http://cdn.mysql.com/archives/mysql-5.7/'$sBinFullName'.tar.gz'
+sBinFullName='mysql-5.6.16'
+sBinDownloadUrl='http://dev.mysql.com/get/downloads/mysql-5.6/'$sBinFullName'.tar.gz'
 sBinCodeTar=$sBinFullName'.tar.gz'
 sBinSourceCodeSubDir='/'$sBinFullName
 

@@ -9,3 +9,4 @@ showInfo 'configure profile successfully.'
 showInfo 'add bash logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/bash' '/etc/logrotate.d/bash'
 showInfo 'add bash logrotate successfully.'
+clearLogrotated

@@ -323,3 +323,9 @@ function updateAllPackage(){
     fi
     return $?
 }
+
+function clearLogrotated(){
+    showInfo 'clear logrotated.d start.'
+    /bin/rm /etc/logrotate.d/*.*
+    showInfo 'clear logrotated.d is finished.'
+}

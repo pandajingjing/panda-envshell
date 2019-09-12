@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'install dhcp start.'
+    installPackage 'isc-dhcp-server'
+showInfo 'install dhcp successfully.'

@@ -6,11 +6,12 @@ showInfo 'configure memcached start.'
     createDir $sBinLogInstallDir
 showInfo 'configure memcached successfully.'	
 showInfo 'add memcached service start.'
-    configBin $sExecBinVersionAssembleDir'/service/memcached' '/etc/init.d/memcached'
-    /sbin/chkconfig --add memcached
-    /sbin/chkconfig --level 3 memcached on
-    showInfo "`/sbin/chkconfig --list | /bin/grep memcached`"
+    configBin $sExecBinVersionAssembleDir'/service/memcached.service' '/lib/systemd/system/memcached.service'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable memcached.service
+    showInfo 'memcached service is '"`/bin/systemctl is-enabled memcached.service`"'.'
 showInfo 'add memcached service successfully.'
 showInfo 'add memcached logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/memcached' '/etc/logrotate.d/memcached'
 showInfo 'add memcached logrotate successfully.'
+clearLogrotated

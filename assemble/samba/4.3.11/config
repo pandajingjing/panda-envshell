@@ -1,0 +1,10 @@
+sBinCommonLib='ntfs-3g'
+
+sBinLogInstallDir=$sLogInstallRootDir'/samba'
+
+sBinWorkgroupName='WORKGROUP'
+sBinServerDesc='my file server'
+sBinMaxLogSize=102400
+sBinSharePath=$sDynamicDataInstallDir'/share'
+
+sBinConfigVars='sBinLogInstallDir sBinWorkgroupName sBinServerDesc sBinMaxLogSize sBinSharePath'

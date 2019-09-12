@@ -2,20 +2,20 @@ sBinCommonLib=''
 
 sBinLogInstallDir=$sLogInstallRootDir'/dhcp'
 
-BIN_GLOBAL_DOMAIN_NAME='jxulife.com'
-BIN_GLOBAL_DOMAIN_NAME_SERVERS='114.114.114.114, 8.8.8.8'
-BIN_GLOBAL_DEFAULT_LEASE_TIME=7200
-BIN_GLOBAL_MAX_LEASE_TIME=14400
+sBinGlobalDomainName='jxulife.com'
+sBinGlobalDomainNameServers='114.114.114.114, 8.8.8.8'
+iBinGlobalDefaultLeaseTime=7200
+iBinGlobalMaxLeaseTime=14400
 
-BIN_SUBNET=192.168.0.0
-BIN_NETMASK=255.255.255.0
-BIN_FROM_IP=192.168.0.101
-BIN_END_IP=192.168.0.250
-BIN_ROUTER_IP=192.168.0.1
-BIN_BROADCAST_ADDRESS=192.168.0.255
+sBinSubnet='192.168.0.0'
+sBinNetmask='255.255.255.0'
+sBinFromIp='192.168.0.101'
+sBinEndIp='192.168.0.250'
+sBinRouterIp='192.168.0.1'
+sBinBroadcastAddress='192.168.0.255'
 
-BIN_YOUR_NAME=jxu
-BIN_YOUR_HARDWARE_ADDRESS=xx:xx:xx:xx:xx:xx
-BIN_YOUR_ADDRESS=192.168.0.51
+sBinYourName='jxu'
+sBinYourHardwareAddress='xx:xx:xx:xx:xx:xx'
+sBinYourAddress='192.168.0.51'
 
-sBinConfigVars='sBinLogInstallDir BIN_GLOBAL_DOMAIN_NAME BIN_GLOBAL_DOMAIN_NAME_SERVERS BIN_GLOBAL_DEFAULT_LEASE_TIME BIN_GLOBAL_MAX_LEASE_TIME BIN_SUBNET BIN_NETMASK BIN_FROM_IP BIN_END_IP BIN_ROUTER_IP BIN_BROADCAST_ADDRESS BIN_YOUR_NAME BIN_YOUR_HARDWARE_ADDRESS BIN_YOUR_ADDRESS'
+sBinConfigVars='sBinLogInstallDir sBinGlobalDomainName sBinGlobalDomainNameServers iBinGlobalDefaultLeaseTime iBinGlobalMaxLeaseTime sBinSubnet sBinNetmask sBinFromIp sBinEndIp sBinRouterIp sBinBroadcastAddress sBinYourName sBinYourHardwareAddress sBinYourAddress'

@@ -3,18 +3,18 @@ sBinDownloadUrl='http://www.squid-cache.org/Versions/v3/3.5/'$sBinFullName'.tar.
 sBinCodeTar=$sBinFullName'.tar.gz'
 sBinSourceCodeSubDir='/'$sBinFullName
 
-sBinCommonLib='gcc-c++'
+sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/squid'
 sBinPidInstallFile=$sBinInstallDir'/squid.pid'
 
-BIN_VISIBLE_HOSTNAME='squid.jxulife.com'
+sBinVisibleHostname='squid.jxulife.com'
 iBinListenPort=3128
-BIN_CACHE_MEN_SIZE='256 MB'
-BIN_CACHE_DIR=$sBinInstallDir'/var/cache/squid'
-BIN_CACHE_DIR_SIZE=512
-BIN_COREDUMP_DIR=$sBinInstallDir'/var/cache/squid'
-BIN_NETDB_FILENAME=$sBinInstallDir'/var/cache/squid/netdb.state'
+sBinCacheMemorySize='256 MB'
+sBinCacheDir=$sBinInstallDir'/var/cache/squid'
+sBinCacheDirSize=512
+sBinCoredumpDir=$sBinInstallDir'/var/cache/squid'
+sBinNetdbFilename=$sBinInstallDir'/var/cache/squid/netdb.state'
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile BIN_VISIBLE_HOSTNAME iBinListenPort BIN_CACHE_MEN_SIZE BIN_CACHE_DIR BIN_CACHE_DIR_SIZE BIN_COREDUMP_DIR BIN_NETDB_FILENAME'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinPidInstallFile sBinVisibleHostname iBinListenPort sBinCacheMemorySize sBinCacheDir sBinCacheDirSize sBinCoredumpDir sBinNetdbFilename'

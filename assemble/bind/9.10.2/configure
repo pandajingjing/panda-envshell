@@ -35,3 +35,4 @@ showInfo 'add bind service successfully.'
 showInfo 'add bind logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/bind' '/etc/logrotate.d/bind'
 showInfo 'add bind logrotate successfully.'
+clearLogrotated

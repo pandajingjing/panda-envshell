@@ -3,15 +3,18 @@ sBinDownloadUrl='http://www.memcached.org/files/'$sBinFullName'.tar.gz'
 sBinCodeTar=$sBinFullName'.tar.gz'
 sBinSourceCodeSubDir='/'$sBinFullName
 
-sBinCommonLib='libevent-devel'
+sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/memcached'
 sBinLogInstallFile=$sBinLogInstallDir'/memcached.log'
 sBinPidInstallFile=$sBinInstallDir'/memcached.pid'
 
-BIN_BINDIP='127.0.0.1:11211'
-sBinMaxMemory=64
-BIN_FACTOR=1.25
+sBinBindIp='127.0.0.1'
+iBinMaxMemory=64
+fBinFactor=1.25
+iBinTcpPort=11211
+iBinUdpPort=11211
+iBinMaxConn=1024
 
-sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile BIN_BINDIP sBinMaxMemory BIN_FACTOR'
+sBinConfigVars='sBinInstallDir sBinLogInstallDir sBinLogInstallFile sBinPidInstallFile sBinBindIp iBinMaxMemory fBinFactor iBinTcpPort iBinUdpPort iBinMaxConn'

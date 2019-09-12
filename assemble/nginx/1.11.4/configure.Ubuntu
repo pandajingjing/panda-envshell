@@ -5,3 +5,4 @@
 showInfo 'add nginx logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/nginx.Ubuntu' '/etc/logrotate.d/nginx'
 showInfo 'add nginx logrotate successfully.'
+clearLogrotated

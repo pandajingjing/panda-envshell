@@ -1,0 +1,16 @@
+[Unit]
+Description=Squid caching proxy
+After=syslog.target network.target nss-lookup.target
+
+[Service]
+Type=forking
+LimitNOFILE=16384
+ExecStartPre={{sBinInstallDir}}/helper/cache_swap.sh
+ExecStartPre={{sBinInstallDir}}/sbin/squid -k parse -f {{sBinInstallDir}}/etc/squid.conf
+ExecStart={{sBinInstallDir}}/sbin/squid -f {{sBinInstallDir}}/etc/squid.conf
+ExecReload={{sBinInstallDir}}/sbin/squid -k reconfigure -f {{sBinInstallDir}}/etc/squid.conf
+ExecStop={{sBinInstallDir}}/sbin/squid -k shutdown -f {{sBinInstallDir}}/etc/squid.conf
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Memcached 
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={{sBinInstallDir}}/bin/memcached -vv -u {{sEnvUser}} -P "{{sBinPidInstallFile}}" -p {{iBinTcpPort}} -U {{iBinUdpPort}} -l {{sBinBindIp}} -c {{iBinMaxConn}} -f {{fBinFactor}} -m {{iBinMaxMemory}} >> {{sBinLogInstallDir}}/memcached.log 2>&1
+
+[Install]
+WantedBy=multi-user.target
