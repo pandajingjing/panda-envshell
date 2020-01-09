@@ -1,0 +1,12 @@
+sBinFullName='php-7.4.1'
+sBinDownloadUrl='https://www.php.net/distributions/'$sBinFullName'.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
+
+sBinCommonLib=''
+
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/php-fpm'
+sBinPidInstallFile=$sBinInstallDir'/php-fpm.7.4.1.pid'
+
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile'

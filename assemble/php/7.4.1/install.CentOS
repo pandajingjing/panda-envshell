@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'configure php-fpm installation start.'
+cd $sExecTempDir$sBinSourceCodeSubDir
+./configure --prefix=$sBinInstallDir --with-fpm-user=$sEnvUser --with-fpm-group=$sEnvGroup --enable-fpm --disable-short-tags --disable-ipv6 --with-zlib --with-pdo-mysql --enable-mbstring --with-openssl --with-zip --with-curl --enable-sockets --enable-bcmath --enable-exif --enable-gd --with-webp --with-jpeg --with-freetype --without-sqlite3 --disable-mbregex --without-pdo-sqlite
+if [ 0 -eq $? ]; then
+    showInfo 'configure php-fpm installation successfully.'
+else
+    showError 'configure php-fpm installation failed.'
+fi
+showInfo 'compile and install php-fpm start.'
+/usr/bin/make && /usr/bin/make install
+if [ 0 -eq $? ]; then
+    showInfo 'compile and install php-fpm successfully.'
+else
+    showError 'compile and install php-fpm failed.'
+fi

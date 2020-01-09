@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure php-fpm start.'
+    createDir $sBinLogInstallDir
+    _sPhpIniPath=$sBinInstallDir'/lib/php.ini'
+    if [ -f "$_sPhpIniPath" ]; then
+        showWarning 'file: '"$_sPhpIniPath"' is exist, you jump, I jump.'
+    else
+        configBin $sExecTempDir$sBinSourceCodeSubDir/php.ini-development "$_sPhpIniPath"
+    fi
+    configBin $sExecBinVersionAssembleDir'/conf/php.ini' "$_sPhpIniPath" '#custom php.ini start from here:' '#custom php.ini end here.'
+    configBin $sExecBinVersionAssembleDir/conf/php-fpm.conf $sBinInstallDir/etc/php-fpm.conf
+    
+    createDir $sBinInstallDir/helper
+    configBin $sExecBinVersionAssembleDir/helper/php-checkconf $sBinInstallDir/helper/php-checkconf
+    /bin/chmod +x $sBinInstallDir/helper/php-checkconf
+showInfo 'configure php-fpm successfully.'
+showInfo 'add php-fpm service start.'
+    configBin $sExecBinVersionAssembleDir'/service/php-fpm.service' '/lib/systemd/system/php-fpm.service'
+    /bin/systemctl daemon-reload 
+    /bin/systemctl enable php-fpm.service
+    showInfo 'php-fpm service is '"`/bin/systemctl is-enabled php-fpm.service`"'.'
+showInfo 'add php-fpm service successfully.'
+showInfo 'add php-fpm logrotate start.'
+    configBin $sExecBinVersionAssembleDir'/logrotate/php-fpm' '/etc/logrotate.d/php-fpm'
+showInfo 'add php-fpm logrotate successfully.'
+clearLogrotated

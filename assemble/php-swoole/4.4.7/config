@@ -1,0 +1,12 @@
+sBinFullName='php-swoole-4.4.7'
+sBinDownloadUrl='https://github.com/swoole/swoole-src/archive/v4.4.7.tar.gz'
+sBinCodeTar='v4.4.7.tar.gz'
+sBinSourceCodeSubDir='/php-zmq-master'
+
+sBinCommonLib=''
+
+sBinInstallDir=''
+sBinPhpInstallDir=$sBinInstallRootDir'/php-7.0.25'
+sBinZeroMqInstallDir=$sBinInstallRootDir'/zeromq-4.2.3'
+
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinPhpInstallDir sBinZeroMqInstallDir'
