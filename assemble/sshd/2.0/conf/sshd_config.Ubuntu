@@ -8,6 +8,7 @@ PermitRootLogin no
 PasswordAuthentication no
 ChallengeResponseAuthentication no
 PermitEmptyPasswords no
+GatewayPorts yes
 
 AcceptEnv LANG LC_*
 AcceptEnv XMODIFIERS
