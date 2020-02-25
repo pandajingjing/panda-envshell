@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'install node start.'
+    /bin/cp -R $sExecTempDir$sBinSourceCodeSubDir $sBinInstallRootDir
+showInfo 'install node successfully.'

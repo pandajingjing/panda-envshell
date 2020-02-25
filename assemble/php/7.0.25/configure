@@ -12,6 +12,7 @@ showInfo 'configure php-fpm start.'
     fi
     configBin $sExecBinVersionAssembleDir'/conf/php.ini' "$_sPhpIniPath" '#custom php.ini start from here:' '#custom php.ini end here.'
     configBin $sExecBinVersionAssembleDir/conf/php-fpm.conf $sBinInstallDir/etc/php-fpm.conf
+    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom php profile start from here:' '#custom php profile end here.'
     
     createDir $sBinInstallDir/helper
     configBin $sExecBinVersionAssembleDir/helper/php-checkconf $sBinInstallDir/helper/php-checkconf

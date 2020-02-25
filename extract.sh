@@ -42,6 +42,9 @@ if [ -f $sExecBinCodeTarFile ];then
     'tgz')
         /bin/tar -zxf "$sExecBinCodeTarFile" -C "$sExecTempDir"
     ;;
+    'xz')
+        /bin/tar -xf "$sExecBinCodeTarFile" -C "$sExecTempDir"
+    ;;
     'zip')
         /usr/bin/unzip "$sExecBinCodeTarFile" -d "$sExecTempDir"
     ;;

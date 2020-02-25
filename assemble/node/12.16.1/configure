@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure profile start.'
+    createDir $sBinLogInstallDir
+    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom node profile start from here:' '#custom node profile end here.'
+showInfo 'configure profile successfully.'

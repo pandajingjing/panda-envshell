@@ -1,0 +1,1 @@
+PATH="{{sBinInstallDir}}/bin:$PATH"
