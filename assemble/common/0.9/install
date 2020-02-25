@@ -9,6 +9,16 @@ if [ 0 -eq $? ]; then
 else
     showError 'install common lib failed.'
 fi
+
+showInfo 'install zh_CN.utf8 start.'
+/usr/sbin/locale-gen zh_CN.utf8
+if [ 0 -eq $? ]; then
+    showInfo 'install zh_CN.utf8 successfully.'
+else
+    showError 'install zh_CN.utf8 failed.'
+fi
+
+showInfo 'update package start.'
 updateAllPackage
 if [ 0 -eq $? ]; then
     showInfo 'update package successfully.'
