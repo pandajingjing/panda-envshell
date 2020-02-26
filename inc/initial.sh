@@ -12,6 +12,15 @@ getOsArch
 showDebug 'Os Name is: '"$sOsName"
 showDebug 'Arch is: '"$sArch"
 
+parseBin "$@"
+
+#create base dir
+createDir $sFixDataInstallDir
+createDir $sDynamicDataInstallDir
+createDir $sBinInstallRootDir
+createDir $sLogInstallRootDir
+createDir $sAppInstallRootDir
+
 #create bin configure variables
 sBinConfigFrameVars='sEnvUser sEnvGroup sDeployUser iDebug sFixDataInstallDir sDynamicDataInstallDir sBinInstallRootDir sLogInstallRootDir sAppInstallRootDir
 sExecCurrentDir sExecRootDir sExecTarDir sExecTempDir sExecAssembleDir

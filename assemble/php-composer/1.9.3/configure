@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#do some configure script
+
+showInfo 'configure composer start.'
+    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom php-composer profile start from here:' '#custom php-composer profile end here.'
+showInfo 'configure composer successfully.'

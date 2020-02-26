@@ -7,18 +7,9 @@ sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
 source $sExecRootDir'/inc/initial.sh'
 
-parseBin "$@"
-
 showInfo 'install '"$sBinName"'('"$sBinVersion"') start.'
 
 loadAssembleFile 'config'
-
-#create base dir
-createDir $sFixDataInstallDir
-createDir $sDynamicDataInstallDir
-createDir $sBinInstallRootDir
-createDir $sLogInstallRootDir
-createDir $sAppInstallRootDir
 
 #empty bin dir
 if [ -z $sBinInstallDir ];then

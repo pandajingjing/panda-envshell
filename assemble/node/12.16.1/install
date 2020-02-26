@@ -3,5 +3,6 @@
 #do some install scripts
 
 showInfo 'install node start.'
+    createDir $sBinInstallDir 'y'
     /bin/cp -R $sExecTempDir$sBinSourceCodeSubDir $sBinInstallRootDir
 showInfo 'install node successfully.'

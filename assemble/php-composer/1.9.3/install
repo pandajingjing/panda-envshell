@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#do some install scripts
+
+showInfo 'install composer start.'
+    /bin/cp $sExecTarDir'/'$sBinCodeTar $sBinInstallDir'/'
+    /bin/mv $sBinInstallDir'/'$sBinCodeTar $sBinInstallDir'/'composer
+    chmod +x $sBinInstallDir'/'composer
+    chown $sEnvUser:$sEnvGroup $sBinInstallDir'/'composer
+showInfo 'install composer successfully.'

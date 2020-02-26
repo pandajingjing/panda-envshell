@@ -114,12 +114,12 @@ function getOsName(){
     OS_OTHER='other'
     
     sOsName=$OS_OTHER
-    sOsIssue=`/bin/cat /etc/issue | /usr/bin/tr A-Z a-z`
-    _findOsName "$sOsIssue"
+    _sOsIssue=`/bin/cat /etc/issue | /usr/bin/tr A-Z a-z`
+    _findOsName "$_sOsIssue"
     if [ $sOsName = $OS_OTHER ]; then
         showWarning 'Can not get os name from /etc/issue, try lsb_release.'
-        sOsIssue=`lsb_release -a 2>/dev/null`
-        _findOsName "$sOsIssue"
+        _sOsIssue=`lsb_release -a 2>/dev/null`
+        _findOsName "$_sOsIssue"
     fi
     if [ $sOsName = $OS_OTHER ]; then
         showWarning 'Can not get os name from lsb_release, try check specific files.'

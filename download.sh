@@ -7,8 +7,6 @@ sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
 source $sExecRootDir'/inc/initial.sh'
 
-parseBin "$@"
-
 showInfo 'download '"$sBinName"'('"$sBinVersion"') start.'
 
 loadAssembleFile 'config'
@@ -20,9 +18,11 @@ if [ -z $sBinDownloadUrl ];then
 fi
 
 showInfo 'download '"$sBinDownloadUrl"' start.'
-/usr/bin/wget -P "$sExecTarDir" -c "$sBinDownloadUrl"
+sExecBinCodeTarFile=$sExecTarDir'/'$sBinCodeTar
+/usr/bin/wget -O "$sExecBinCodeTarFile" -c "$sBinDownloadUrl"
 if [ 0 -eq $? ];then
     showInfo 'download '"$sBinDownloadUrl"' successfully.'
 else
     showError 'download '"$sBinDownloadUrl"' failed.'
 fi
+showInfo 'download '"$sBinName"'('"$sBinVersion"') is finished.'

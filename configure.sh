@@ -7,8 +7,6 @@ sExecRootDir=`/bin/readlink -f $sExecCurrentDir/`
 
 source $sExecRootDir'/inc/initial.sh'
 
-parseBin "$@"
-
 showInfo 'configure '"$sBinName"'('"$sBinVersion"') start.'
 
 loadAssembleFile 'config'

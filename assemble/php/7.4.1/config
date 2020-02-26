@@ -7,6 +7,6 @@ sBinCommonLib=''
 
 sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
 sBinLogInstallDir=$sLogInstallRootDir'/php-fpm'
-sBinPidInstallFile=$sBinInstallDir'/php-fpm.7.4.1.pid'
+sBinPidInstallFile=$sBinInstallDir'/php-fpm.pid'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile'

@@ -1,0 +1,12 @@
+sBinFullName='composer-1.9.3'
+sBinDownloadUrl='https://getcomposer.org/download/1.9.3/composer.phar'
+sBinCodeTar='composer-1.9.3.phar'
+sBinSourceCodeSubDir=''
+
+sBinCommonLib=''
+
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/composer'
+
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir
+sBinCommonLib sBinInstallDir sBinLogInstallDir'

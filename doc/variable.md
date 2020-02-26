@@ -27,12 +27,9 @@ OS\_ALIYUN|/inc/functions.sh|Aliyun操作系统|
 OS\_OPENSUSE|/inc/functions.sh|openSUSE操作系统|
 OS\_OTHER|/inc/functions.sh|其他操作系统|
 sOsName|/inc/functions.sh|操作系统名称|OS\_CENTOS, OS\_UBUNTU, OS\_DEBIAN, OS\_ALIYUN, OS\_OPENSUSE, OS\_OTHER
-sOsIssue|/inc/functions.sh|操作系统数据|
 ARCH\_32|/inc/functions.sh|32位操作系统|
 ARCH\_64|/inc/functions.sh|64位操作系统|
 sArch|/inc/functions.sh|操作系统架构|ARCH\_32, ARCH\_64
-----|----|----|----
-sBinConfigFrameVars|/inc/initial.sh|脚本运行中使用的框架配置变量名|...
 ----|----|----|----
 sBinName|/inc/functions.sh|系统应用名称|运行参数, 必须
 sBinVersion|/inc/functions.sh|系统应用版本|运行参数, 或最新版本
@@ -42,7 +39,8 @@ sExecBinVersionAssembleFile|/inc/functions.sh|脚本运行时加载当前应用�
 sExecBinVersionAssembleOsFile|/inc/functions.sh|脚本运行时加载当前应用当前版本当前操作系统的文件|$sExecBinVersionAssembleFile'.'\$sOsName
 sExecBinVersionAssembleOsArchFile|/inc/functions.sh|脚本运行时加载当前应用当前版本当前操作系统当前系统架构的文件|sExecBinVersionAssembleOsFile'.'\$sArch
 ----|----|----|----
-sBinConfigVars|/assemble/\*/\*/config|脚本运行中使用的系统应用配置变量名|
+sBinConfigFrameVars|/inc/initial.sh|脚本运行中使用的框架配置变量名|...
+----|----|----|----
 sBinFullName|/assemble/\*/\*/config|系统应用全称, 包含应用名与版本号|
 sBinDownloadUrl|/assemble/\*/\*/config|系统应用(源码或程序包)下载路径|
 sBinCodeTar|/assemble/\*/\*/config|下载后文件的名称|
@@ -51,6 +49,7 @@ sBinCommonLib|/assemble/\*/\*/config|系统应用依赖的库|
 sBinInstallDir|/assemble/\*/\*/config|系统应用安装目录|/fix-data/bin/\*
 sBinLogInstallDir|/assemble/\*/\*/config|系统应用日志存放目录|/dynamic-data/log/\*
 sBinPidInstallFile|/assemble/\*/\*/config|系统应用pid文件存放位置|/fix-data/bin/\*/\*.pid
+sBinConfigVars|/assemble/\*/\*/config|脚本运行中使用的系统应用配置变量名|
 ----|----|----|----
 *|/assemble/\*/\*/config|其他需要的变量
 
@@ -67,7 +66,7 @@ showHelp|显示脚本帮助信息|
 createDir|递归创建目录, 如果已存在可清空|
 parseBin|解析脚本的参数, 并设置相关变量|sBinName, sBinVersion, sExecBinAssembleDir, sExecBinVersionAssembleDir
 getOsArch|获取操作系统架构|ARCH\_32, ARCH\_64, sArch
-getOsName|获取操作系统名称|OS\_CENTOS, OS\_UBUNTU, OS\_DEBIAN, OS\_ALIYUN, OS\_OPENSUSE, OS\_OTHER, sOsName, sOsIssue
+getOsName|获取操作系统名称|OS\_CENTOS, OS\_UBUNTU, OS\_DEBIAN, OS\_ALIYUN, OS\_OPENSUSE, OS\_OTHER, sOsName
 loadAssembleFile|加载当前应用当前版本目录中的文件|sExecBinVersionAssembleFile, sExecBinVersionAssembleOsFile, sExecBinVersionAssembleOsArchFile
 configBin|配置应用的配置文件|
 findPackageInstalled|查找系统中是否安装了某个package|
