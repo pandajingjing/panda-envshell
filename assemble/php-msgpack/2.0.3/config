@@ -6,6 +6,6 @@ sBinSourceCodeSubDir='/msgpack-2.0.3'
 sBinCommonLib='autoconf'
 
 sBinInstallDir=''
-sBinPhpInstallDir=$sBinInstallRootDir'/php-7.0.25'
+sBinPhpInstallDir=$sBinInstallRootDir'/php-7.4.1'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinPhpInstallDir'

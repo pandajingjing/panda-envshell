@@ -6,7 +6,7 @@ sBinSourceCodeSubDir='/php-zmq-master'
 sBinCommonLib=''
 
 sBinInstallDir=''
-sBinPhpInstallDir=$sBinInstallRootDir'/php-7.0.25'
+sBinPhpInstallDir=$sBinInstallRootDir'/php-7.4.1'
 sBinZeroMqInstallDir=$sBinInstallRootDir'/zeromq-4.2.3'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir sBinCommonLib sBinInstallDir sBinPhpInstallDir sBinZeroMqInstallDir'

@@ -12,8 +12,6 @@ getOsArch
 showDebug 'Os Name is: '"$sOsName"
 showDebug 'Arch is: '"$sArch"
 
-parseBin "$@"
-
 #create base dir
 createDir $sFixDataInstallDir
 createDir $sDynamicDataInstallDir
