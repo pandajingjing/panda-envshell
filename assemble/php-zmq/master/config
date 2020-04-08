@@ -1,6 +1,6 @@
 sBinFullName='php-zmq-master'
 sBinDownloadUrl='https://github.com/mkoppanen/php-zmq/archive/master.zip'
-sBinCodeTar='master.zip'
+sBinCodeTar='php-zmq-master.zip'
 sBinSourceCodeSubDir='/php-zmq-master'
 
 sBinCommonLib=''

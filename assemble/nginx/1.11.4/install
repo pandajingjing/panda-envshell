@@ -4,7 +4,7 @@
 
 showInfo 'configure nginx installation start.'
 cd $sExecTempDir$sBinSourceCodeSubDir
-./configure --prefix=$sBinInstallDir --pid-path=$sBinPidInstallFile --user=$sEnvUser --group=$sEnvGroup --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module --with-pcre
+./configure --prefix=$sBinInstallDir --pid-path=$sBinPidInstallFile --user=$sEnvUser --group=$sEnvGroup --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module --with-pcre --add-module=$sExecTempDir/nginx-upload-progress-module-0.9.0
 if [ 0 -eq $? ]; then
     showInfo 'configure nginx installation successfully.'
 else

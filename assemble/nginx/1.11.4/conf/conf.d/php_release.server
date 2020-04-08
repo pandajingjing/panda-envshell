@@ -15,6 +15,10 @@ server {
 
     index $phpfile;
 
+    location ^~ /api/upload-progress {
+        report_uploads uploads;
+    }
+
     location / {
         try_files $uri $uri/ /$phpfile?$args;
     }
@@ -39,6 +43,7 @@ server {
             add_header 'Content-Length' 0;
             return 204;
         }
+        track_uploads uploads 30s;
     }
 
     access_log {{sBinLogInstallDir}}/php.release.server.access.log more;

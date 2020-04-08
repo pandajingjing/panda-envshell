@@ -14,6 +14,10 @@ server {
     }
 
     index $phpfile;
+    
+    location ^~ /api/upload-progress {
+        report_uploads uploads;
+    }
 
     location /status1 {
         fastcgi_pass php-fpm;
@@ -55,6 +59,7 @@ server {
             add_header 'Content-Length' 0;
             return 204;
         }
+        track_uploads uploads 30s;
     }
 
     access_log {{sBinLogInstallDir}}/php.dev.server.access.log more;

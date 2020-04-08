@@ -11,8 +11,8 @@ sBinPidInstallFile=$sBinInstallDir'/nginx.pid'
 
 sBinWorkerProcesses=8
 sBinWorkerCpuAffinity='0001 0010 0100 1000 0001 0010 0100 1000'
-sBinBaseDomain='lanehub.cn'
-sBinBaseDomainReg='lanehub\.cn'
+sBinBaseDomain='weiheinc.com'
+sBinBaseDomainReg='weiheinc\.com'
 sBinStaticSubDomainReg='(static)|(cms)'
 
 sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir

@@ -1,0 +1,9 @@
+sBinFullName='nginx-uploadprogress-module-0.9.0'
+sBinDownloadUrl='https://github.com/masterzen/nginx-upload-progress-module/archive/v0.9.0.tar.gz'
+sBinCodeTar=$sBinFullName'.tar.gz'
+sBinSourceCodeSubDir='/'$sBinFullName
+
+sBinCommonLib=''
+
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir
+sBinCommonLib'
