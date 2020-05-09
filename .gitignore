@@ -8,6 +8,8 @@
 *.swp
 #code
 /config/
+#vscode
+/.vscode
 #self
 /tar
 /temp
