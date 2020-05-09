@@ -1,0 +1,13 @@
+sBinFullName='node-v10.20.1-linux-x64'
+sBinDownloadUrl='https://nodejs.org/download/release/latest-v10.x/'$sBinFullName'.tar.xz'
+sBinCodeTar=$sBinFullName'.tar.xz'
+sBinSourceCodeSubDir='/'$sBinFullName
+
+sBinCommonLib=''
+
+sBinInstallDir=$sBinInstallRootDir'/'$sBinFullName
+sBinLogInstallDir=$sLogInstallRootDir'/node'
+sBinPidInstallFile=$sBinInstallDir'/node.pid'
+
+sBinConfigVars='sBinFullName sBinDownloadUrl sBinCodeTar sBinSourceCodeSubDir
+sBinCommonLib sBinInstallDir sBinLogInstallDir sBinPidInstallFile'
