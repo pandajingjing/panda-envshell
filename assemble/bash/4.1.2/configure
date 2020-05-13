@@ -4,7 +4,7 @@
 
 showInfo 'configure bash start.'
     createDir $sBinLogInstallDir
-    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom profile start from here:' '#custom profile end here.'
+    configBin $sExecBinVersionAssembleDir'/conf/profile' '/etc/profile' '#custom bash start from here:' '#custom bash end here.'
 showInfo 'configure bash successfully.'
 showInfo 'add bash logrotate start.'
     configBin $sExecBinVersionAssembleDir'/logrotate/bash' '/etc/logrotate.d/bash'
